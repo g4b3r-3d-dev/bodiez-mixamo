@@ -111,6 +111,7 @@ def _validate_model_signature(path: Path) -> None:
         raise AssetValidationError("Somente GLTF 2.x é suportado nesta etapa.")
 
 
+
 def _validate_resource_signature(path: Path) -> None:
     extension = path.suffix.lower()
     if extension == ".bin":
@@ -126,7 +127,6 @@ def _validate_resource_signature(path: Path) -> None:
     }.get(extension, False)
     if not valid:
         raise AssetValidationError(f"A dependência '{path.name}' não corresponde ao formato declarado.")
-
 
 def _gltf_external_uris(path: Path) -> list[str]:
     if path.suffix.lower() != ".gltf":
@@ -283,6 +283,7 @@ async def run_blender_import(
             str(executable),
             "--background",
             "--factory-startup",
+            "--disable-autoexec",
             "--python-exit-code",
             "1",
             "--python",

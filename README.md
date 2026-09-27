@@ -1,30 +1,44 @@
-# Bodiez Local — Blender + Mixamo
+# Bodiez Local
 
-Aplicação web local para inspecionar e preparar personagens 3D usando o Blender instalado no computador como motor de processamento. O navegador nunca executa `bpy`: React/Three.js conversa com um backend FastAPI em `127.0.0.1`, e o backend executa apenas scripts internos fixos do projeto no Blender.
+Aplicação web **local** para preparar e personalizar personagens 3D usando o Blender instalado na máquina como motor de processamento. O navegador nunca executa `bpy`: o frontend React/TypeScript conversa com um backend FastAPI em `127.0.0.1`, e o backend executa somente scripts Python internos e fixos no Blender, sem `shell=True` e sem aceitar comandos/scripts arbitrários da interface.
 
-## Estado atual
+## Estado do projeto
 
-- **Etapa 1 — Conexão com Blender:** configuração do executável, teste real via `bpy`, logs e progresso por WebSocket.
-- **Etapa 2 — Importação e visualização:** FBX/GLB/GLTF, preservação do original, cópia de trabalho, inspeção de armature, hierarquia, pesos, materiais, shape keys e animações, além de GLB intermediário e visualizador Three.js.
-- **Etapa 3 — Preparação da base corporal:** validação de malha já skinnada ao Mixamo ou adaptação assistida de uma base corporal externa, preservando shape keys/topologia quando possível, com transferência de pesos separada de retargeting e testes automáticos de ombros, cotovelos, quadris e joelhos.
+- **Etapa 1 — Conexão com Blender:** configuração do executável, teste real via `bpy`, logs/progresso por WebSocket.
+- **Etapa 2 — Importação e visualização:** FBX/GLB/GLTF, original preservado, cópia de trabalho, inspeção de malhas/armatures/pesos/materiais/shape keys/animações e GLB intermediário para Three.js.
+- **Etapa 3 — Preparação da base corporal:** validação de malha já vinculada ao Mixamo ou adaptação assistida de uma base FBX/GLB/GLTF/BLEND, preservação de topologia/shape keys, inspeção de drivers/rig, alinhamento global, transferência inicial de pesos quando existe uma malha Mixamo de referência e testes de deformação em ombros, cotovelos, quadris e joelhos.
 
-A Etapa 4 ainda não foi implementada.
+> Transferência de pesos e retargeting de animação são operações diferentes. A Etapa 3 só prepara skinning/deformação; retargeting será tratado na Etapa 5.
 
 ## Requisitos
 
-Prioridade: Linux.
-
+- Linux (prioridade do projeto; outros sistemas poderão ser ajustados depois)
 - Python 3.11+
 - Node.js 20+
-- npm
-- Blender instalado localmente (o caminho pode ser configurado pela interface)
+- Blender instalado localmente
+
+O caminho do Blender é configurável pela interface. Exemplos comuns:
+
+```text
+/usr/bin/blender
+/opt/blender/blender
+```
 
 ## Instalação
 
 ```bash
-git clone https://github.com/g4b3r-3d-dev/bodiez-mixamo.git
-cd bodiez-mixamo
 ./scripts/install.sh
+```
+
+Ou manualmente:
+
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r backend/requirements.txt
+cd frontend
+npm install
+cd ..
 ```
 
 ## Inicialização
@@ -33,56 +47,50 @@ cd bodiez-mixamo
 ./scripts/dev.sh
 ```
 
-Abra no navegador:
+Abra:
 
 ```text
 http://127.0.0.1:5173
 ```
 
-O backend fica restrito a:
+O backend fica em `http://127.0.0.1:8000`.
 
-```text
-http://127.0.0.1:8000
-```
+## Teste da Etapa 3
 
-## Como testar a Etapa 3
+1. Abra **Blender**, informe o executável e clique em **Testar Blender**.
+2. Abra **Importar**, selecione um FBX/GLB/GLTF com personagem e aguarde a inspeção real.
+3. Abra **Preparar base**.
+4. Escolha um dos fluxos:
+   - **Usar malha vinculada:** valida o skinning já presente sem transferir pesos.
+   - **Adaptar outra base:** selecione uma base FBX/GLB/GLTF/BLEND; o Blender inspeciona objetos, shape keys, drivers e rig antes de qualquer vinculação.
+5. No fluxo de adaptação, ajuste escala/offset/rotação global somente se necessário.
+6. Execute a preparação. O painel informa bloqueadores, avisos, cobertura de pesos e os testes reais de deformação de ombros/cotovelos/quadris/joelhos.
+7. O `.blend` preparado pode ser baixado para revisão manual.
 
-1. Na aba **Blender**, informe o caminho absoluto do executável, por exemplo `/usr/bin/blender`, salve e execute **Testar Blender**.
-2. Na aba **Importar**, selecione um FBX, GLB ou GLTF. Para GLTF externo, selecione também `.bin` e texturas locais necessárias.
-3. Confirme no painel de inspeção quais armatures, pesos, materiais, shape keys e animações foram realmente encontrados.
-4. Abra **Preparar base** e escolha um fluxo:
-   - **Malha já skinnada:** valida a malha já vinculada ao armature encontrado, a cobertura dos pesos e as deformações articulares.
-   - **Adaptar base:** envie uma base FBX/GLB/GLTF/BLEND. O sistema preserva o original, cria cópia de trabalho, faz alinhamento global assistido e só transfere pesos quando existe uma malha de referência realmente ponderada no personagem importado.
-5. Revise o relatório. A base só aparece como pronta quando não há bloqueadores e os testes simples de ombros, cotovelos, quadris e joelhos passam.
-6. O resultado da preparação disponibiliza um `prepared.blend` e um GLB intermediário para visualização.
+### Regras de confiabilidade implementadas
 
-### Ajustes assistidos
-
-No modo de adaptação estão disponíveis escala global, deslocamentos X/Y/Z e rotação Z. Esses parâmetros são intencionalmente limitados. Eles não substituem ajuste artístico de A-pose/T-pose, pintura de pesos ou correção anatômica quando os arquivos são incompatíveis.
-
-## Regras importantes da Etapa 3
-
-- **Transferência de pesos não é retargeting de animação.** Nenhum retargeting é executado nesta etapa.
-- Um esqueleto Mixamo sozinho não fornece malha, pesos ou morphs. Se não houver uma malha de referência ponderada, a transferência automática é bloqueada.
-- Se a base já estiver vinculada a outro armature, a troca automática é bloqueada para evitar destruir rig, drivers ou morphs.
-- Shape keys são contabilizadas antes/depois e nenhum modificador destrutivo é aplicado pela preparação.
-- Arquivos originais ficam intactos; o processamento ocorre em cópias de trabalho.
-- Arquivos Bodiez proprietários serão inspecionados quando fornecidos. O projeto não presume nomes de controles, shape keys, drivers ou uma API do Bodiez.
-- O serviço não recebe comandos shell nem scripts Python arbitrários da interface e usa `subprocess` sem `shell=True`.
+- Um esqueleto Mixamo sozinho **não** é tratado como fonte de pesos. A transferência automática só é tentada quando há malha de referência realmente vinculada ao armature e com pesos suficientes.
+- Se a base já possui outro armature/modificador conflitante, a troca automática de rig é bloqueada para evitar quebrar morphs, drivers ou deformações existentes.
+- Shape keys não são aplicadas nem destruídas; a transferência de pesos altera grupos de vértices e adiciona o modificador Armature sem aplicar modificadores destrutivos.
+- Bases `.blend` são carregadas por append de datablocks no script interno; os drivers encontrados são inspecionados e preservados quando possível, mas não são reinterpretados como uma API do Bodiez.
+- O alinhamento automático atual é global por altura/centro. Diferenças locais entre A-pose/T-pose, anatomia e proporções são explicitamente marcadas como revisão assistida.
+- A transferência automática usa pesos da malha Mixamo de referência pelo vértice espacial mais próximo. É uma preparação inicial e exige revisão visual; não é anunciada como skinning universal.
 
 ## Testes
 
-A suíte local acumulada das Etapas 1–3 passa com:
-
 ```bash
-cd backend
-PYTHONPATH=. pytest -q
+PYTHONPATH=backend pytest -q backend/tests
 ```
 
-Resultado validado durante a implementação:
+Estado atual: **19 testes automatizados** para API, segurança, preservação de arquivos, orquestração Blender simulada e preparação corporal.
 
-```text
-19 passed
-```
+O teste final de deformação com `bpy` precisa ser executado com o Blender real instalado na máquina, porque o ambiente de desenvolvimento automatizado deste repositório não contém o Blender.
 
-Também foi validada a compilação sintática dos módulos Python e scripts Blender. O teste final de deformação via `bpy` precisa ser executado numa máquina com Blender instalado. O build Vite também deve ser confirmado localmente após `npm install`, pois o ambiente de desenvolvimento usado para esta implementação não tinha acesso para baixar as dependências npm.
+## Dados locais
+
+Por padrão:
+
+- configurações: `~/.config/bodiez-local/settings.json`
+- assets: `~/.local/share/bodiez-local/assets/`
+
+Cada importação preserva o original e mantém cópias/saídas derivadas separadas. Preparações ficam em `assets/<asset-id>/preparations/<preparation-id>/`.

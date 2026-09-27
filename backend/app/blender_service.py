@@ -130,6 +130,7 @@ async def run_blender_connection_test(
             str(executable),
             "--background",
             "--factory-startup",
+            "--disable-autoexec",
             "--python",
             str(script_path),
             stdout=asyncio.subprocess.PIPE,

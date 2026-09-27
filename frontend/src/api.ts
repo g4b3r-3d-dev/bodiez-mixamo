@@ -43,7 +43,11 @@ export async function startAssetImport(model: File, resources: File[]): Promise<
   const form = new FormData()
   form.append('model', model, model.name)
   resources.forEach((resource) => form.append('resources', resource, resource.name))
-  const response = await fetch(`${API_BASE}/api/assets/import`, { method: 'POST', body: form })
+
+  const response = await fetch(`${API_BASE}/api/assets/import`, {
+    method: 'POST',
+    body: form,
+  })
   if (!response.ok) throw new Error(await parseError(response))
   const body = await response.json()
   return { assetId: body.asset_id, taskId: body.task_id }
@@ -55,7 +59,9 @@ export function absoluteAssetUrl(relativeUrl: string): string {
 
 export function watchTask(taskId: string, onEvent: (event: TaskEvent) => void): WebSocket {
   const socket = new WebSocket(`${WS_BASE}/ws/tasks/${taskId}`)
-  socket.onmessage = (message) => onEvent(JSON.parse(message.data) as TaskEvent)
+  socket.onmessage = (message) => {
+    onEvent(JSON.parse(message.data) as TaskEvent)
+  }
   return socket
 }
 
@@ -66,12 +72,20 @@ export async function startExistingPreparation(assetId: string): Promise<{ prepa
   return { preparationId: body.preparation_id, taskId: body.task_id }
 }
 
-export async function startAdaptPreparation(assetId: string, base: File, resources: File[], options: import('./types').AdaptBaseOptions): Promise<{ preparationId: string; taskId: string }> {
+export async function startAdaptPreparation(
+  assetId: string,
+  base: File,
+  resources: File[],
+  options: import('./types').AdaptBaseOptions,
+): Promise<{ preparationId: string; taskId: string }> {
   const form = new FormData()
   form.append('base', base, base.name)
   resources.forEach((resource) => form.append('resources', resource, resource.name))
   Object.entries(options).forEach(([key, value]) => form.append(key, String(value)))
-  const response = await fetch(`${API_BASE}/api/assets/${assetId}/prepare/adapt`, { method: 'POST', body: form })
+  const response = await fetch(`${API_BASE}/api/assets/${assetId}/prepare/adapt`, {
+    method: 'POST',
+    body: form,
+  })
   if (!response.ok) throw new Error(await parseError(response))
   const body = await response.json()
   return { preparationId: body.preparation_id, taskId: body.task_id }
