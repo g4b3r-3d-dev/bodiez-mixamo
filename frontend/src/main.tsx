@@ -1,14 +1,11 @@
-import React, { useState } from 'react'
+import React,{useState} from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import BodyWorkspace from './BodyWorkspace'
+import AnimationWorkspace from './AnimationWorkspace'
 import './styles.css'
 import './components/body.css'
-
-function Root() {
-  const [body, setBody] = useState(false)
-  if (body) return <BodyWorkspace onBack={() => setBody(false)} />
-  return <div className="rootWithStage4"><App/><button className="stage4Launch" type="button" onClick={() => setBody(true)}>Corpo · Etapa 4</button></div>
-}
-
+import './components/animation.css'
+type Workspace='main'|'body'|'animation'
+function Root(){const [workspace,setWorkspace]=useState<Workspace>('main');if(workspace==='body')return <BodyWorkspace onBack={()=>setWorkspace('main')}/>;if(workspace==='animation')return <AnimationWorkspace onBack={()=>setWorkspace('main')}/>;return <div className="rootWithStages"><App/><button className="stage5Launch" type="button" onClick={()=>setWorkspace('animation')}>Poses/Animações · Etapa 5</button><button className="stage4Launch" type="button" onClick={()=>setWorkspace('body')}>Corpo · Etapa 4</button></div>}
 ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><Root/></React.StrictMode>)
