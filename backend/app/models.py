@@ -19,3 +19,9 @@ class BlenderTaskResponse(BaseModel):
 class AssetTaskResponse(BaseModel):
     asset_id: str
     task_id: str
+
+
+class PreparationTaskResponse(BaseModel):
+    asset_id: str
+    preparation_id: str
+    task_id: str
