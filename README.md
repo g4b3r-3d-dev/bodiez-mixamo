@@ -87,7 +87,7 @@ O backend fica em `http://127.0.0.1:8000`.
 PYTHONPATH=backend pytest -q backend/tests
 ```
 
-Estado atual: **28 testes automatizados** para API, segurança, preservação de arquivos, orquestração Blender simulada, preparação corporal, limites seguros, mapeamento de morphs e presets JSON.
+Na validação local acumulada, a suíte terminou com **32 testes passando**, incluindo os testes da Etapa 4 para preservação da base preparada, limites seguros, mapeamento explícito de morphs e presets JSON.
 
 O teste final de deformação com `bpy` precisa ser executado com o Blender real instalado na máquina, porque o ambiente de desenvolvimento automatizado deste repositório não contém o Blender.
 
