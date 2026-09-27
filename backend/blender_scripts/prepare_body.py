@@ -145,9 +145,10 @@ def validate_joints(arm,meshes,matches):
     for region,keys in JOINTS.items():
         checks=[]
         for k in keys:
-            if k in matches: checks.append(validate_joint(arm,meshes,matches[k],h))
+            if k in matches:
+                check=validate_joint(arm,meshes,matches[k],h); check['semantic']=k; checks.append(check)
             else: checks.append({'bone':None,'semantic':k,'passed':False,'reason':'Osso semântico não identificado.'})
-        regions[region]=checks; ok=ok and all(c['passed'] for c in checks)
+        passed=all(c['passed'] for c in checks); regions[region]={'passed':passed,'checks':checks}; ok=ok and passed
     return {'all_passed':ok,'regions':regions}
 
 def export_glb(path,objs):
