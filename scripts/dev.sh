@@ -19,7 +19,7 @@ cleanup() {
 trap cleanup EXIT INT TERM
 
 cd "$ROOT/backend"
-"$VENV/bin/uvicorn" app.main:app --host 127.0.0.1 --port 8000 &
+"$VENV/bin/uvicorn" app.stage4_main:app --host 127.0.0.1 --port 8000 &
 BACK_PID=$!
 
 cd "$ROOT/frontend"

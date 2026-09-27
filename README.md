@@ -7,6 +7,7 @@ Aplicação web **local** para preparar e personalizar personagens 3D usando o B
 - **Etapa 1 — Conexão com Blender:** configuração do executável, teste real via `bpy`, logs/progresso por WebSocket.
 - **Etapa 2 — Importação e visualização:** FBX/GLB/GLTF, original preservado, cópia de trabalho, inspeção de malhas/armatures/pesos/materiais/shape keys/animações e GLB intermediário para Three.js.
 - **Etapa 3 — Preparação da base corporal:** validação de malha já vinculada ao Mixamo ou adaptação assistida de uma base FBX/GLB/GLTF/BLEND, preservação de topologia/shape keys, inspeção de drivers/rig, alinhamento global, transferência inicial de pesos quando existe uma malha Mixamo de referência e testes de deformação em ombros, cotovelos, quadris e joelhos.
+- **Etapa 4 — Personalização corporal:** altura, cabeça, ombros, quadris e comprimentos por uma camada estrutural explícita do rig; volumes de braços/pernas/tronco por shape keys; morphs assistidos opcionais gerados a partir dos pesos quando faltam morphs artísticos; presets Magro/Regular/Musculoso/Encorpado, restauração e presets JSON locais.
 
 > Transferência de pesos e retargeting de animação são operações diferentes. A Etapa 3 só prepara skinning/deformação; retargeting será tratado na Etapa 5.
 
@@ -55,7 +56,7 @@ http://127.0.0.1:5173
 
 O backend fica em `http://127.0.0.1:8000`.
 
-## Teste da Etapa 3
+## Teste das Etapas 3 e 4
 
 1. Abra **Blender**, informe o executável e clique em **Testar Blender**.
 2. Abra **Importar**, selecione um FBX/GLB/GLTF com personagem e aguarde a inspeção real.
@@ -66,6 +67,10 @@ O backend fica em `http://127.0.0.1:8000`.
 5. No fluxo de adaptação, ajuste escala/offset/rotação global somente se necessário.
 6. Execute a preparação. O painel informa bloqueadores, avisos, cobertura de pesos e os testes reais de deformação de ombros/cotovelos/quadris/joelhos.
 7. O `.blend` preparado pode ser baixado para revisão manual.
+8. Com a base aprovada, abra **Corpo** e clique em **Preparar controles corporais**. O Blender inspeciona os controles possíveis antes de liberar sliders.
+9. Ajustes estruturais usam rig; volume/silhueta usam shape keys. Se não houver morphs adequados, a aplicação cria morphs assistidos derivados dos pesos em uma cópia editável e informa a limitação.
+10. O controle de seios só é ativado quando você mapeia explicitamente um shape key real existente. Shape keys com drivers não podem ser sobrescritos diretamente.
+11. Use **Aplicar no Blender** para gerar uma revisão nova sem acumular a deformação anterior. Presets podem ser salvos no backend e baixados como JSON.
 
 ### Regras de confiabilidade implementadas
 
@@ -82,7 +87,7 @@ O backend fica em `http://127.0.0.1:8000`.
 PYTHONPATH=backend pytest -q backend/tests
 ```
 
-Estado atual: **19 testes automatizados** para API, segurança, preservação de arquivos, orquestração Blender simulada e preparação corporal.
+Estado atual: **28 testes automatizados** para API, segurança, preservação de arquivos, orquestração Blender simulada, preparação corporal, limites seguros, mapeamento de morphs e presets JSON.
 
 O teste final de deformação com `bpy` precisa ser executado com o Blender real instalado na máquina, porque o ambiente de desenvolvimento automatizado deste repositório não contém o Blender.
 
@@ -93,4 +98,4 @@ Por padrão:
 - configurações: `~/.config/bodiez-local/settings.json`
 - assets: `~/.local/share/bodiez-local/assets/`
 
-Cada importação preserva o original e mantém cópias/saídas derivadas separadas. Preparações ficam em `assets/<asset-id>/preparations/<preparation-id>/`.
+Cada importação preserva o original e mantém cópias/saídas derivadas separadas. Preparações ficam em `assets/<asset-id>/preparations/<preparation-id>/`; personalizações ficam dentro de `customizations/<customization-id>/`, com uma baseline limpa e revisões independentes.
