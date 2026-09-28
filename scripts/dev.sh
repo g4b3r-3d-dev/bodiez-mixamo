@@ -7,7 +7,7 @@ if [[ ! -d "$ROOT/frontend/node_modules" ]]; then echo "Dependências do fronten
 cleanup(){ [[ -n "${BACK_PID:-}" ]] && kill "$BACK_PID" 2>/dev/null || true; [[ -n "${FRONT_PID:-}" ]] && kill "$FRONT_PID" 2>/dev/null || true; }
 trap cleanup EXIT INT TERM
 cd "$ROOT/backend"
-"$VENV/bin/uvicorn" app.stage5_main:app --host 127.0.0.1 --port 8000 &
+"$VENV/bin/uvicorn" app.stage6_main:app --host 127.0.0.1 --port 8000 &
 BACK_PID=$!
 cd "$ROOT/frontend"
 npm run dev &
