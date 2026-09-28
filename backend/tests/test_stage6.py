@@ -59,11 +59,16 @@ def test_live_update_writes_resolved_request(configured):
     assert s.is_latest(update) is True
 
 
-def test_older_generation_is_marked_stale(configured):
+def test_older_generation_is_marked_stale_without_touching_existing_work(configured):
     first = s.create_live_update('a' * 32, 'b' * 32, 'c' * 32, 'd' * 32, 4, {}, {})
+    marker = first.root / 'running.marker'
+    marker.write_text('keep')
+    duplicate = s.create_live_update('a' * 32, 'b' * 32, 'c' * 32, 'd' * 32, 4, {}, {})
     older = s.create_live_update('a' * 32, 'b' * 32, 'c' * 32, 'd' * 32, 3, {}, {})
     assert first.stale_on_arrival is False
+    assert duplicate.stale_on_arrival is True
     assert older.stale_on_arrival is True
+    assert marker.read_text() == 'keep'
     assert s.latest_generation('a' * 32, 'b' * 32, 'c' * 32, 'd' * 32) == 4
 
 
