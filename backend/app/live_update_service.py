@@ -126,23 +126,22 @@ def create_live_update(
     stale_on_arrival = gen <= current
 
     generation_root = client_root / f'{gen:010d}'
-    if generation_root.exists():
-        shutil.rmtree(generation_root, ignore_errors=True)
-    generation_root.mkdir(parents=True, exist_ok=True)
     request_path = generation_root / 'request.json'
-    _atomic_write(
-        request_path,
-        {
-            'format_version': 1,
-            'generation': gen,
-            'values': clean_values,
-            'bindings': clean_bindings,
-            'resolved': resolved,
-            'purpose': 'stage6_live_preview',
-        },
-    )
-
     if not stale_on_arrival:
+        if generation_root.exists():
+            shutil.rmtree(generation_root, ignore_errors=True)
+        generation_root.mkdir(parents=True, exist_ok=True)
+        _atomic_write(
+            request_path,
+            {
+                'format_version': 1,
+                'generation': gen,
+                'values': clean_values,
+                'bindings': clean_bindings,
+                'resolved': resolved,
+                'purpose': 'stage6_live_preview',
+            },
+        )
         _atomic_write(
             state_path,
             {
