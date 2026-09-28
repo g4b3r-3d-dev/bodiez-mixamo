@@ -38,3 +38,19 @@
 .emptyPanel strong { color: #9fa5b0; font-size: 9px; }
 .emptyPanel span { color: #626b77; font-size: 8px; line-height: 1.55; max-width: 240px; }
 .stage4Launch{position:fixed;right:18px;bottom:18px;z-index:40;border:1px solid #65579b;background:#181524;color:#c7b9ff;border-radius:9px;padding:10px 14px;font-size:9px;font-weight:800;box-shadow:0 8px 30px #0008}.stage4Shell{height:100vh;display:grid;grid-template-columns:250px 1fr 340px;grid-template-rows:54px 1fr;background:#090b10;color:#c4cad4}.stage4Topbar{grid-column:1/-1;display:flex;align-items:center;gap:16px;padding:8px 14px;border-bottom:1px solid #242a33;background:#0e1117}.stage4Topbar>div strong,.stage4Topbar>div span{display:block}.stage4Topbar strong{font-size:11px}.stage4Topbar span{font-size:8px;color:#646d79;margin-top:2px}.stage4Left{grid-column:1;padding:12px;overflow:auto}.stage4Left select{width:100%;height:32px;margin:8px 0;border:1px solid #303743;background:#0d1117;color:#9ea7b4;border-radius:6px;padding:0 7px}.stage4Left .primary,.stage4Left .secondary{width:100%;margin:5px 0}.stage4Viewer{grid-column:2;min-width:0;min-height:0}.stage4Right{grid-column:3;padding:12px;overflow:auto;border-left:1px solid #242a33}.progress{height:4px;background:#171b23;border-radius:9px;overflow:hidden;margin:10px 0}.progress>div{height:100%;background:#8874db}.muted{font-size:8px;color:#6b7480;line-height:1.5}.errorBox{font-size:8px;color:#e0a09a;border:1px solid #603732;background:#211312;padding:8px;border-radius:6px}.downloadLink{display:block;margin-top:8px;color:#b7a6f2;font-size:8px}.panelTitle{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.05em}@media(max-width:1000px){.stage4Shell{grid-template-columns:210px 1fr;grid-template-rows:54px 1fr auto}.stage4Right{grid-column:1/-1;grid-row:3;max-height:42vh;border-left:0;border-top:1px solid #242a33}.stage4Viewer{grid-column:2}}
+/* Keep the result and the apply action visible while inspecting the sliders. */
+.stage4Shell { grid-template-rows: 54px minmax(0,1fr); }
+.stage4Left,.stage4Right { min-height: 0; }
+.stage4Viewer { display:flex; flex-direction:column; }
+.bodyViewTools { display:flex; flex-wrap:wrap; gap:6px; align-items:center; padding:10px; border-bottom:1px solid #303743; }
+.bodyViewTools button { padding:7px 10px; background:#191e2a; color:#c4cad4; border:1px solid #414959; border-radius:6px; font-size:12px; }
+.bodyViewTools label,.bodyAuto { display:flex; align-items:center; gap:6px; font-size:12px; }
+.bodyCanvas { position:relative; flex:1; min-height:0; }
+.bodyCompareLabel { position:absolute; bottom:14px; left:14px; padding:8px 12px; border-radius:6px; color:#d8d2ef; background:#10141de8; font-size:12px; pointer-events:none; }
+.bodyPending { font-size:12px; color:#b9a6f7; line-height:1.5; }
+.stage4Right .bodyActions { position:sticky; bottom:0; background:#10141d; padding:12px 0; z-index:2; }
+.stage4Right .bodySlider span,.stage4Right .bodySlider strong,.stage4Right .morphHeader strong { font-size:12px; }
+.stage4Right .sectionHeading span,.stage4Right .presetGrid button,.stage4Left .muted,.stage4Left .errorBox { font-size:12px; }
+.stage4Right .microNote,.stage4Right .disabledControl span,.stage4Right .controlUnavailable { font-size:11px; }
+.stage4Right .morphControl select { font-size:11px; }
+@media(max-width:1000px){.stage4Shell{grid-template-rows:54px minmax(240px,1fr) minmax(0,42vh)}}

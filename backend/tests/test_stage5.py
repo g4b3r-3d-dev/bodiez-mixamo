@@ -1,3 +1,4 @@
+import asyncio
 import json
 from pathlib import Path
 import pytest
@@ -12,9 +13,8 @@ def test_lists_preparation_and_custom_revision(root):
 def test_resolve_source_blocks_unapproved(root):
  a,p,_=make_preparation(root,ready=False)
  with pytest.raises(s.AnimationError):s.resolve_source({'kind':'preparation','asset_id':a,'preparation_id':p})
-@pytest.mark.asyncio
-async def test_session_preserves_source(root):
- a,p,r=make_preparation(root);w=await s.create_session({'kind':'preparation','asset_id':a,'preparation_id':p});assert w.source.read_bytes()==b'blend';assert (r/'output'/'prepared.blend').read_bytes()==b'blend';assert json.loads(w.metadata.read_text())['source']['kind']=='preparation'
+def test_session_preserves_source(root):
+ a,p,r=make_preparation(root);w=asyncio.run(s.create_session({'kind':'preparation','asset_id':a,'preparation_id':p}));assert w.source.read_bytes()==b'blend';assert (r/'output'/'prepared.blend').read_bytes()==b'blend';assert json.loads(w.metadata.read_text())['source']['kind']=='preparation'
 def test_pose_validation_and_save(root):
  a,p,_=make_preparation(root);import asyncio;w=asyncio.run(s.create_session({'kind':'preparation','asset_id':a,'preparation_id':p}));w.capabilities.write_text(json.dumps({'target_signature':'sig','bones':[{'name':'mixamorig:Head'}]}));clean=s.normalize_rotations(w.session_id,{'mixamorig:Head':{'x':10,'y':0,'z':-5}});assert clean['mixamorig:Head']['x']==10;saved=s.save_pose(w.session_id,'Olhar',clean);assert saved['target_signature']=='sig';assert 'Olhar' in s.list_poses(w.session_id)['poses']
  with pytest.raises(s.AnimationError):s.normalize_rotations(w.session_id,{'Unknown':{'x':1}})

@@ -1,0 +1,236 @@
+{
+  "encorpado": {
+    "values": {
+      "shoulder_width": 1.03,
+      "hip_width": 1.04,
+      "arm_volume": 0.18,
+      "leg_volume": 0.22,
+      "torso_volume": 0.38,
+      "height": 1.0,
+      "head_size": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 60325,
+    "max_displacement": 0.024977762353266385,
+    "mean_displacement": 0.0055941883384582215
+  },
+  "musculoso": {
+    "values": {
+      "shoulder_width": 1.04,
+      "arm_volume": 0.34,
+      "leg_volume": 0.26,
+      "torso_volume": 0.2,
+      "height": 1.0,
+      "head_size": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 56299,
+    "max_displacement": 0.013146191461235265,
+    "mean_displacement": 0.004525439175319247
+  },
+  "regular": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 0,
+    "max_displacement": 1.9257688603859212e-07,
+    "mean_displacement": 1.97321746503122e-08
+  },
+  "estrutura": {
+    "values": {
+      "height": 1.1,
+      "head_size": 1.15,
+      "shoulder_width": 1.12,
+      "hip_width": 1.12,
+      "arm_length": 1.08,
+      "leg_length": 1.08,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 62027,
+    "max_displacement": 0.12492282015500288,
+    "mean_displacement": 0.06897729643174613
+  },
+  "control-height": {
+    "values": {
+      "height": 1.1,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 62027,
+    "max_displacement": 0.05689786751908122,
+    "mean_displacement": 0.03340059075635526
+  },
+  "control-head_size": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.15,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 2294,
+    "max_displacement": 0.017062486797764814,
+    "mean_displacement": 0.00030486769377513587
+  },
+  "control-shoulder_width": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.12,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 9178,
+    "max_displacement": 0.012622680871130018,
+    "mean_displacement": 0.0015323937442155956
+  },
+  "control-hip_width": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.12,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 46192,
+    "max_displacement": 0.0056877623383353925,
+    "mean_displacement": 0.003982290720587962
+  },
+  "control-arm_length": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.08,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 9151,
+    "max_displacement": 0.052787775898851225,
+    "mean_displacement": 0.002417479873612527
+  },
+  "control-leg_length": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.08,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 46184,
+    "max_displacement": 0.06689280925197565,
+    "mean_displacement": 0.028486316848437398
+  },
+  "control-arm_volume": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.5,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 7172,
+    "max_displacement": 0.01344127082164166,
+    "mean_displacement": 0.0007509534626953683
+  },
+  "control-leg_volume": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.5,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 42144,
+    "max_displacement": 0.02007809374358082,
+    "mean_displacement": 0.004846846228670069
+  },
+  "control-torso_volume": {
+    "values": {
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.45,
+      "breast_size": 0.0
+    },
+    "vertices": 62027,
+    "changed_vertices": 12167,
+    "max_displacement": 0.029578928539204484,
+    "mean_displacement": 0.0028411692192305115
+  }
+}

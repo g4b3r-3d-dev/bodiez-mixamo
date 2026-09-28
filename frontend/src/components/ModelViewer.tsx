@@ -9,20 +9,30 @@ type Props = {
   url: string | null
   wireframe: boolean
   skeleton: boolean
+  preserveCamera?: boolean
+  anatomicalView?: boolean
   viewRequest: { name: ViewName; nonce: number }
   onViewerError?: (message: string | null) => void
 }
 
 function disposeObject(root: THREE.Object3D) {
+  const textures = new Set<THREE.Texture>()
   root.traverse((child) => {
     if (!(child instanceof THREE.Mesh)) return
     child.geometry?.dispose()
     const materials = Array.isArray(child.material) ? child.material : [child.material]
-    materials.forEach((material) => material.dispose())
+    materials.forEach((material) => {
+      Object.values(material).forEach((value) => {
+        if (value instanceof THREE.Texture) textures.add(value)
+      })
+      material.dispose()
+    })
+    if (child instanceof THREE.SkinnedMesh) child.skeleton.dispose()
   })
+  textures.forEach((texture) => texture.dispose())
 }
 
-export default function ModelViewer({ url, wireframe, skeleton, viewRequest, onViewerError }: Props) {
+export default function ModelViewer({ url, wireframe, skeleton, preserveCamera = false, anatomicalView = false, viewRequest, onViewerError }: Props) {
   const hostRef = useRef<HTMLDivElement | null>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
@@ -32,6 +42,9 @@ export default function ModelViewer({ url, wireframe, skeleton, viewRequest, onV
   const helperRef = useRef<THREE.SkeletonHelper | null>(null)
   const boundsRef = useRef<{ center: THREE.Vector3; size: THREE.Vector3 } | null>(null)
   const [loading, setLoading] = useState(false)
+  const bodyFrameRef = useRef({front: new THREE.Vector3(0,0,1), right: new THREE.Vector3(1,0,0), up: new THREE.Vector3(0,1,0)})
+  const displayRef = useRef({skeleton, wireframe, viewRequest})
+  displayRef.current = {skeleton, wireframe, viewRequest}
 
   useEffect(() => {
     const host = hostRef.current
@@ -107,6 +120,7 @@ export default function ModelViewer({ url, wireframe, skeleton, viewRequest, onV
   useEffect(() => {
     const scene = sceneRef.current
     if (!scene) return
+    const keepCamera = preserveCamera && boundsRef.current !== null
 
     if (modelRef.current) {
       scene.remove(modelRef.current)
@@ -116,7 +130,9 @@ export default function ModelViewer({ url, wireframe, skeleton, viewRequest, onV
     if (helperRef.current) {
       scene.remove(helperRef.current)
       helperRef.current.geometry.dispose()
-      helperRef.current.material.dispose()
+      const materials = Array.isArray(helperRef.current.material)
+        ? helperRef.current.material : [helperRef.current.material]
+      materials.forEach((material) => material.dispose())
       helperRef.current = null
     }
     boundsRef.current = null
@@ -135,8 +151,24 @@ export default function ModelViewer({ url, wireframe, skeleton, viewRequest, onV
         }
         scene.add(gltf.scene)
         modelRef.current = gltf.scene
+        gltf.scene.updateMatrixWorld(true)
+        gltf.scene.traverse((object) => {
+          if (object instanceof THREE.SkinnedMesh) object.skeleton.update()
+        })
+        if (anatomicalView && !keepCamera) {
+          const bones = new Map<string, THREE.Vector3>()
+          gltf.scene.traverse((object) => {
+            if (object instanceof THREE.Bone) bones.set(object.name.toLowerCase().replace(/[^a-z0-9]/g, '').replace(/^mixamorig/, ''), object.getWorldPosition(new THREE.Vector3()))
+          })
+          const head=bones.get('head'), hips=bones.get('hips'), left=bones.get('leftarm'), right=bones.get('rightarm')
+          if (head && hips && left && right) {
+            const up=head.clone().sub(hips).normalize(), lateral=left.clone().sub(right)
+            lateral.addScaledVector(up,-lateral.dot(up)).normalize()
+            bodyFrameRef.current={up, right:lateral, front:lateral.clone().cross(up).normalize()}
+          }
+        }
         const helper = new THREE.SkeletonHelper(gltf.scene)
-        helper.visible = skeleton
+        helper.visible = displayRef.current.skeleton
         helperRef.current = helper
         scene.add(helper)
 
@@ -145,10 +177,11 @@ export default function ModelViewer({ url, wireframe, skeleton, viewRequest, onV
         const size = box.getSize(new THREE.Vector3())
         boundsRef.current = { center, size }
         setLoading(false)
-        applyView('perspective')
+        if (!keepCamera) applyView(displayRef.current.viewRequest.name)
       },
       undefined,
       (error) => {
+        if (cancelled) return
         setLoading(false)
         onViewerError?.(`Falha ao carregar o GLB intermediário: ${error instanceof Error ? error.message : String(error)}`)
       },
@@ -190,10 +223,12 @@ export default function ModelViewer({ url, wireframe, skeleton, viewRequest, onV
     const fov = THREE.MathUtils.degToRad(camera.fov)
     const distance = (maxDim / (2 * Math.tan(fov / 2))) * 1.55
     const offset = new THREE.Vector3()
-    if (name === 'front') offset.set(0, 0, distance)
-    else if (name === 'back') offset.set(0, 0, -distance)
-    else if (name === 'side') offset.set(distance, 0, 0)
-    else offset.set(distance * 0.7, distance * 0.45, distance * 0.85)
+    const frame = bodyFrameRef.current
+    camera.up.copy(frame.up)
+    if (name === 'front') offset.copy(frame.front).multiplyScalar(distance)
+    else if (name === 'back') offset.copy(frame.front).multiplyScalar(-distance)
+    else if (name === 'side') offset.copy(frame.right).multiplyScalar(distance)
+    else offset.addScaledVector(frame.right,distance*.7).addScaledVector(frame.up,distance*.45).addScaledVector(frame.front,distance*.85)
     camera.position.copy(center).add(offset)
     camera.near = Math.max(0.001, distance / 1000)
     camera.far = Math.max(100, distance * 20)
@@ -206,7 +241,7 @@ export default function ModelViewer({ url, wireframe, skeleton, viewRequest, onV
     applyView(viewRequest.name)
     // nonce makes repeating the same view intentional.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [viewRequest])
+  }, [viewRequest.name, viewRequest.nonce])
 
   return (
     <div className="viewerHost" ref={hostRef}>

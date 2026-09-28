@@ -1,0 +1,53 @@
+{
+  "vertices": 62027,
+  "changed_vertices": 62027,
+  "mean_displacement": 0.06897729643174613,
+  "max_displacement": 0.12492282015500288,
+  "meshes": [
+    {
+      "name": "tripo_part_0",
+      "vertices": 2325,
+      "max_displacement": 0.12311124416837387
+    },
+    {
+      "name": "tripo_part_1",
+      "vertices": 8487,
+      "max_displacement": 0.12492282015500288
+    },
+    {
+      "name": "tripo_part_2",
+      "vertices": 481,
+      "max_displacement": 0.11417284592359984
+    },
+    {
+      "name": "tripo_part_3",
+      "vertices": 9620,
+      "max_displacement": 0.053019824730196695
+    },
+    {
+      "name": "tripo_part_4",
+      "vertices": 7011,
+      "max_displacement": 0.038585483098534566
+    },
+    {
+      "name": "tripo_part_5",
+      "vertices": 2412,
+      "max_displacement": 0.06830672809870107
+    },
+    {
+      "name": "tripo_part_6",
+      "vertices": 20899,
+      "max_displacement": 0.11163802330380163
+    },
+    {
+      "name": "tripo_part_7",
+      "vertices": 8428,
+      "max_displacement": 0.12480369779878735
+    },
+    {
+      "name": "tripo_part_9",
+      "vertices": 2364,
+      "max_displacement": 0.123130305338253
+    }
+  ]
+}

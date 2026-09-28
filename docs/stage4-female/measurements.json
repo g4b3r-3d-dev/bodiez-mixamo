@@ -1,0 +1,80 @@
+{
+  "encorpado": {
+    "vertices": 161386,
+    "changed_vertices": 144244,
+    "mean_displacement": 0.00632350635306898,
+    "max_displacement": 0.029179093447356568
+  },
+  "musculoso": {
+    "vertices": 161386,
+    "changed_vertices": 142505,
+    "mean_displacement": 0.005452926648468368,
+    "max_displacement": 0.0153574061071276
+  },
+  "regular": {
+    "vertices": 161386,
+    "changed_vertices": 0,
+    "mean_displacement": 1.6539013257426465e-07,
+    "max_displacement": 2.8431127495277606e-07
+  },
+  "estrutura": {
+    "vertices": 161386,
+    "changed_vertices": 161386,
+    "mean_displacement": 0.0823307060993546,
+    "max_displacement": 0.1369164939627245
+  },
+  "control-height": {
+    "vertices": 161386,
+    "changed_vertices": 161386,
+    "mean_displacement": 0.07107868261822828,
+    "max_displacement": 0.1000082332099405
+  },
+  "control-head_size": {
+    "vertices": 161386,
+    "changed_vertices": 21034,
+    "mean_displacement": 0.0012355215802553727,
+    "max_displacement": 0.017927281428798722
+  },
+  "control-shoulder_width": {
+    "vertices": 161386,
+    "changed_vertices": 75785,
+    "mean_displacement": 0.005101157177980737,
+    "max_displacement": 0.011556840953632835
+  },
+  "control-hip_width": {
+    "vertices": 161386,
+    "changed_vertices": 50724,
+    "mean_displacement": 0.001484784315861391,
+    "max_displacement": 0.006897610264402522
+  },
+  "control-arm_length": {
+    "vertices": 161386,
+    "changed_vertices": 75758,
+    "mean_displacement": 0.010273588158104724,
+    "max_displacement": 0.05025926565350126
+  },
+  "control-leg_length": {
+    "vertices": 161386,
+    "changed_vertices": 50691,
+    "mean_displacement": 0.005105334716875488,
+    "max_displacement": 0.06876174909128757
+  },
+  "control-arm_volume": {
+    "vertices": 161386,
+    "changed_vertices": 56457,
+    "mean_displacement": 0.001781298970058494,
+    "max_displacement": 0.011809019926828333
+  },
+  "control-leg_volume": {
+    "vertices": 161386,
+    "changed_vertices": 48978,
+    "mean_displacement": 0.0026862867154954276,
+    "max_displacement": 0.0195212340150804
+  },
+  "control-torso_volume": {
+    "vertices": 161386,
+    "changed_vertices": 56056,
+    "mean_displacement": 0.00421256099296897,
+    "max_displacement": 0.03455419376192524
+  }
+}

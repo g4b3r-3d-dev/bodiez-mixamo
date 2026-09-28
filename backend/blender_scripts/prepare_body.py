@@ -113,10 +113,12 @@ def influenced(m,bone):
     if not g:return []
     out=[]
     for v in m.data.vertices:
-        try:
-            if g.weight(v.index)>.001: out.append(v.index)
-        except RuntimeError: pass
-        if len(out)>=600: break
+        if any(entry.group == g.index and entry.weight > .001 for entry in v.groups):
+            out.append(v.index)
+    # Vertex order is not spatial order: the first entries may all carry tiny
+    # spillover weights on another body part. Sample the whole influenced group.
+    if len(out)>600:
+        return [out[i*(len(out)-1)//599] for i in range(600)]
     return out
 
 def evalpos(m,ids):
@@ -132,10 +134,14 @@ def validate_joint(arm,meshes,bone,height):
         ids=influenced(m,bone)
         if ids:samples.append((m,ids,evalpos(m,ids)))
     if not samples:return {'bone':bone,'passed':False,'reason':'Sem vértices influenciados.'}
-    old=pb.matrix_basis.copy(); pb.rotation_mode='XYZ'; pb.rotation_euler[0]+=math.radians(22); bpy.context.view_layer.update(); moves=[]
-    for m,ids,before in samples:
-        after=evalpos(m,ids); moves.extend((after[i]-before[i]).length for i in before if i in after)
-    pb.matrix_basis=old; bpy.context.view_layer.update(); avg=sum(moves)/len(moves) if moves else 0; passed=avg>max(height*0.0005,1e-5)
+    old=pb.matrix_basis.copy(); moves=[]
+    try:
+        pb.matrix_basis=old@Matrix.Rotation(math.radians(22),4,'X'); bpy.context.view_layer.update()
+        for m,ids,before in samples:
+            after=evalpos(m,ids); moves.extend((after[i]-before[i]).length for i in before if i in after)
+    finally:
+        pb.matrix_basis=old; bpy.context.view_layer.update()
+    avg=sum(moves)/len(moves) if moves else 0; passed=avg>max(height*0.0005,1e-5)
     return {'bone':bone,'passed':passed,'test_pose_degrees':22.0,'average_displacement':round(avg,7),'reason':None if passed else 'Deslocamento insuficiente.'}
 
 def validate_joints(arm,meshes,matches):

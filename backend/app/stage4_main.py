@@ -18,13 +18,19 @@ def reg(method,path,fn,**kw):
 def body_error(e):
  if isinstance(e,FileNotFoundError):return HTTPException(404,'Recurso corporal não encontrado.')
  return HTTPException(422,str(e))
+def preparation_name(report_path:Path):
+ asset=report_path.parent.parents[1]
+ try:
+  manifest=json.loads((asset/'manifest.json').read_text())
+  return manifest.get('original_name') or asset.name
+ except (OSError,ValueError,AttributeError):return asset.name
 async def ready(request:Request):
  _assert_http_origin(request);rows=[]
  for f in assets_root().glob('*/preparations/*/preparation.json'):
   try:r=json.loads(f.read_text())
   except Exception:continue
   blend=f.parent/'output'/'prepared.blend'
-  if isinstance(r,dict) and r.get('ready_for_body_customization') and blend.is_file():rows.append({'asset_id':f.parent.parents[1].name,'preparation_id':f.parent.name,'mode':r.get('mode'),'updated_at':int(max(f.stat().st_mtime,blend.stat().st_mtime))})
+  if isinstance(r,dict) and r.get('ready_for_body_customization') and blend.is_file():rows.append({'asset_id':f.parent.parents[1].name,'preparation_id':f.parent.name,'mode':r.get('mode'),'name':preparation_name(f),'updated_at':int(max(f.stat().st_mtime,blend.stat().st_mtime))})
  rows.sort(key=lambda x:x['updated_at'],reverse=True);return {'items':rows[:50]}
 async def create(request:Request,asset_id:str,preparation_id:str):
  _assert_http_origin(request);blender=load_settings().get('blender_path')

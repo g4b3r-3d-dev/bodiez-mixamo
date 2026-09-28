@@ -10,7 +10,7 @@ cd "$ROOT/backend"
 "$VENV/bin/uvicorn" app.stage8_main:app --host 127.0.0.1 --port 8000 &
 BACK_PID=$!
 cd "$ROOT/frontend"
-npm run dev &
+node "$ROOT/frontend/node_modules/vite/bin/vite.js" --host 127.0.0.1 &
 FRONT_PID=$!
 echo; echo "Bodiez Local iniciado:"; echo "  Frontend: http://127.0.0.1:5173"; echo "  Backend:  http://127.0.0.1:8000"; echo "Pressione Ctrl+C para encerrar."
 wait -n "$BACK_PID" "$FRONT_PID"

@@ -24,3 +24,11 @@ def test_limits_and_explicit_breast_binding(tmp_path:Path,monkeypatch):
 
 def test_presets_json(tmp_path:Path,monkeypatch):
  a,p=setup(tmp_path,monkeypatch);w=asyncio.run(create_workspace(a,p));w.caps.write_text(json.dumps(caps()));save_preset(a,p,w.body_id,'Teste',{'height':1.02},{});assert list_presets(a,p,w.body_id)['custom']['Teste']['values']['height']==1.02
+
+def test_explicitly_unbind_generated_morph(tmp_path, monkeypatch):
+ a,p=setup(tmp_path,monkeypatch);w=asyncio.run(create_workspace(a,p));w.caps.write_text(json.dumps(caps()))
+ revision=create_revision(a,p,w.body_id,{'arm_volume':0},{'arm_volume':''})
+ assert 'arm_volume' not in revision.bindings
+ assert 'arm_volume' not in json.loads(revision.request.read_text())['resolved']
+ with pytest.raises(BodyError,match='sem fonte'):
+  create_revision(a,p,w.body_id,{'arm_volume':.2},{'arm_volume':''})

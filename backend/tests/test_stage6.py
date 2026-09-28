@@ -1,3 +1,4 @@
+import asyncio
 import json
 
 import pytest
@@ -77,8 +78,7 @@ def test_invalid_client_token_is_rejected(configured):
         s.create_live_update('a' * 32, 'b' * 32, 'c' * 32, '../bad', 1, {}, {})
 
 
-@pytest.mark.asyncio
-async def test_stale_update_does_not_launch_blender(configured, monkeypatch):
+def test_stale_update_does_not_launch_blender(configured, monkeypatch):
     s.create_live_update('a' * 32, 'b' * 32, 'c' * 32, 'd' * 32, 8, {}, {})
     stale = s.create_live_update('a' * 32, 'b' * 32, 'c' * 32, 'd' * 32, 7, {}, {})
     called = False
@@ -94,7 +94,7 @@ async def test_stale_update_does_not_launch_blender(configured, monkeypatch):
     async def publish(event):
         events.append(event)
 
-    await s.process_live_update('/not/used', configured / 'not-used.py', stale, publish)
+    asyncio.run(s.process_live_update('/not/used', configured / 'not-used.py', stale, publish))
     assert called is False
     assert events[-1]['type'] == 'success'
     assert events[-1]['result']['stale'] is True

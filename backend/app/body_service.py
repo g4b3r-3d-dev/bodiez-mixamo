@@ -53,7 +53,7 @@ def caps_for(a,p,b):
  return jread(f)
 def sources(c):return {x['source_id']:x for x in c.get('morph_sources',[]) if isinstance(x,dict) and x.get('source_id')}
 def normalize(c,values,bindings):
- idx=sources(c);defaults=c.get('default_bindings',{});bindings={k:(bindings or {}).get(k) or defaults.get(k) for k in ('arm_volume','leg_volume','torso_volume','breast_size')};bindings={k:v for k,v in bindings.items() if v}
+ idx=sources(c);defaults=c.get('default_bindings',{});bindings={k:(bindings or {}).get(k,defaults.get(k)) for k in ('arm_volume','leg_volume','torso_volume','breast_size')};bindings={k:v for k,v in bindings.items() if v}
  if len(set(bindings.values()))!=len(bindings):raise BodyError('A mesma fonte de morph não pode controlar duas regiões.')
  for k,sid in bindings.items():
   s=idx.get(sid)
@@ -66,6 +66,7 @@ def normalize(c,values,bindings):
   except Exception as e:raise BodyError(f'Valor inválido para {label}.') from e
   if not lo<=v<=hi:raise BodyError(f'{label} fora do limite seguro [{lo}, {hi}].')
   if not (controls.get(k) or {}).get('enabled') and k not in bindings and abs(v-dft)>1e-8:raise BodyError(f'{label} indisponível nesta base.')
+  if kind!='structural' and k not in bindings and abs(v-dft)>1e-8:raise BodyError(f'{label} sem fonte de morph selecionada.')
   if k in bindings and v<0 and float(idx[bindings[k]].get('slider_min',0))>=0:raise BodyError(f'{label} não aceita valor negativo.')
   out[k]=v
  return out,bindings
