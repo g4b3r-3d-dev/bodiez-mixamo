@@ -220,12 +220,23 @@ def build_final_report(run: ValidationRun, blender_data: dict) -> dict:
             for raw in values:
                 if isinstance(raw, dict):
                     checks.append(_normalize_check(raw, group))
+
+    stage7_report = request.get("stage7_report") if isinstance(request.get("stage7_report"), dict) else {}
+    stage7_warnings = stage7_report.get("warnings", []) if isinstance(stage7_report.get("warnings"), list) else []
+    for index, warning in enumerate(stage7_warnings):
+        if isinstance(warning, dict) and warning.get("message"):
+            checks.append(_normalize_check({
+                "key": f"stage7_warning_{index}",
+                "label": str(warning.get("scope") or "Portabilidade da Etapa 7"),
+                "status": "warn",
+                "evidence": str(warning["message"]),
+            }, "exports"))
+
     failures = [item for item in checks if item["status"] == "fail"]
     warnings = [item for item in checks if item["status"] == "warn"]
     verdict = "blocked" if failures else ("pass_with_warnings" if warnings else "pass")
     limitations = blender_data.get("limitations") if isinstance(blender_data.get("limitations"), list) else []
-    stage7_report = request.get("stage7_report") if isinstance(request.get("stage7_report"), dict) else {}
-    for warning in stage7_report.get("warnings", []) if isinstance(stage7_report.get("warnings"), list) else []:
+    for warning in stage7_warnings:
         if isinstance(warning, dict) and warning.get("message"):
             limitations.append(str(warning["message"]))
     limitations = list(dict.fromkeys(str(item) for item in limitations if item))
