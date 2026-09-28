@@ -48,7 +48,10 @@ def _blender_path() -> str:
     path = load_settings().get('blender_path')
     if not path:
         raise HTTPException(409, 'Configure o Blender antes de sincronizar alterações estruturais.')
-    validate_blender_path(path)
+    try:
+        validate_blender_path(path)
+    except Exception as exc:
+        raise HTTPException(422, str(exc)) from exc
     return path
 
 
