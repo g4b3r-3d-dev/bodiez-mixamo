@@ -105,3 +105,11 @@ def test_selected_export_is_tied_to_project(root):
     data = json.loads(run.request.read_text())
     lineage = next(c for c in data["project_checks"] if c["key"] == "export_lineage")
     assert lineage["status"] == "fail"
+
+
+def test_stage7_warning_affects_verdict(root):
+    pid, eid = make_project(root)
+    run = s.create_validation_run(pid, eid)
+    report = s.build_final_report(run, {"scene": [{"key": "reopen", "label": "Reabrir", "status": "pass", "evidence": "ok"}]})
+    assert report["verdict"] == "pass_with_warnings"
+    assert any(c["key"].startswith("stage7_warning_") and c["status"] == "warn" for c in report["checks"])
