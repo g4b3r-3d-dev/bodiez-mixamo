@@ -6,6 +6,7 @@ import bpy
 
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
+from mathutils.kdtree import KDTree
 
 
 MARKER_SOURCE = 'markers:breast_size'
@@ -75,6 +76,8 @@ def marker_info(arm, meshes, matches):
     return {'coordinate_space': 'baseline_gltf_world', 'height': height,
             'radius_min': height * .025, 'radius_max': height * .095,
             'radius_default': height * .075,
+            'paint_radius_min': height * .006, 'paint_radius_max': height * .055,
+            'paint_radius_default': height * .018,
             'bounds_min': [min(p[i] for p in gp) for i in range(3)],
             'bounds_max': [max(p[i] for p in gp) for i in range(3)],
             'up': gltf(up), 'front': gltf(front), 'left': gltf(lateral),
@@ -118,61 +121,79 @@ def _smoothstep01(value):
 
 
 def _balloon_delta(x, y, z, radius, lateral, up, front):
-    """Inflate around a center inside the torso instead of extruding forward.
-
-    ``x/y/z`` are measured from the surface marker. The virtual inflation
-    center sits behind the marker, so enlargement behaves like scaling a soft
-    volume around that center: flanks widen, the upper/lower poles round out,
-    and the apex advances only as one component of the same radial motion.
-    """
+    """Inflate around a center inside the torso instead of extruding forward."""
     distance2 = (x / radius) ** 2 + (y / radius) ** 2 + (z / (radius * .95)) ** 2
     if distance2 >= 1.:
         return Vector(), 0.
-
-    # Keep most of the central breast moving as one rounded volume, then use a
-    # C1 edge taper. A strong radial taper from the apex created a pinched ring.
     normalized = math.sqrt(max(0., distance2))
     if normalized <= .58:
         envelope = 1.
     else:
         envelope = 1. - _smoothstep01((normalized - .58) / .42)
-
-    # Vertices near/behind the chest attachment must stay anchored. The old
-    # forward-projection field started at this same plane, but its displacement
-    # direction was front-heavy. Here the plane only controls influence.
     attachment = _smoothstep01((z / radius + .55) / .45)
     influence = envelope * attachment
     if influence <= 1e-8:
         return Vector(), 0.
-
-    # The virtual center is 0.38 radii inside the chest and just 0.03 radii
-    # above the marker. That tiny vertical offset gives the lower pole a little
-    # more fullness without turning the operation back into a directional push.
     radial = (lateral * x + up * (y - radius * .03)
               + front * max(0., z + radius * .38))
     delta = radial * (.40 * influence)
     return delta, influence
 
 
+def _paint_data(markers):
+    paint = markers.get('paint') if isinstance(markers, dict) else None
+    if not isinstance(paint, dict):
+        return None
+    radius = float(paint.get('brush_radius', 0))
+    if radius <= 0:
+        return None
+    samples = {side: [from_gltf(p) for p in paint.get(side, [])]
+               for side in ('left', 'right')}
+    if not all(samples.values()):
+        return None
+    trees = {}
+    for side, points in samples.items():
+        tree = KDTree(len(points))
+        for index, point in enumerate(points):
+            tree.insert(point, index)
+        tree.balance(); trees[side] = tree
+    return {'radius': radius, 'samples': samples, 'trees': trees}
+
+
+def _paint_weight(point, paint, side):
+    if not paint:
+        return 1.
+    hit = paint['trees'][side].find(point)
+    if not hit:
+        return 0.
+    distance = hit[2]
+    if distance >= paint['radius']:
+        return 0.
+    return 1. - _smoothstep01(distance / paint['radius'])
+
+
 def marker_morphs(meshes, markers, info):
-    """Same world-space inflation field for body and clothing."""
-    centers = [from_gltf(markers[s]) for s in ('left', 'right')]
+    """World-space balloon field, optionally clipped by painted surface masks."""
+    sides = ('left', 'right')
+    centers = [from_gltf(markers[s]) for s in sides]
     radius = markers['radius']
     front, up, lateral = (from_gltf(info[k]) for k in ('front', 'up', 'left'))
-    # Require points on the baseline surface; a valid HTTP request alone is not
-    # enough to approve a detached marker or silently export an unchanged body.
-    trees = []; surfaces = {}
+    paint = _paint_data(markers)
+    surface_trees = []; surfaces = {}
     for mesh in meshes:
         points, polygons = world_geometry(mesh)
         if len(points) != len(mesh.data.vertices):
             raise RuntimeError('Marcadores requerem uma base sem modificadores que alterem a topologia.')
         surfaces[mesh.name] = points
         if polygons:
-            trees.append(BVHTree.FromPolygons(points, polygons))
-    for point in centers:
-        distances = [hit[3] for tree in trees if (hit := tree.find_nearest(point))[0] is not None]
-        if not distances or min(distances) > info['height'] * .008:
-            raise RuntimeError('Marcador fora da superfície. Marque novamente na base original.')
+            surface_trees.append(BVHTree.FromPolygons(points, polygons))
+    validation_points = list(centers)
+    if paint:
+        validation_points.extend(p for side in sides for p in paint['samples'][side])
+    for point in validation_points:
+        distances = [hit[3] for tree in surface_trees if (hit := tree.find_nearest(point))[0] is not None]
+        if not distances or min(distances) > info['height'] * .01:
+            raise RuntimeError('A pintura contém pontos fora da superfície. Pinte novamente na base original.')
     targets = []; affected = [0, 0]
     for mesh in meshes:
         deltas = []
@@ -184,15 +205,16 @@ def marker_morphs(meshes, markers, info):
                 delta, influence = _balloon_delta(x, y, z, radius, lateral, up, front)
                 if influence <= 0:
                     continue
+                mask = _paint_weight(point, paint, sides[index])
+                if mask <= 0:
+                    continue
+                delta *= mask; influence *= mask
                 candidates.append((influence, delta))
                 if delta.length > 1e-8:
                     affected[index] += 1
             if not candidates:
                 deltas.append(Vector())
                 continue
-            # Markers may overlap near the sternum. Each delta already contains
-            # its own falloff, so average only for overlap; do not multiply that
-            # falloff a second time or the breast edge collapses toward the apex.
             total = sum(weight for weight, _ in candidates)
             deltas.append(sum((delta * weight for weight, delta in candidates), Vector()) /
                           max(total, 1e-8))
@@ -200,5 +222,7 @@ def marker_morphs(meshes, markers, info):
         if target:
             targets.append(target)
     if not all(affected) or not targets:
-        raise RuntimeError('Os dois marcadores precisam alcançar vértices. Aumente a área de influência.')
+        message = ('A área pintada não alcançou vértices suficientes. Pinte uma região maior em cada seio.'
+                   if paint else 'Os dois marcadores precisam alcançar vértices. Aumente a área de influência.')
+        raise RuntimeError(message)
     return targets, affected
