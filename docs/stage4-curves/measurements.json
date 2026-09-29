@@ -1,0 +1,161 @@
+{
+  "suaves": {
+    "vertices": 161390,
+    "changed_vertices": 41524,
+    "mean_displacement": 0.0010780489232133294,
+    "max_displacement": 0.012078561213366862,
+    "meshes": [
+      {
+        "name": "head",
+        "vertices": 23257,
+        "max_displacement": 2.8431127495277606e-07
+      },
+      {
+        "name": "tripo_part_0",
+        "vertices": 62938,
+        "max_displacement": 2.767202543619899e-07
+      },
+      {
+        "name": "tripo_part_1",
+        "vertices": 2484,
+        "max_displacement": 9.592073559508638e-08
+      },
+      {
+        "name": "tripo_part_2",
+        "vertices": 7139,
+        "max_displacement": 0.0005805546630853919
+      },
+      {
+        "name": "tripo_part_5",
+        "vertices": 32610,
+        "max_displacement": 0.012078561213366862
+      },
+      {
+        "name": "tripo_part_6",
+        "vertices": 17662,
+        "max_displacement": 0.009868639844135938
+      },
+      {
+        "name": "tripo_part_7",
+        "vertices": 7483,
+        "max_displacement": 0.0003923035598822448
+      },
+      {
+        "name": "tripo_part_8",
+        "vertices": 2580,
+        "max_displacement": 9.992169225884617e-08
+      },
+      {
+        "name": "tripo_part_9",
+        "vertices": 5237,
+        "max_displacement": 2.7550303646859027e-07
+      }
+    ]
+  },
+  "maximas": {
+    "vertices": 161390,
+    "changed_vertices": 41565,
+    "mean_displacement": 0.003079874682928555,
+    "max_displacement": 0.034510173524066615,
+    "meshes": [
+      {
+        "name": "head",
+        "vertices": 23257,
+        "max_displacement": 2.8431127495277606e-07
+      },
+      {
+        "name": "tripo_part_0",
+        "vertices": 62938,
+        "max_displacement": 2.767202543619899e-07
+      },
+      {
+        "name": "tripo_part_1",
+        "vertices": 2484,
+        "max_displacement": 9.592073559508638e-08
+      },
+      {
+        "name": "tripo_part_2",
+        "vertices": 7139,
+        "max_displacement": 0.001658715497070703
+      },
+      {
+        "name": "tripo_part_5",
+        "vertices": 32610,
+        "max_displacement": 0.034510173524066615
+      },
+      {
+        "name": "tripo_part_6",
+        "vertices": 17662,
+        "max_displacement": 0.028196111564358774
+      },
+      {
+        "name": "tripo_part_7",
+        "vertices": 7483,
+        "max_displacement": 0.0011208575361913297
+      },
+      {
+        "name": "tripo_part_8",
+        "vertices": 2580,
+        "max_displacement": 9.992169225884617e-08
+      },
+      {
+        "name": "tripo_part_9",
+        "vertices": 5237,
+        "max_displacement": 2.7550303646859027e-07
+      }
+    ]
+  },
+  "restaurado": {
+    "vertices": 161390,
+    "changed_vertices": 0,
+    "mean_displacement": 1.6538770448284484e-07,
+    "max_displacement": 2.8431127495277606e-07,
+    "meshes": [
+      {
+        "name": "head",
+        "vertices": 23257,
+        "max_displacement": 2.8431127495277606e-07
+      },
+      {
+        "name": "tripo_part_0",
+        "vertices": 62938,
+        "max_displacement": 2.767202543619899e-07
+      },
+      {
+        "name": "tripo_part_1",
+        "vertices": 2484,
+        "max_displacement": 9.592073559508638e-08
+      },
+      {
+        "name": "tripo_part_2",
+        "vertices": 7139,
+        "max_displacement": 1.7768391441466318e-07
+      },
+      {
+        "name": "tripo_part_5",
+        "vertices": 32610,
+        "max_displacement": 1.280255215288354e-07
+      },
+      {
+        "name": "tripo_part_6",
+        "vertices": 17662,
+        "max_displacement": 2.442682950392632e-07
+      },
+      {
+        "name": "tripo_part_7",
+        "vertices": 7483,
+        "max_displacement": 9.615654095781811e-08
+      },
+      {
+        "name": "tripo_part_8",
+        "vertices": 2580,
+        "max_displacement": 9.992169225884617e-08
+      },
+      {
+        "name": "tripo_part_9",
+        "vertices": 5237,
+        "max_displacement": 2.7550303646859027e-07
+      }
+    ]
+  }
+}

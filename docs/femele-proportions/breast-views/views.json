@@ -1,0 +1,82 @@
+{
+  "models": [
+    ".local-data/femele-proportions/before.glb",
+    ".local-data/femele-proportions/curvas-com-seios.glb",
+    ".local-data/femele-proportions/cintura-marcada.glb",
+    ".local-data/femele-proportions/contrastes.glb"
+  ],
+  "labels": [
+    "ORIGINAL",
+    "CURVAS E SEIOS 100%",
+    "CINTURA E SEIOS",
+    "REDUCAO COMBINADA"
+  ],
+  "views": [
+    [
+      0,
+      0
+    ],
+    [
+      30,
+      0
+    ],
+    [
+      60,
+      0
+    ],
+    [
+      90,
+      0
+    ],
+    [
+      120,
+      0
+    ],
+    [
+      150,
+      0
+    ],
+    [
+      180,
+      0
+    ],
+    [
+      210,
+      0
+    ],
+    [
+      240,
+      0
+    ],
+    [
+      270,
+      0
+    ],
+    [
+      300,
+      0
+    ],
+    [
+      330,
+      0
+    ],
+    [
+      0,
+      -20
+    ],
+    [
+      180,
+      -20
+    ],
+    [
+      0,
+      20
+    ],
+    [
+      180,
+      20
+    ]
+  ],
+  "same_scale": true,
+  "cropped_render_only": true
+}

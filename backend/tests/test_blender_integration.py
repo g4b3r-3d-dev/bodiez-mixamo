@@ -103,9 +103,15 @@ arm = next(o for o in bpy.context.scene.objects if o.type=='ARMATURE')
 assert arm.animation_data.action is None
 assert not arm.animation_data.use_nla
 assert action_name in bpy.data.actions
-assert abs(arm.pose.bones['mixamorig:Head'].scale.x - 1.15) < 1e-5
-assert abs((arm.pose.bones['mixamorig:LeftArm'].head - arm.pose.bones['mixamorig:RightArm'].head).length - 2*1.12) < 1e-5
-assert abs(bpy.data.objects['Body'].data.shape_keys.key_blocks['Bodiez_Auto_arm_volume'].value-.5) < 1e-5
+effective=json.loads((root/'result.json').read_text())['values']
+assert 1 < effective['head_size'] <= 1.06
+for name in ['mixamorig:LeftArm','mixamorig:RightArm']:
+    assert arm.pose.bones[name].matrix_basis.to_quaternion().angle < 1e-6, 'Validation poses must not leak into the exported body'
+validation=json.loads((root/'result.json').read_text())['natural_shape']['attempts'][-1]['meshes']
+assert 'arms_down/Body' in validation and 'hip_flexion/Body' in validation
+assert abs(arm.pose.bones['mixamorig:Head'].scale.x - effective['head_size']) < 1e-5
+assert abs((arm.pose.bones['mixamorig:LeftArm'].head - arm.pose.bones['mixamorig:RightArm'].head).length - 2*effective['shoulder_width']) < 1e-5
+assert abs(bpy.data.objects['Body'].data.shape_keys.key_blocks['Bodiez_Auto_arm_volume'].value-effective['arm_volume']) < 1e-5
 
 def bounds():
     points=[]

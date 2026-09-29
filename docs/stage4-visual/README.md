@@ -1,5 +1,7 @@
 # Etapa 4 — validação visual em 28/09/2026
 
+> Relatório anterior ao controle de seios por ossos/marcadores. Consulte a [nova implementação e validação](../stage4-breast/README.md).
+
 [Galeria de antes/depois](index.html)
 
 Modelo real: `riged-decimate.fbx`, fornecido pelo usuário. SHA-256: `f0a5ba5d308883a65d8320a998d21673a87150c534e5ef84e7d530f4dba8b687`.

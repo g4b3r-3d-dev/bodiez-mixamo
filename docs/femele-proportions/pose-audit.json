@@ -1,0 +1,767 @@
+{
+  "rest": {
+    "cintura-marcada": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 8193,
+        "max_displacement": 0.016441661557418847,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.474641052987955,
+        "triangle_area_ratio_range": [
+          0.5026764011188627,
+          1.6439156494546612
+        ],
+        "edge_length_ratio_range": [
+          0.5042130887028881,
+          1.391268636907833
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9285040710391232,
+          1.1925046047489358
+        ]
+      }
+    },
+    "contrastes": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.01790505612388362,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 13.601263002340785,
+        "triangle_area_ratio_range": [
+          0.7447511076971813,
+          1.3282377900432016
+        ],
+        "edge_length_ratio_range": [
+          0.8203624097142594,
+          1.22220769163634
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9132283134627601,
+          1.144211563029676
+        ]
+      }
+    },
+    "curvas-com-seios": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 3290,
+        "max_displacement": 0.01671554070640992,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.432262580269544,
+        "triangle_area_ratio_range": [
+          0.5163766710310188,
+          1.6736358981037536
+        ],
+        "edge_length_ratio_range": [
+          0.5204450369905474,
+          1.4067933572832871
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9432126034343827,
+          1.2017851528038794
+        ]
+      }
+    },
+    "encorpado": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13770,
+        "max_displacement": 0.004352128938559533,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 5.512026503691326,
+        "triangle_area_ratio_range": [
+          0.9116906645402333,
+          1.0921746422941576
+        ],
+        "edge_length_ratio_range": [
+          0.8962737268316603,
+          1.0514737340256792
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9777223651072627,
+          1.040624979513086
+        ]
+      }
+    },
+    "magro": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13770,
+        "max_displacement": 0.0017407167528076925,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 1.6046508668786306,
+        "triangle_area_ratio_range": [
+          0.9628539255755604,
+          1.0372922446207147
+        ],
+        "edge_length_ratio_range": [
+          0.9795569985359374,
+          1.048848292163456
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9821416192431756,
+          1.009316579636471
+        ]
+      }
+    },
+    "maximos": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.024059082516383303,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.445120131213486,
+        "triangle_area_ratio_range": [
+          0.5832909548196009,
+          1.8745406471431636
+        ],
+        "edge_length_ratio_range": [
+          0.6016222964971085,
+          1.48456235911075
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9570111734906374,
+          1.2705995236594818
+        ]
+      }
+    },
+    "minimos": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.011407895748035926,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 12.715674951229607,
+        "triangle_area_ratio_range": [
+          0.6832706153392955,
+          1.2373582927956166
+        ],
+        "edge_length_ratio_range": [
+          0.777284380306594,
+          1.194934730400018
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.8821400981515611,
+          1.0167857389197155
+        ]
+      }
+    },
+    "musculoso": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13070,
+        "max_displacement": 0.003481727059225343,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 4.280263216157641,
+        "triangle_area_ratio_range": [
+          0.9129605719106664,
+          1.0912159425740044
+        ],
+        "edge_length_ratio_range": [
+          0.8967474797827529,
+          1.0455576703123808
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9812245581450537,
+          1.0453970187092732
+        ]
+      }
+    },
+    "preset-antigo": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.024059079241288667,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.445143085374696,
+        "triangle_area_ratio_range": [
+          0.5832923900242866,
+          1.874541508048735
+        ],
+        "edge_length_ratio_range": [
+          0.601622206308836,
+          1.4845626766201891
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9570110042645386,
+          1.2705994981771649
+        ]
+      }
+    },
+    "regular": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 0,
+        "max_displacement": 2.1181805395825952e-07,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 0.0008739172993972458,
+        "triangle_area_ratio_range": [
+          0.9999839442202724,
+          1.0000036236829075
+        ],
+        "edge_length_ratio_range": [
+          0.9999847481363531,
+          1.0000029066168497
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9999985380197984,
+          1.0000004766335748
+        ]
+      }
+    },
+    "restaurado": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 0,
+        "max_displacement": 2.1181805395825952e-07,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 0.0008739172993972458,
+        "triangle_area_ratio_range": [
+          0.9999839442202724,
+          1.0000036236829075
+        ],
+        "edge_length_ratio_range": [
+          0.9999847481363531,
+          1.0000029066168497
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9999985380197984,
+          1.0000004766335748
+        ]
+      }
+    }
+  },
+  "hip_flexion": {
+    "cintura-marcada": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 8193,
+        "max_displacement": 0.016441661557418847,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.474641052987955,
+        "triangle_area_ratio_range": [
+          0.5026764011188627,
+          1.6439156494546612
+        ],
+        "edge_length_ratio_range": [
+          0.5042130887028881,
+          1.391268636907833
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9285040710391232,
+          1.1928363453448392
+        ]
+      }
+    },
+    "contrastes": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.01784451137342013,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 13.601263002340785,
+        "triangle_area_ratio_range": [
+          0.7447511076971813,
+          1.3274695954264621
+        ],
+        "edge_length_ratio_range": [
+          0.8203624097142594,
+          1.22220769163634
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9132283134627601,
+          1.1440460558920917
+        ]
+      }
+    },
+    "curvas-com-seios": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 3290,
+        "max_displacement": 0.01671554070640992,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.432262580269544,
+        "triangle_area_ratio_range": [
+          0.5163766710310188,
+          1.6736358981037536
+        ],
+        "edge_length_ratio_range": [
+          0.5204450369905474,
+          1.4067933572832871
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9432126034343827,
+          1.2017851528038794
+        ]
+      }
+    },
+    "encorpado": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13770,
+        "max_displacement": 0.004352128938559533,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 6.384668225877716,
+        "triangle_area_ratio_range": [
+          0.9116906645402333,
+          1.0921746422941576
+        ],
+        "edge_length_ratio_range": [
+          0.8962737268316603,
+          1.0860628684643374
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9767219185759616,
+          1.0406249909904102
+        ]
+      }
+    },
+    "magro": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13770,
+        "max_displacement": 0.0017407167528076925,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 3.9255535673523854,
+        "triangle_area_ratio_range": [
+          0.963833582831763,
+          1.038808651926679
+        ],
+        "edge_length_ratio_range": [
+          0.9622431053503607,
+          1.048848292163456
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9821376869770898,
+          1.0099059544156708
+        ]
+      }
+    },
+    "maximos": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.024059082516383303,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.445120131213486,
+        "triangle_area_ratio_range": [
+          0.5832909548196009,
+          1.8745406471431636
+        ],
+        "edge_length_ratio_range": [
+          0.6016222964971085,
+          1.48456235911075
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9561493272632966,
+          1.2706020962308164
+        ]
+      }
+    },
+    "minimos": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.011407895748035926,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 12.715674951229607,
+        "triangle_area_ratio_range": [
+          0.6832706153392955,
+          1.2373582927956166
+        ],
+        "edge_length_ratio_range": [
+          0.777284380306594,
+          1.194934730400018
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.8821400981515611,
+          1.0169304411225986
+        ]
+      }
+    },
+    "musculoso": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13070,
+        "max_displacement": 0.003481727059225343,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 10.262740526708473,
+        "triangle_area_ratio_range": [
+          0.8960843887929569,
+          1.1027790021249726
+        ],
+        "edge_length_ratio_range": [
+          0.8967474797827529,
+          1.1029422807861131
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9800991405661357,
+          1.0453978422283419
+        ]
+      }
+    },
+    "preset-antigo": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.024059079241288667,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.445143085374696,
+        "triangle_area_ratio_range": [
+          0.5832923900242866,
+          1.874541508048735
+        ],
+        "edge_length_ratio_range": [
+          0.601622206308836,
+          1.4845626766201891
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9561504538196323,
+          1.2706021473256663
+        ]
+      }
+    },
+    "regular": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 0,
+        "max_displacement": 2.1181805395825952e-07,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 0.0008739172993972458,
+        "triangle_area_ratio_range": [
+          0.9999839442202724,
+          1.0000045011579881
+        ],
+        "edge_length_ratio_range": [
+          0.9999847481363531,
+          1.000003712741187
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9999984571083533,
+          1.0000006358202407
+        ]
+      }
+    },
+    "restaurado": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 0,
+        "max_displacement": 2.1181805395825952e-07,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 0.0008739172993972458,
+        "triangle_area_ratio_range": [
+          0.9999839442202724,
+          1.0000045011579881
+        ],
+        "edge_length_ratio_range": [
+          0.9999847481363531,
+          1.000003712741187
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9999984571083533,
+          1.0000006358202407
+        ]
+      }
+    }
+  },
+  "arms_down": {
+    "cintura-marcada": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 8193,
+        "max_displacement": 0.016441661557418847,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.474641052987955,
+        "triangle_area_ratio_range": [
+          0.41446634159089957,
+          1.6439156494546612
+        ],
+        "edge_length_ratio_range": [
+          0.5042130887028881,
+          1.391268636907833
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9285040710391232,
+          1.1925046047489358
+        ]
+      }
+    },
+    "contrastes": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.01790505612388362,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 21.80507668654606,
+        "triangle_area_ratio_range": [
+          0.5819025577487505,
+          2.1217355665500004
+        ],
+        "edge_length_ratio_range": [
+          0.8203624097142594,
+          1.22220769163634
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9132283134627601,
+          1.144211563029676
+        ]
+      }
+    },
+    "curvas-com-seios": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 3290,
+        "max_displacement": 0.01671554070640992,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.432262580269544,
+        "triangle_area_ratio_range": [
+          0.5163766710310188,
+          1.6736358981037536
+        ],
+        "edge_length_ratio_range": [
+          0.5204450369905474,
+          1.4067933572832871
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9432126034343827,
+          1.2017851528038794
+        ]
+      }
+    },
+    "encorpado": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13770,
+        "max_displacement": 0.004352128938559533,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 21.005194039143067,
+        "triangle_area_ratio_range": [
+          0.40734909111854417,
+          2.397922920500134
+        ],
+        "edge_length_ratio_range": [
+          0.9082630138195779,
+          1.0639420471422265
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.981116746067347,
+          1.0406249851910225
+        ]
+      }
+    },
+    "magro": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13770,
+        "max_displacement": 0.0017407167528076925,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 37.0191412106755,
+        "triangle_area_ratio_range": [
+          0.6354719082580405,
+          1.2563553047312488
+        ],
+        "edge_length_ratio_range": [
+          0.9782443560965765,
+          1.0414780316895536
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9821414799613573,
+          1.0079779680127439
+        ]
+      }
+    },
+    "maximos": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.024059082516383303,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.445120131213486,
+        "triangle_area_ratio_range": [
+          0.21489520177158392,
+          3.0971355013524984
+        ],
+        "edge_length_ratio_range": [
+          0.6016222964971085,
+          1.48456235911075
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9629469179238526,
+          1.2705995236594818
+        ]
+      }
+    },
+    "minimos": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.011407895748035926,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 35.289445870151056,
+        "triangle_area_ratio_range": [
+          0.6183738238907438,
+          1.2373582927956166
+        ],
+        "edge_length_ratio_range": [
+          0.777284380306594,
+          1.194934730400018
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.8821400981515611,
+          1.0148796113833154
+        ]
+      }
+    },
+    "musculoso": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 13070,
+        "max_displacement": 0.003481727059225343,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 24.801156005669025,
+        "triangle_area_ratio_range": [
+          0.4927762659480965,
+          2.1184667529832377
+        ],
+        "edge_length_ratio_range": [
+          0.9130381147670145,
+          1.0529971101022584
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9838220304711921,
+          1.0454034081327839
+        ]
+      }
+    },
+    "preset-antigo": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 18863,
+        "max_displacement": 0.024059079241288667,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 33.445143085374696,
+        "triangle_area_ratio_range": [
+          0.21489278613058957,
+          3.0971417659183658
+        ],
+        "edge_length_ratio_range": [
+          0.601622206308836,
+          1.4845626766201891
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9629420949432774,
+          1.2705994981771649
+        ]
+      }
+    },
+    "regular": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 0,
+        "max_displacement": 2.2351741790771484e-07,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 0.0024417930762476846,
+        "triangle_area_ratio_range": [
+          0.9999653373832492,
+          1.0000301351763672
+        ],
+        "edge_length_ratio_range": [
+          0.9999826259403316,
+          1.0000301341600826
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9999963382548546,
+          1.0000015433100686
+        ]
+      }
+    },
+    "restaurado": {
+      "tripo_node_c1bea7d6": {
+        "finite": true,
+        "vertices": 18863,
+        "changed_vertices": 0,
+        "max_displacement": 2.2351741790771484e-07,
+        "new_degenerate_triangles": 0,
+        "normal_rotations_over_90": 0,
+        "max_normal_rotation_degrees": 0.0024417930762476846,
+        "triangle_area_ratio_range": [
+          0.9999653373832492,
+          1.0000301351763672
+        ],
+        "edge_length_ratio_range": [
+          0.9999826259403316,
+          1.0000301341600826
+        ],
+        "edge_length_ratio_p01_p99": [
+          0.9999963382548546,
+          1.0000015433100686
+        ]
+      }
+    }
+  }
+}

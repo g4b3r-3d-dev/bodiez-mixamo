@@ -1,0 +1,938 @@
+{
+  "markers": {
+    "radius": 0.0751241991319246,
+    "left": [
+      0.05451762827271539,
+      0.7370570461690227,
+      0.06982258172494084
+    ],
+    "right": [
+      -0.055659228938214136,
+      0.7370007986844302,
+      0.06868682504784458
+    ]
+  },
+  "source": {
+    "asset_id": "b35a2a7b968443f8bc34812188380929",
+    "preparation_id": "e8d3f023ab6745d9b4da3ae69828ec1e",
+    "mode": "existing_bound",
+    "name": "femele.glb",
+    "updated_at": 1790644400
+  },
+  "variants": {
+    "aumentar": {
+      "values": {
+        "breast_size": 0.75
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 673,
+        "mean_displacement": 0.00016522787273299557,
+        "max_displacement": 0.012751142966313174,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.012751142966313174
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 18167,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 3.6283497113714083e-07,
+        "changed_vertices": 663,
+        "changed_per_side": [
+          359,
+          358
+        ],
+        "max_forward_per_side": [
+          0.012268995677683818,
+          0.01257713857483028
+        ],
+        "min_forward_per_side": [
+          0,
+          0
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "reduzir": {
+      "values": {
+        "breast_size": -0.5
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 670,
+        "mean_displacement": 0.00011017968663433324,
+        "max_displacement": 0.008500778551637366,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.008500778551637366
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 18167,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 3.6283497113714083e-07,
+        "changed_vertices": 662,
+        "changed_per_side": [
+          359,
+          357
+        ],
+        "max_forward_per_side": [
+          0,
+          0
+        ],
+        "min_forward_per_side": [
+          -0.008179344222881383,
+          -0.008384771617041598
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "restaurar": {
+      "values": {
+        "breast_size": 0
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 0,
+        "mean_displacement": 8.159172086954952e-08,
+        "max_displacement": 3.6283497113714083e-07,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 3.6283497113714083e-07
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 18167,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 3.6283497113714083e-07,
+        "changed_vertices": 0,
+        "changed_per_side": [
+          0,
+          0
+        ],
+        "max_forward_per_side": [
+          0,
+          0
+        ],
+        "min_forward_per_side": [
+          0,
+          0
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "combinado": {
+      "values": {
+        "breast_size": 0.75,
+        "height": 1.05,
+        "torso_volume": 0.15
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 19026,
+        "mean_displacement": 0.036590959246671655,
+        "max_displacement": 0.04991697902713382,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.04991697902713382
+          }
+        ]
+      },
+      "locality": null,
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.05,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "reducao-suave": {
+      "values": {
+        "breast_size": -0.25
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 670,
+        "mean_displacement": 5.513027786652914e-05,
+        "max_displacement": 0.004250394248179807,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.004250394248179807
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 18167,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 3.6283497113714083e-07,
+        "changed_vertices": 655,
+        "changed_per_side": [
+          354,
+          355
+        ],
+        "max_forward_per_side": [
+          0,
+          0
+        ],
+        "min_forward_per_side": [
+          -0.004089676242768337,
+          -0.004192389578667218
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "aumento-suave": {
+      "values": {
+        "breast_size": 0.35
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 670,
+        "mean_displacement": 7.714881757461765e-05,
+        "max_displacement": 0.00595052797936073,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.00595052797936073
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 18167,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 3.6283497113714083e-07,
+        "changed_vertices": 657,
+        "changed_per_side": [
+          354,
+          357
+        ],
+        "max_forward_per_side": [
+          0.005725526811997661,
+          0.005869327213477079
+        ],
+        "min_forward_per_side": [
+          0,
+          0
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "aumento-moderado": {
+      "values": {
+        "breast_size": 0.65
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 673,
+        "mean_displacement": 0.00014320810374124024,
+        "max_displacement": 0.011050988839552352,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.011050988839552352
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 18167,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 3.6283497113714083e-07,
+        "changed_vertices": 663,
+        "changed_per_side": [
+          359,
+          358
+        ],
+        "max_forward_per_side": [
+          0.010633128095617457,
+          0.010900185359663804
+        ],
+        "min_forward_per_side": [
+          0,
+          0
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "maximo": {
+      "values": {
+        "breast_size": 1
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 673,
+        "mean_displacement": 0.00022027728237011333,
+        "max_displacement": 0.017001527269853576,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.017001527269853576
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 18167,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 3.6283497113714083e-07,
+        "changed_vertices": 665,
+        "changed_per_side": [
+          360,
+          359
+        ],
+        "max_forward_per_side": [
+          0.01635866365779686,
+          0.01676952061320465
+        ],
+        "min_forward_per_side": [
+          0,
+          0
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "curvas": {
+      "values": {
+        "breast_size": 0.65,
+        "feminine_curves": 0.65
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 3331,
+        "mean_displacement": 0.0005769003861066752,
+        "max_displacement": 0.010865013179577524,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.010865013179577524
+          }
+        ]
+      },
+      "locality": null,
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "feminine_curves": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_feminine_curves"
+              }
+            ],
+            "arm_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_node_c1bea7d6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.05451762827271539,
+              0.7370570461690227,
+              0.06982258172494084
+            ],
+            "right": [
+              -0.055659228938214136,
+              0.7370007986844302,
+              0.06868682504784458
+            ],
+            "radius": 0.0751241991319246
+          },
+          "affected_vertices_per_side": [
+            367,
+            367
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    }
+  },
+  "invalid_requests_rejected": 3,
+  "preset_roundtrip": true
+}

@@ -1,0 +1,750 @@
+{
+  "markers": {
+    "radius": 0.05999764093476642,
+    "left": [
+      0.08184327538909308,
+      0.7446216853343597,
+      -0.05472903028319915
+    ],
+    "right": [
+      0.08179572832787929,
+      0.744621732898622,
+      0.055266848506758184
+    ]
+  },
+  "source": {
+    "asset_id": "423ff927983341af9e8519b60548366f",
+    "preparation_id": "6674e4190c5a40e6b13de6d342800122",
+    "mode": "existing_bound",
+    "name": "femele-decimate-retextured-rename-parts.glb",
+    "updated_at": 1790598437
+  },
+  "variants": {
+    "aumentar": {
+      "values": {
+        "breast_size": 0.75
+      },
+      "geometry": {
+        "vertices": 161386,
+        "changed_vertices": 1879,
+        "mean_displacement": 0.000160255184938113,
+        "max_displacement": 0.0217515428105795,
+        "meshes": [
+          {
+            "name": "head",
+            "vertices": 23257,
+            "max_displacement": 2.8431127495277606e-07
+          },
+          {
+            "name": "tripo_part_0",
+            "vertices": 62938,
+            "max_displacement": 2.767202543619899e-07
+          },
+          {
+            "name": "tripo_part_1",
+            "vertices": 2484,
+            "max_displacement": 9.592073559508638e-08
+          },
+          {
+            "name": "tripo_part_2",
+            "vertices": 7139,
+            "max_displacement": 1.7768391441466318e-07
+          },
+          {
+            "name": "tripo_part_5",
+            "vertices": 32609,
+            "max_displacement": 1.280255215288354e-07
+          },
+          {
+            "name": "tripo_part_6",
+            "vertices": 17659,
+            "max_displacement": 0.0217515428105795
+          },
+          {
+            "name": "tripo_part_7",
+            "vertices": 7483,
+            "max_displacement": 9.615654095781811e-08
+          },
+          {
+            "name": "tripo_part_8",
+            "vertices": 2580,
+            "max_displacement": 9.992169225884617e-08
+          },
+          {
+            "name": "tripo_part_9",
+            "vertices": 5237,
+            "max_displacement": 2.7550303646859027e-07
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 159504,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 2.8431127495277606e-07,
+        "changed_vertices": 1871,
+        "changed_per_side": [
+          935,
+          1042
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "arm_volume": [
+              {
+                "mesh": "head",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_0",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_9",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_part_1",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_5",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_7",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_8",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "head",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_5",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_7",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.08184327538909308,
+              0.7446216853343597,
+              -0.05472903028319915
+            ],
+            "right": [
+              0.08179572832787929,
+              0.744621732898622,
+              0.055266848506758184
+            ],
+            "radius": 0.05999764093476642
+          },
+          "affected_vertices_per_side": [
+            928,
+            1037
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "reduzir": {
+      "values": {
+        "breast_size": -0.5
+      },
+      "geometry": {
+        "vertices": 161386,
+        "changed_vertices": 1879,
+        "mean_displacement": 0.00010689169103216135,
+        "max_displacement": 0.014501032796614462,
+        "meshes": [
+          {
+            "name": "head",
+            "vertices": 23257,
+            "max_displacement": 2.8431127495277606e-07
+          },
+          {
+            "name": "tripo_part_0",
+            "vertices": 62938,
+            "max_displacement": 2.767202543619899e-07
+          },
+          {
+            "name": "tripo_part_1",
+            "vertices": 2484,
+            "max_displacement": 9.592073559508638e-08
+          },
+          {
+            "name": "tripo_part_2",
+            "vertices": 7139,
+            "max_displacement": 1.7768391441466318e-07
+          },
+          {
+            "name": "tripo_part_5",
+            "vertices": 32609,
+            "max_displacement": 1.280255215288354e-07
+          },
+          {
+            "name": "tripo_part_6",
+            "vertices": 17659,
+            "max_displacement": 0.014501032796614462
+          },
+          {
+            "name": "tripo_part_7",
+            "vertices": 7483,
+            "max_displacement": 9.615654095781811e-08
+          },
+          {
+            "name": "tripo_part_8",
+            "vertices": 2580,
+            "max_displacement": 9.992169225884617e-08
+          },
+          {
+            "name": "tripo_part_9",
+            "vertices": 5237,
+            "max_displacement": 2.7550303646859027e-07
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 159504,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 2.8431127495277606e-07,
+        "changed_vertices": 1871,
+        "changed_per_side": [
+          935,
+          1042
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "arm_volume": [
+              {
+                "mesh": "head",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_0",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_9",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_part_1",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_5",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_7",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_8",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "head",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_5",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_7",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.08184327538909308,
+              0.7446216853343597,
+              -0.05472903028319915
+            ],
+            "right": [
+              0.08179572832787929,
+              0.744621732898622,
+              0.055266848506758184
+            ],
+            "radius": 0.05999764093476642
+          },
+          "affected_vertices_per_side": [
+            928,
+            1037
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "restaurar": {
+      "values": {
+        "breast_size": 0
+      },
+      "geometry": {
+        "vertices": 161386,
+        "changed_vertices": 0,
+        "mean_displacement": 1.6539013257426465e-07,
+        "max_displacement": 2.8431127495277606e-07,
+        "meshes": [
+          {
+            "name": "head",
+            "vertices": 23257,
+            "max_displacement": 2.8431127495277606e-07
+          },
+          {
+            "name": "tripo_part_0",
+            "vertices": 62938,
+            "max_displacement": 2.767202543619899e-07
+          },
+          {
+            "name": "tripo_part_1",
+            "vertices": 2484,
+            "max_displacement": 9.592073559508638e-08
+          },
+          {
+            "name": "tripo_part_2",
+            "vertices": 7139,
+            "max_displacement": 1.7768391441466318e-07
+          },
+          {
+            "name": "tripo_part_5",
+            "vertices": 32609,
+            "max_displacement": 1.280255215288354e-07
+          },
+          {
+            "name": "tripo_part_6",
+            "vertices": 17659,
+            "max_displacement": 2.442682950392632e-07
+          },
+          {
+            "name": "tripo_part_7",
+            "vertices": 7483,
+            "max_displacement": 9.615654095781811e-08
+          },
+          {
+            "name": "tripo_part_8",
+            "vertices": 2580,
+            "max_displacement": 9.992169225884617e-08
+          },
+          {
+            "name": "tripo_part_9",
+            "vertices": 5237,
+            "max_displacement": 2.7550303646859027e-07
+          }
+        ]
+      },
+      "locality": {
+        "outside_vertices": 159504,
+        "outside_changed_vertices": 0,
+        "max_outside_displacement": 2.8431127495277606e-07,
+        "changed_vertices": 0,
+        "changed_per_side": [
+          0,
+          0
+        ],
+        "direction_errors": 0
+      },
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.0,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "arm_volume": [
+              {
+                "mesh": "head",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_0",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_9",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_part_1",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_5",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_7",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_8",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "head",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_5",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_7",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.08184327538909308,
+              0.7446216853343597,
+              -0.05472903028319915
+            ],
+            "right": [
+              0.08179572832787929,
+              0.744621732898622,
+              0.055266848506758184
+            ],
+            "radius": 0.05999764093476642
+          },
+          "affected_vertices_per_side": [
+            928,
+            1037
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    },
+    "combinado": {
+      "values": {
+        "breast_size": 0.75,
+        "height": 1.05,
+        "torso_volume": 0.15
+      },
+      "geometry": {
+        "vertices": 161386,
+        "changed_vertices": 161386,
+        "mean_displacement": 0.035667567138454884,
+        "max_displacement": 0.05665123113374351,
+        "meshes": [
+          {
+            "name": "head",
+            "vertices": 23257,
+            "max_displacement": 0.050004020631796826
+          },
+          {
+            "name": "tripo_part_0",
+            "vertices": 62938,
+            "max_displacement": 0.04610252787646469
+          },
+          {
+            "name": "tripo_part_1",
+            "vertices": 2484,
+            "max_displacement": 0.005660156934922075
+          },
+          {
+            "name": "tripo_part_2",
+            "vertices": 7139,
+            "max_displacement": 0.040285299832670894
+          },
+          {
+            "name": "tripo_part_5",
+            "vertices": 32609,
+            "max_displacement": 0.03105325485890665
+          },
+          {
+            "name": "tripo_part_6",
+            "vertices": 17659,
+            "max_displacement": 0.05665123113374351
+          },
+          {
+            "name": "tripo_part_7",
+            "vertices": 7483,
+            "max_displacement": 0.02303888559152845
+          },
+          {
+            "name": "tripo_part_8",
+            "vertices": 2580,
+            "max_displacement": 0.0056500715955463705
+          },
+          {
+            "name": "tripo_part_9",
+            "vertices": 5237,
+            "max_displacement": 0.046092919463387345
+          }
+        ]
+      },
+      "locality": null,
+      "application": {
+        "structural": {
+          "method": "non_destructive_pose_offset_layer",
+          "values": {
+            "height": 1.05,
+            "head_size": 1.0,
+            "shoulder_width": 1.0,
+            "hip_width": 1.0,
+            "arm_length": 1.0,
+            "leg_length": 1.0
+          }
+        },
+        "morphs": {
+          "method": "shape_keys",
+          "applied": {
+            "arm_volume": [
+              {
+                "mesh": "head",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_0",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_arm_volume"
+              },
+              {
+                "mesh": "tripo_part_9",
+                "key": "Bodiez_Auto_arm_volume"
+              }
+            ],
+            "leg_volume": [
+              {
+                "mesh": "tripo_part_1",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_5",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_7",
+                "key": "Bodiez_Auto_leg_volume"
+              },
+              {
+                "mesh": "tripo_part_8",
+                "key": "Bodiez_Auto_leg_volume"
+              }
+            ],
+            "torso_volume": [
+              {
+                "mesh": "head",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_2",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_5",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_torso_volume"
+              },
+              {
+                "mesh": "tripo_part_7",
+                "key": "Bodiez_Auto_torso_volume"
+              }
+            ],
+            "breast_size": [
+              {
+                "mesh": "tripo_part_6",
+                "key": "Bodiez_Auto_breast_size"
+              }
+            ]
+          }
+        },
+        "breast_markers": {
+          "markers": {
+            "left": [
+              0.08184327538909308,
+              0.7446216853343597,
+              -0.05472903028319915
+            ],
+            "right": [
+              0.08179572832787929,
+              0.744621732898622,
+              0.055266848506758184
+            ],
+            "radius": 0.05999764093476642
+          },
+          "affected_vertices_per_side": [
+            928,
+            1037
+          ]
+        },
+        "double_deformation_avoided": true
+      }
+    }
+  },
+  "invalid_requests_rejected": 3,
+  "preset_roundtrip": true
+}

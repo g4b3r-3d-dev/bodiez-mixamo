@@ -54,3 +54,18 @@
 .stage4Right .microNote,.stage4Right .disabledControl span,.stage4Right .controlUnavailable { font-size:11px; }
 .stage4Right .morphControl select { font-size:11px; }
 @media(max-width:1000px){.stage4Shell{grid-template-rows:54px minmax(240px,1fr) minmax(0,42vh)}}
+.bodyMarkerTools { padding:12px; background:#182130; border-bottom:1px solid #546581; font-size:12px; }
+.bodyMarkerTools p { line-height:1.5; margin:6px 0; }
+.bodyMarkerTools button,.breastMarkerSetup button { background:#232d3e; color:#e3e8f3; border:1px solid #5b6c87; border-radius:6px; padding:8px; margin:4px; font-size:12px; }
+.bodyMarkerTools button:disabled { opacity:.45; }
+.markerSideButtons .selected { outline:2px solid #bcadf5; }
+.markerSideButtons button:first-child { color:#51d6de; }
+.markerSideButtons button:last-child { color:#f3b34f; }
+.bodyMarkerTools label { display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin:6px 0; }
+.bodyMarkerTools input { flex:1; accent-color:#bcadf5; }
+.breastMarkerSetup { margin-top:8px; }
+.bodyCurves { margin:12px 0; padding:12px; border:1px solid #51436d; border-radius:8px; background:#181423; }
+.curveLevels { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; }
+.curveLevels button { padding:8px 3px; border:1px solid #504361; border-radius:6px; background:#211b2e; color:#cfc3e6; font-size:11px; }
+.curveLevels button[aria-pressed="true"] { background:#59447e; border-color:#b7a6f2; color:#fff; }
+.curveLevels button:disabled { opacity:.45; }

@@ -1,5 +1,7 @@
 # Modelo feminino — validação da Etapa 4
 
+> Relatório anterior ao controle de seios por ossos/marcadores. Consulte a [nova implementação e validação](../stage4-breast/README.md).
+
 Data: 28/09/2026. Modelo: `femele-decimate-retextured-rename-parts.glb`.
 SHA-256 do original preservado: `fbb446f2b1b30275607e1b108acabcbb0a78f51b8b4ac4a77f294e1f0a38f2dd`.
 

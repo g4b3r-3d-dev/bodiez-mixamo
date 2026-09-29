@@ -1,0 +1,345 @@
+{
+  "armature": "Armature",
+  "semantic_matches": {
+    "head": "mixamorig:Head",
+    "left_upper_arm": "mixamorig:LeftArm",
+    "right_upper_arm": "mixamorig:RightArm",
+    "left_forearm": "mixamorig:LeftForeArm",
+    "right_forearm": "mixamorig:RightForeArm",
+    "left_thigh": "mixamorig:LeftUpLeg",
+    "right_thigh": "mixamorig:RightUpLeg",
+    "left_shin": "mixamorig:LeftLeg",
+    "right_shin": "mixamorig:RightLeg",
+    "spine": "mixamorig:Spine",
+    "spine1": "mixamorig:Spine1",
+    "spine2": "mixamorig:Spine2",
+    "hips": "mixamorig:Hips"
+  },
+  "controls": {
+    "height": {
+      "enabled": true,
+      "engine": "rig_root_scale"
+    },
+    "head_size": {
+      "enabled": true,
+      "engine": "rig_pose_offset",
+      "reason": null
+    },
+    "shoulder_width": {
+      "enabled": true,
+      "engine": "rig_pose_offset",
+      "reason": null
+    },
+    "hip_width": {
+      "enabled": true,
+      "engine": "rig_pose_offset",
+      "reason": null
+    },
+    "arm_length": {
+      "enabled": true,
+      "engine": "rig_pose_offset",
+      "reason": null
+    },
+    "leg_length": {
+      "enabled": true,
+      "engine": "rig_pose_offset",
+      "reason": null
+    },
+    "arm_volume": {
+      "enabled": true,
+      "engine": "shape_key",
+      "generated_assisted": true,
+      "reason": null
+    },
+    "leg_volume": {
+      "enabled": true,
+      "engine": "shape_key",
+      "generated_assisted": true,
+      "reason": null
+    },
+    "torso_volume": {
+      "enabled": true,
+      "engine": "shape_key",
+      "generated_assisted": true,
+      "reason": null
+    },
+    "feminine_curves": {
+      "enabled": true,
+      "engine": "shape_key",
+      "generated_assisted": true,
+      "reason": null
+    },
+    "breast_size": {
+      "enabled": false,
+      "engine": "shape_key",
+      "generated_assisted": false,
+      "requires_markers": true,
+      "bones": {},
+      "reason": "Ossos dos seios não identificados. Posicione dois marcadores ou selecione um shape key existente."
+    }
+  },
+  "morph_sources": [
+    {
+      "source_id": "auto:arm_volume",
+      "type": "generated",
+      "display_name": "Morph assistido: arm_volume",
+      "control_hint": "arm_volume",
+      "driven": false,
+      "slider_min": -1,
+      "slider_max": 1,
+      "targets": [
+        {
+          "mesh": "tripo_node_c1bea7d6",
+          "key": "Bodiez_Auto_arm_volume"
+        }
+      ]
+    },
+    {
+      "source_id": "auto:leg_volume",
+      "type": "generated",
+      "display_name": "Morph assistido: leg_volume",
+      "control_hint": "leg_volume",
+      "driven": false,
+      "slider_min": -1,
+      "slider_max": 1,
+      "targets": [
+        {
+          "mesh": "tripo_node_c1bea7d6",
+          "key": "Bodiez_Auto_leg_volume"
+        }
+      ]
+    },
+    {
+      "source_id": "auto:torso_volume",
+      "type": "generated",
+      "display_name": "Morph assistido: torso_volume",
+      "control_hint": "torso_volume",
+      "driven": false,
+      "slider_min": -1,
+      "slider_max": 1,
+      "targets": [
+        {
+          "mesh": "tripo_node_c1bea7d6",
+          "key": "Bodiez_Auto_torso_volume"
+        }
+      ]
+    },
+    {
+      "source_id": "auto:feminine_curves",
+      "type": "generated",
+      "display_name": "Cintura, quadris e glúteos",
+      "control_hint": "feminine_curves",
+      "driven": false,
+      "slider_min": 0,
+      "slider_max": 1,
+      "targets": [
+        {
+          "mesh": "tripo_node_c1bea7d6",
+          "key": "Bodiez_Auto_feminine_curves"
+        }
+      ]
+    },
+    {
+      "source_id": "markers:breast_size",
+      "type": "markers",
+      "display_name": "Seios pelos marcadores",
+      "control_hint": "breast_size",
+      "driven": false,
+      "slider_min": -0.5,
+      "slider_max": 1,
+      "targets": []
+    }
+  ],
+  "default_bindings": {
+    "arm_volume": "auto:arm_volume",
+    "leg_volume": "auto:leg_volume",
+    "torso_volume": "auto:torso_volume",
+    "feminine_curves": "auto:feminine_curves"
+  },
+  "breast_marker_info": {
+    "coordinate_space": "baseline_gltf_world",
+    "height": 1.0016559884256613,
+    "radius_min": 0.025041399710641534,
+    "radius_max": 0.09515731890043783,
+    "radius_default": 0.0751241991319246,
+    "bounds_min": [
+      -0.4736330211162567,
+      -1.039937558289239e-08,
+      -0.07714789360761642
+    ],
+    "bounds_max": [
+      0.4736330211162567,
+      0.9980471730232239,
+      0.07714787870645523
+    ],
+    "up": [
+      0.0,
+      0.9987760186195374,
+      -0.04946361482143402
+    ],
+    "front": [
+      -0.007106036879122257,
+      0.04946235567331314,
+      0.9987506866455078
+    ],
+    "left": [
+      0.9999747276306152,
+      0.0003514903364703059,
+      0.007097338791936636
+    ],
+    "origin": [
+      0.0,
+      0.5612775087356567,
+      -0.0024638706818223
+    ],
+    "chest_min": 0.6393610037848703,
+    "chest_max": 0.8564312121985131
+  },
+  "structural_method": {
+    "name": "non_destructive_pose_offset_layer",
+    "description": "Mudanças estruturais usam escala raiz e transforms de pose; rest pose não é reescrita."
+  },
+  "preservation": {
+    "topology_changed": false,
+    "destructive_modifiers_applied": false,
+    "existing_shape_keys_removed": false
+  },
+  "limitations": [
+    "Morphs assistidos derivam dos pesos ou marcadores e não substituem morphs artísticos/anatômicos.",
+    "A área dos marcadores também deforma roupas que cobrem os seios. Ajuste o raio e confira de frente e de lado.",
+    "A camada estrutural deverá ser conciliada com animações na Etapa 5."
+  ],
+  "control_specs": {
+    "feminine_curves": {
+      "label": "Curvas femininas",
+      "kind": "morph",
+      "min": 0.0,
+      "max": 1.0,
+      "default": 0.0
+    },
+    "height": {
+      "label": "Altura",
+      "kind": "structural",
+      "min": 0.9,
+      "max": 1.1,
+      "default": 1.0
+    },
+    "head_size": {
+      "label": "Tamanho da cabeça",
+      "kind": "structural",
+      "min": 0.85,
+      "max": 1.15,
+      "default": 1.0
+    },
+    "shoulder_width": {
+      "label": "Largura dos ombros",
+      "kind": "structural",
+      "min": 0.88,
+      "max": 1.12,
+      "default": 1.0
+    },
+    "hip_width": {
+      "label": "Largura dos quadris",
+      "kind": "structural",
+      "min": 0.88,
+      "max": 1.12,
+      "default": 1.0
+    },
+    "arm_length": {
+      "label": "Comprimento dos braços",
+      "kind": "structural",
+      "min": 0.92,
+      "max": 1.08,
+      "default": 1.0
+    },
+    "leg_length": {
+      "label": "Comprimento das pernas",
+      "kind": "structural",
+      "min": 0.92,
+      "max": 1.08,
+      "default": 1.0
+    },
+    "arm_volume": {
+      "label": "Volume dos braços",
+      "kind": "morph",
+      "min": -0.4,
+      "max": 0.5,
+      "default": 0.0
+    },
+    "leg_volume": {
+      "label": "Volume das pernas",
+      "kind": "morph",
+      "min": -0.4,
+      "max": 0.5,
+      "default": 0.0
+    },
+    "torso_volume": {
+      "label": "Volume do tronco",
+      "kind": "morph",
+      "min": -0.35,
+      "max": 0.45,
+      "default": 0.0
+    },
+    "breast_size": {
+      "label": "Volume dos seios",
+      "kind": "morph_optional",
+      "min": -0.5,
+      "max": 1.0,
+      "default": 0.0
+    }
+  },
+  "builtin_presets": {
+    "regular": {
+      "feminine_curves": 0.0,
+      "height": 1.0,
+      "head_size": 1.0,
+      "shoulder_width": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "arm_volume": 0.0,
+      "leg_volume": 0.0,
+      "torso_volume": 0.0,
+      "breast_size": 0.0
+    },
+    "magro": {
+      "shoulder_width": 0.97,
+      "hip_width": 0.97,
+      "arm_volume": -0.3,
+      "leg_volume": -0.28,
+      "torso_volume": -0.28,
+      "feminine_curves": 0.0,
+      "height": 1.0,
+      "head_size": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "breast_size": 0.0
+    },
+    "musculoso": {
+      "shoulder_width": 1.04,
+      "arm_volume": 0.34,
+      "leg_volume": 0.26,
+      "torso_volume": 0.2,
+      "feminine_curves": 0.0,
+      "height": 1.0,
+      "head_size": 1.0,
+      "hip_width": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "breast_size": 0.0
+    },
+    "encorpado": {
+      "shoulder_width": 1.03,
+      "hip_width": 1.04,
+      "arm_volume": 0.18,
+      "leg_volume": 0.22,
+      "torso_volume": 0.38,
+      "feminine_curves": 0.0,
+      "height": 1.0,
+      "head_size": 1.0,
+      "arm_length": 1.0,
+      "leg_length": 1.0,
+      "breast_size": 0.0
+    }
+  }
+}

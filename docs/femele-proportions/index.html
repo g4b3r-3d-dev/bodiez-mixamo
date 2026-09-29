@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>femele.glb · Proporções naturais</title>
+<style>
+body{margin:0;background:#161b23;color:#e8edf6;font:16px/1.5 system-ui,sans-serif}main{max-width:1600px;margin:auto;padding:24px}h1{font-size:28px;margin:0}p{max-width:1000px;color:#c1cad8}.tools{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:20px 0}button,select{font:inherit;color:inherit;background:#293345;border:1px solid #64758d;border-radius:8px;padding:10px}button{cursor:pointer}input{flex:1;min-width:170px;accent-color:#b5a0eb}img{display:block;width:100%;border-radius:12px;background:#353535}a{color:#c3b4ff}output{min-width:170px}:focus-visible{outline:3px solid #b5a0eb}
+</style>
+<main>
+<h1>Proporções naturais: corpo e seios</h1>
+<p>Comparações do <strong>femele.glb</strong> original com combinações moderadas automaticamente. A proteção considera a forma do corpo e as articulações. Os controles mostram os valores efetivamente aplicados.</p>
+<div class="tools"><label for="region">Comparação</label><select id="region"><option value="views">Corpo completo</option><option value="breast-views">Seios e tórax</option></select><button id="previous" aria-label="Vista anterior">←</button><label for="view">Ângulo</label><input id="view" type="range" min="0" max="15" value="0" step="1"><button id="next" aria-label="Próxima vista">→</button><output id="angle" aria-live="polite"></output></div>
+<a id="full" href="views/view-000-+00.png"><img id="image" src="views/view-000-+00.png" alt="Comparação frontal do corpo: original, reduzido, ampliado e curvas com seios"></a>
+<p id="description"></p>
+<p>16 direções registradas por comparação. Clique na imagem para ampliar. Os recortes no tórax são apenas para visualizar a região; a malha exportada permanece inteira. A forma da base, suas assimetrias e seus defeitos preexistentes são preservados.</p>
+<p><a href="README.md">Método e limites da validação</a> · <a href="report.json">Valores solicitados e aplicados</a> · <a href="pose-audit.json">Auditoria em três poses</a></p>
+</main>
+<script>
+const views=[...Array.from({length:12},(_,i)=>[i*30,0]),[0,-20],[180,-20],[0,20],[180,20]];
+const slider=document.getElementById('view'),region=document.getElementById('region'),picture=document.getElementById('image');
+function draw(){const [yaw,pitch]=views[Number(slider.value)],path=region.value+'/view-'+String(yaw).padStart(3,'0')+'-'+(pitch>=0?'+':'-')+String(Math.abs(pitch)).padStart(2,'0')+'.png';picture.src=path;document.getElementById('full').href=path;document.getElementById('angle').textContent=yaw+'° · inclinação '+pitch+'°';picture.alt=(region.value==='views'?'Corpo completo':'Seios e tórax')+', vista '+yaw+' graus, inclinação '+pitch+' graus';document.getElementById('description').textContent=region.value==='views'?'Da esquerda para a direita: original; extremos inferiores moderados; extremos superiores moderados; combinação de cintura, quadris e seios. A altura solicitada (90% ou 110%) é preservada.':'Da esquerda para a direita: original; curvas e seios em 100%; cintura e seios com demais ajustes moderados; redução dos seios combinada com outras proporções. Os percentuais são intensidades de deformação, não medidas do volume físico.';}
+function step(delta){slider.value=(Number(slider.value)+delta+views.length)%views.length;draw()}
+slider.oninput=draw;region.onchange=draw;document.getElementById('previous').onclick=()=>step(-1);document.getElementById('next').onclick=()=>step(1);draw();
+</script>
+</html>

@@ -4,6 +4,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 type ViewName = 'perspective' | 'front' | 'side' | 'back'
+export type BodyPoint = [number, number, number]
+export type BreastMarkers = {left: BodyPoint; right: BodyPoint; radius: number}
+export type MarkerDraft = {left?: BodyPoint; right?: BodyPoint; radius: number}
 
 type Props = {
   url: string | null
@@ -13,6 +16,9 @@ type Props = {
   anatomicalView?: boolean
   viewRequest: { name: ViewName; nonce: number }
   onViewerError?: (message: string | null) => void
+  markerDraft?: MarkerDraft | null
+  activeMarker?: 'left' | 'right' | null
+  onMarkerPick?: (side: 'left' | 'right', point: BodyPoint) => void
 }
 
 function disposeObject(root: THREE.Object3D) {
@@ -32,7 +38,7 @@ function disposeObject(root: THREE.Object3D) {
   textures.forEach((texture) => texture.dispose())
 }
 
-export default function ModelViewer({ url, wireframe, skeleton, preserveCamera = false, anatomicalView = false, viewRequest, onViewerError }: Props) {
+export default function ModelViewer({ url, wireframe, skeleton, preserveCamera = false, anatomicalView = false, viewRequest, onViewerError, markerDraft, activeMarker, onMarkerPick }: Props) {
   const hostRef = useRef<HTMLDivElement | null>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
   const cameraRef = useRef<THREE.PerspectiveCamera | null>(null)
@@ -41,10 +47,14 @@ export default function ModelViewer({ url, wireframe, skeleton, preserveCamera =
   const modelRef = useRef<THREE.Object3D | null>(null)
   const helperRef = useRef<THREE.SkeletonHelper | null>(null)
   const boundsRef = useRef<{ center: THREE.Vector3; size: THREE.Vector3 } | null>(null)
+  const lastViewRef = useRef<{name: ViewName; nonce: number} | null>(null)
   const [loading, setLoading] = useState(false)
   const bodyFrameRef = useRef({front: new THREE.Vector3(0,0,1), right: new THREE.Vector3(1,0,0), up: new THREE.Vector3(0,1,0)})
   const displayRef = useRef({skeleton, wireframe, viewRequest})
   displayRef.current = {skeleton, wireframe, viewRequest}
+  const markerGroupRef = useRef<THREE.Group | null>(null)
+  const pickingRef = useRef({activeMarker, onMarkerPick})
+  pickingRef.current = {activeMarker, onMarkerPick}
 
   useEffect(() => {
     const host = hostRef.current
@@ -80,6 +90,32 @@ export default function ModelViewer({ url, wireframe, skeleton, preserveCamera =
     cameraRef.current = camera
     controlsRef.current = controls
     rendererRef.current = renderer
+    const markers = new THREE.Group()
+    scene.add(markers)
+    markerGroupRef.current = markers
+    const raycaster = new THREE.Raycaster()
+    let pointerStart: {x: number; y: number; moved: boolean} | null = null
+    const down = (event: PointerEvent) => {
+      pointerStart = event.button === 0 ? {x: event.clientX, y: event.clientY, moved:false} : null
+    }
+    const move = (event: PointerEvent) => {
+      if (pointerStart && Math.hypot(event.clientX-pointerStart.x,event.clientY-pointerStart.y)>5) pointerStart.moved=true
+    }
+    const cancel = () => {pointerStart=null}
+    const pick = (event: PointerEvent) => {
+      const start = pointerStart; pointerStart = null
+      const {activeMarker: side, onMarkerPick: onPick} = pickingRef.current
+      const model = modelRef.current
+      if (!start || start.moved || !side || !onPick || !model || Math.hypot(event.clientX-start.x,event.clientY-start.y)>5) return
+      const rect = renderer.domElement.getBoundingClientRect()
+      raycaster.setFromCamera(new THREE.Vector2((event.clientX-rect.left)/rect.width*2-1, -(event.clientY-rect.top)/rect.height*2+1), camera)
+      const hit = raycaster.intersectObject(model, true).find(x=>x.object instanceof THREE.Mesh)
+      if (hit) onPick(side, hit.point.toArray() as BodyPoint)
+    }
+    renderer.domElement.addEventListener('pointerdown', down)
+    renderer.domElement.addEventListener('pointermove', move)
+    renderer.domElement.addEventListener('pointercancel', cancel)
+    renderer.domElement.addEventListener('pointerup', pick)
 
     const resize = () => {
       const width = Math.max(1, host.clientWidth)
@@ -104,6 +140,12 @@ export default function ModelViewer({ url, wireframe, skeleton, preserveCamera =
       cancelAnimationFrame(frame)
       observer.disconnect()
       controls.dispose()
+      renderer.domElement.removeEventListener('pointerdown', down)
+      renderer.domElement.removeEventListener('pointermove', move)
+      renderer.domElement.removeEventListener('pointercancel', cancel)
+      renderer.domElement.removeEventListener('pointerup', pick)
+      disposeObject(markers)
+      markerGroupRef.current = null
       if (modelRef.current) disposeObject(modelRef.current)
       renderer.dispose()
       renderer.domElement.remove()
@@ -114,13 +156,30 @@ export default function ModelViewer({ url, wireframe, skeleton, preserveCamera =
       modelRef.current = null
       helperRef.current = null
       boundsRef.current = null
+      lastViewRef.current = null
     }
   }, [])
 
   useEffect(() => {
+    const group = markerGroupRef.current
+    if (!group) return
+    disposeObject(group); group.clear()
+    if (!markerDraft) return
+    for (const side of ['left','right'] as const) {
+      const point = markerDraft[side]
+      if (!point) continue
+      const color = side==='left' ? 0x51d6de : 0xf3b34f
+      const dot = new THREE.Mesh(new THREE.SphereGeometry(markerDraft.radius*.1,16,12),new THREE.MeshBasicMaterial({color,depthTest:false}))
+      dot.position.fromArray(point); dot.renderOrder=10; group.add(dot)
+      const area = new THREE.Mesh(new THREE.SphereGeometry(markerDraft.radius,24,16),new THREE.MeshBasicMaterial({color,wireframe:true,transparent:true,opacity:side===activeMarker ? .3 : .16,depthWrite:false}))
+      area.position.fromArray(point); group.add(area)
+    }
+  }, [markerDraft, activeMarker])
+
+  useEffect(() => {
     const scene = sceneRef.current
     if (!scene) return
-    const keepCamera = preserveCamera && boundsRef.current !== null
+    const keepCamera = preserveCamera && lastViewRef.current !== null
 
     if (modelRef.current) {
       scene.remove(modelRef.current)
@@ -177,7 +236,10 @@ export default function ModelViewer({ url, wireframe, skeleton, preserveCamera =
         const size = box.getSize(new THREE.Vector3())
         boundsRef.current = { center, size }
         setLoading(false)
-        if (!keepCamera) applyView(displayRef.current.viewRequest.name)
+        const requested=displayRef.current.viewRequest
+        // A front-view request can arrive while swapping the customized GLB
+        // for the baseline used by markers. Honor it after loading completes.
+        if (!keepCamera || lastViewRef.current?.name!==requested.name || lastViewRef.current?.nonce!==requested.nonce) applyView(requested.name)
       },
       undefined,
       (error) => {
@@ -235,6 +297,7 @@ export default function ModelViewer({ url, wireframe, skeleton, preserveCamera =
     camera.updateProjectionMatrix()
     controls.target.copy(center)
     controls.update()
+    lastViewRef.current = {...displayRef.current.viewRequest, name}
   }
 
   useEffect(() => {
@@ -244,7 +307,7 @@ export default function ModelViewer({ url, wireframe, skeleton, preserveCamera =
   }, [viewRequest.name, viewRequest.nonce])
 
   return (
-    <div className="viewerHost" ref={hostRef}>
+    <div className="viewerHost" ref={hostRef} style={activeMarker ? {cursor:'crosshair'} : undefined}>
       {!url && (
         <div className="viewerEmpty">
           <div className="viewerOrb" />

@@ -62,13 +62,38 @@ def main():
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--label', default='DEPOIS')
     parser.add_argument('--clay', action='store_true')
+    parser.add_argument('--view', choices=['front','side'], default='front')
+    parser.add_argument('--focus-markers', type=Path, help='Crop around two baseline GLB world-space breast markers')
     args = parser.parse_args(sys.argv[sys.argv.index('--') + 1:])
     bpy.ops.object.select_all(action='SELECT'); bpy.ops.object.delete(use_global=False)
     before, frame = import_snapshot(args.before)
     after, _ = import_snapshot(args.after, frame)
-    lo, hi = bounds(before); center = (lo + hi) * .5; height = hi.z - lo.z
+    if args.view == 'side':
+        for obj in before+after:
+            for vertex in obj.data.vertices:
+                x,y,z=vertex.co;vertex.co=(y,-x,z)
+    lo, hi = bounds(before); center = (lo + hi) * .5; height = hi.z - lo.z; full_height=height
     alo, ahi = bounds(after)
     width = max(hi.x-lo.x, ahi.x-alo.x)
+    if args.focus_markers:
+        markers=json.loads(args.focus_markers.read_text())
+        p=(Vector(markers['left'])+Vector(markers['right']))*.5
+        p=Vector((p.x,-p.z,p.y)) # glTF world to Blender world
+        center=Vector((p.dot(frame[0]),-p.dot(frame[1]),p.dot(frame[2])))
+        if args.view=='side':center=Vector(((lo.x+hi.x)*.5,-center.x,center.z))
+        width=markers['radius']*4.4;height=markers['radius']*3.6
+        # Crop only render snapshots so arms cannot overlap the other panel.
+        # Original GLBs and all validation geometry remain untouched.
+        import bmesh
+        for obj in before+after:
+            bm=bmesh.new();bm.from_mesh(obj.data)
+            for axis,extent in ((0,width*.51),(2,height*.55)):
+                for sign in (-1,1):
+                    position=center.copy();position[axis]+=extent*sign
+                    normal=Vector();normal[axis]=sign
+                    bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),
+                                           plane_co=position,plane_no=normal,clear_outer=True,dist=1e-8)
+            bm.to_mesh(obj.data);bm.free()
     separation = width * 1.15
     for objects, shift in ((before, -separation/2), (after, separation/2)):
         for o in objects:
@@ -83,13 +108,14 @@ def main():
             for polygon in obj.data.polygons: polygon.material_index=0
     text_label('ANTES', -separation/2, height*.64, height*.042)
     text_label(args.label, separation/2, height*.64, height*.042)
-    text_label('Mesma camera, luz e escala | GLB real da Etapa 4', 0, -height*.67, height*.024)
+    caption='Recorte do torax | Mesma camera, luz e escala' if args.focus_markers else 'Mesma camera, luz e escala | GLB real da Etapa 4'
+    text_label(caption, 0, -height*.67, height*.024)
     scene = bpy.context.scene
     bpy.ops.object.camera_add(location=(0,-height*4,height*.06))
     camera = bpy.context.object; camera.rotation_euler=(math.pi/2,0,0); camera.data.type='ORTHO'; camera.data.ortho_scale=max(width*2.5,height*2.45); scene.camera=camera
     for loc, energy, size in (((-height,-height*2,height*2),350,2),((height,-height,height),180,1.5)):
         bpy.ops.object.light_add(type='AREA',location=loc); light=bpy.context.object
-        light.data.energy=energy; light.data.shape='DISK'; light.data.size=height*size
+        light.data.energy=energy*(height/full_height)**2; light.data.shape='DISK'; light.data.size=height*size
         light.rotation_euler=(-light.location).to_track_quat('-Z','Y').to_euler()
     scene.world.color=(.18,.18,.18)
     scene.render.engine='CYCLES'; scene.cycles.device='CPU'; scene.cycles.samples=48; scene.cycles.use_denoising=False

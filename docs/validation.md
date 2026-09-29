@@ -65,3 +65,21 @@ A verificação posterior identificou morphs pouco perceptíveis e cobertura inc
 ## Modelo feminino — 28/09/2026
 
 [Relatório feminino e imagens](stage4-female/README.md): importação, correção de falso bloqueio na preparação, 13 aplicações via API e verificação da geometria no Three.js. Suíte atual: **50 testes passaram**.
+
+## 2026-09-28 — seios por ossos ou marcadores
+
+O controle de seios agora reconhece pares de ossos com pesos válidos. Na ausência deles, solicita dois marcadores sobre a base original e um raio de influência. Valores negativos reduzem; positivos aumentam. Os marcadores são preservados nos presets. As observações anteriores sobre indisponibilidade desse controle descrevem a versão anterior.
+
+Validação: 66 testes aprovados, build TypeScript/Vite concluído e fluxo HTTP/WebSocket/Blender/Three.js com o modelo feminino real. Aumentar, reduzir, restaurar e combinar com altura/tronco passaram. Nenhum vértice fora das áreas marcadas mudou acima da tolerância nos casos isolados. O arquivo original foi preservado. Não havia navegador conectado para conferir os cliques da interface.
+
+[Relatório, instruções e imagens de frente/lado](stage4-breast/README.md).
+
+
+## 2026-09-29 — proporções naturais sempre ativas
+
+[Relatório e galeria do femele.glb](femele-proportions/README.md): limites
+conservadores, proteção geométrica de combinações em três poses, recuperação
+da intensidade de curvas/seios quando possível e retorno dos valores efetivos
+à interface. Inclui 71 testes, build, 11 combinações pela API, reaplicação e
+32 vistas de corpo/tórax. Resultados anteriores documentam versões anteriores
+dos controles; a proteção atual pode moderar aqueles presets ao reaplicá-los.

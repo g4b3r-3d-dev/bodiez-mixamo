@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="pt-BR">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>femele.glb · Validação dos seios em 360°</title>
+<style>
+body{margin:0;background:#161b23;color:#e8edf6;font:16px/1.5 system-ui,sans-serif}main{max-width:1500px;margin:auto;padding:24px}h1{font-size:28px;margin:0}p{color:#bac5d6;max-width:950px}.toolbar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:24px 0}button,select{font:inherit;color:inherit;background:#293345;border:1px solid #52627a;border-radius:8px;padding:10px}button{cursor:pointer}input{flex:1;min-width:160px;accent-color:#b5a0eb}img{width:100%;display:block;border-radius:12px;background:#353535}a{color:#c3b4ff}.note{font-size:14px}output{min-width:130px}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #b5a0eb}
+</style>
+<main>
+<h1>Seios: redução e aumento com transição suave</h1>
+<p>Comparação do <strong>femele.glb original</strong> com <strong>−50%, +65% e +100%</strong> no controle de seios por marcadores. A deformação foi suavizada para preservar melhor a ligação com o tórax. Os percentuais indicam a intensidade do ajuste, não a variação de volume físico.</p>
+<div class="toolbar">
+ <button id="previous" aria-label="Vista anterior">←</button>
+ <label for="view">Ângulo</label><input id="view" type="range" min="0" max="15" value="0" step="1">
+ <button id="next" aria-label="Próxima vista">→</button>
+ <output id="angle" aria-live="polite"></output>
+ <select id="choice" aria-label="Selecionar vista"></select>
+</div>
+<a id="full" href="views/view-000-+00.png" target="_blank" rel="noopener"><img id="render" src="views/view-000-+00.png" alt="Frente: original, seios em −50%, +65% e +100%"></a>
+<p class="note">16 vistas: uma volta completa a cada 30°, mais frente e costas com inclinação de ±20°. Clique na imagem para ampliar. A escala e o enquadramento são fixos entre as intensidades. Os cortes em braços e pescoço pertencem apenas ao recorte de visualização; a malha exportada está completa.</p>
+<p class="note">68 testes passaram. A auditoria examinou nove intensidades em três poses, também com curvas corporais em 65%. Nenhum novo cruzamento detectado nas verificações de −50%, −25%, 0%, +35%, +65% e +100% em repouso; a base já apresenta 65 pares de triângulos cruzados fora do tronco/quadril. <a href="combined-views/view-000-+00.png">Corpo completo com seios e curvas em 65%</a> · <a href="README.md">Método, resultados e limitações</a> · <a href="audit.json">Medições</a></p>
+</main>
+<script>
+const views=[...Array.from({length:12},(_,i)=>[i*30,0]),[0,-20],[180,-20],[0,20],[180,20]];
+const slider=document.getElementById('view'),choice=document.getElementById('choice'),render=document.getElementById('render'),angle=document.getElementById('angle'),full=document.getElementById('full');
+const title=([yaw,elevation])=>`${yaw}°${elevation?` · inclinação ${elevation}°`:''}`;
+views.forEach((view,i)=>{const option=document.createElement('option');option.value=i;option.textContent=title(view);choice.append(option)});
+function show(index){index=(Number(index)+views.length)%views.length;const [yaw,elevation]=views[index];const file=`views/view-${String(yaw).padStart(3,'0')}-${elevation>=0?'+':'-'}${String(Math.abs(elevation)).padStart(2,'0')}.png`;slider.value=choice.value=index;angle.textContent=title(views[index]);render.src=full.href=file;render.alt=`Vista ${title(views[index])}: original, seios em −50%, +65% e +100%`;}
+slider.addEventListener('input',()=>show(slider.value));choice.addEventListener('change',()=>show(choice.value));
+document.getElementById('previous').onclick=()=>show(Number(slider.value)-1);document.getElementById('next').onclick=()=>show(Number(slider.value)+1);show(0);
+</script>
+</html>

@@ -12,8 +12,8 @@ import httpx
 import websockets
 
 
-async def wait_task(task_id):
-    async with websockets.connect('ws://127.0.0.1:8000/ws/tasks/'+task_id, origin='http://127.0.0.1:5173') as socket:
+async def wait_task(task_id, base_url="http://127.0.0.1:8000"):
+    async with websockets.connect(base_url.replace('http://','ws://').replace('https://','wss://')+'/ws/tasks/'+task_id, origin='http://127.0.0.1:5173') as socket:
         await socket.send('ready')
         async with asyncio.timeout(260):
             async for message in socket:

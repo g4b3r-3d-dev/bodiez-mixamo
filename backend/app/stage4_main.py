@@ -11,8 +11,11 @@ from .task_store import store
 from .body_service import BodyError,create_workspace,prepare_controls,create_revision,apply_controls,caps_for,root_for,revision_root,list_presets,save_preset
 
 SCRIPT=Path(__file__).resolve().parents[1]/'blender_scripts'/'body_customize.py'
-class ApplyBody(BaseModel):values:dict[str,float]=Field(default_factory=dict);bindings:dict[str,str]=Field(default_factory=dict)
-class SavePreset(BaseModel):name:str=Field(min_length=1,max_length=64);values:dict[str,float]=Field(default_factory=dict);bindings:dict[str,str]=Field(default_factory=dict)
+class BreastMarkers(BaseModel):
+ left:tuple[float,float,float];right:tuple[float,float,float];radius:float
+class ApplyBody(BaseModel):
+ values:dict[str,float]=Field(default_factory=dict);bindings:dict[str,str]=Field(default_factory=dict);breast_markers:BreastMarkers|None=None
+class SavePreset(ApplyBody):name:str=Field(min_length=1,max_length=64)
 def reg(method,path,fn,**kw):
  if not any(getattr(r,'path',None)==path and method in (getattr(r,'methods',None) or set()) for r in app.routes):app.add_api_route(path,fn,methods=[method],**kw)
 def body_error(e):
@@ -47,7 +50,7 @@ async def info(request:Request,asset_id:str,preparation_id:str,customization_id:
 async def apply(request:Request,asset_id:str,preparation_id:str,customization_id:str,body:ApplyBody):
  _assert_http_origin(request);blender=load_settings().get('blender_path')
  if not blender:raise HTTPException(409,'Configure o Blender primeiro.')
- try:validate_blender_path(blender);r=create_revision(asset_id,preparation_id,customization_id,body.values,body.bindings)
+ try:validate_blender_path(blender);r=create_revision(asset_id,preparation_id,customization_id,body.values,body.bindings,body.breast_markers.model_dump() if body.breast_markers else None)
  except Exception as e:raise body_error(e) from e
  tid=uuid.uuid4().hex;await store.create(tid)
  async def pub(x):await store.publish(tid,x)
@@ -73,6 +76,6 @@ async def presets(request:Request,asset_id:str,preparation_id:str,customization_
  except Exception as e:raise body_error(e) from e
 async def put_preset(request:Request,asset_id:str,preparation_id:str,customization_id:str,body:SavePreset):
  _assert_http_origin(request)
- try:return save_preset(asset_id,preparation_id,customization_id,body.name,body.values,body.bindings)
+ try:return save_preset(asset_id,preparation_id,customization_id,body.name,body.values,body.bindings,body.breast_markers.model_dump() if body.breast_markers else None)
  except Exception as e:raise body_error(e) from e
 reg('GET','/api/stage4/ready-preparations',ready);reg('POST','/api/assets/{asset_id}/preparations/{preparation_id}/customizations',create,status_code=202);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}',info);reg('POST','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/apply',apply,status_code=202);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/preview.glb',baseline_preview);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/revisions/{revision_id}/preview.glb',rev_preview);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/revisions/{revision_id}/customized.blend',rev_blend);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/presets',presets);reg('PUT','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/presets',put_preset)

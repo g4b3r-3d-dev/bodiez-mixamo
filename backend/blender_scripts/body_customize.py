@@ -1,6 +1,12 @@
 import bpy,sys,json,re,hashlib
 from pathlib import Path
 from mathutils import Vector
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from breast_morph import MARKER_SOURCE, breast_bones, marker_info, bone_morphs, marker_morphs
+from curve_morph import curve_morphs, KEY as CURVE_KEY, VERSION as CURVE_VERSION
+from natural_shape import ShapeGuard, apply_guarded
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from app.body_profile import natural_values
 
 SEM={'head':{'head'},'left_upper_arm':{'leftarm','leftupperarm','upperarml'},'right_upper_arm':{'rightarm','rightupperarm','upperarmr'},'left_forearm':{'leftforearm','leftlowerarm','lowerarml'},'right_forearm':{'rightforearm','rightlowerarm','lowerarmr'},'left_thigh':{'leftupleg','leftthigh','thighl'},'right_thigh':{'rightupleg','rightthigh','thighr'},'left_shin':{'leftleg','leftlowerleg','calfl'},'right_shin':{'rightleg','rightlowerleg','calfr'},'spine':{'spine'},'spine1':{'spine1','spine01'},'spine2':{'spine2','spine02','chest'},'hips':{'hips','pelvis'}}
 REGIONS={'arm_volume':['left_upper_arm','right_upper_arm','left_forearm','right_forearm'],'leg_volume':['left_thigh','right_thigh','left_shin','right_shin'],'torso_volume':['hips','spine','spine1','spine2']}
@@ -115,8 +121,16 @@ def prep(inp,blend,preview,report):
   controls[control]={'enabled':bool(targets),'engine':'shape_key','generated_assisted':bool(targets),'reason':None if targets else 'Não foi possível gerar morph regional pelos pesos.'}
   if targets:
    sid='auto:'+control;generated.append({'source_id':sid,'type':'generated','display_name':'Morph assistido: '+control,'control_hint':control,'driven':False,'slider_min':-1,'slider_max':1,'targets':targets});defaults[control]=sid
- existing=existing_sources(ms);controls['breast_size']={'enabled':False,'engine':'shape_key','requires_binding':True,'reason':'Selecione explicitamente um shape key real da base.','candidate_count':sum(not x['driven'] for x in existing)}
- data={'armature':a.name,'semantic_matches':mm,'controls':controls,'morph_sources':generated+existing,'default_bindings':defaults,'structural_method':{'name':'non_destructive_pose_offset_layer','description':'Mudanças estruturais usam escala raiz e transforms de pose; rest pose não é reescrita.'},'preservation':{'topology_changed':False,'destructive_modifiers_applied':False,'existing_shape_keys_removed':False},'limitations':['Morphs assistidos derivam dos pesos e não substituem morphs artísticos/anatômicos.','Controle de seios exige shape key real; nomes não são presumidos.','A camada estrutural deverá ser conciliada com animações na Etapa 5.']}
+ targets=curve_morphs(a,ms,mm)
+ controls['feminine_curves']={'enabled':bool(targets),'engine':'shape_key','generated_assisted':bool(targets),'reason':None if targets else 'Ossos e pesos do tronco e quadris necessários não identificados.'}
+ if targets:
+  generated.append({'source_id':'auto:feminine_curves','type':'generated','display_name':'Cintura, quadris e glúteos','control_hint':'feminine_curves','driven':False,'slider_min':0,'slider_max':1,'targets':targets});defaults['feminine_curves']='auto:feminine_curves'
+ existing=existing_sources(ms);bones=breast_bones(a,ms);targets=bone_morphs(a,ms,bones) if bones else []
+ if targets:
+  generated.append({'source_id':'auto:breast_size','type':'generated','display_name':'Seios pelos ossos','control_hint':'breast_size','driven':False,'slider_min':-.5,'slider_max':1,'targets':targets});defaults['breast_size']='auto:breast_size'
+ generated.append({'source_id':MARKER_SOURCE,'type':'markers','display_name':'Seios pelos marcadores','control_hint':'breast_size','driven':False,'slider_min':-.5,'slider_max':1,'targets':[]})
+ controls['breast_size']={'enabled':bool(targets),'engine':'shape_key','generated_assisted':bool(targets),'requires_markers':not bool(targets),'bones':bones,'reason':None if targets else 'Ossos dos seios não identificados. Posicione dois marcadores ou selecione um shape key existente.'}
+ data={'armature':a.name,'semantic_matches':mm,'controls':controls,'morph_sources':generated+existing,'default_bindings':defaults,'breast_marker_info':marker_info(a,ms,mm),'structural_method':{'name':'non_destructive_pose_offset_layer','description':'Mudanças estruturais usam escala raiz e transforms de pose; rest pose não é reescrita.'},'preservation':{'topology_changed':False,'destructive_modifiers_applied':False,'existing_shape_keys_removed':False},'limitations':['Morphs assistidos derivam dos pesos ou marcadores e não substituem morphs artísticos/anatômicos.','A área dos marcadores também deforma roupas que cobrem os seios. Ajuste o raio e confira de frente e de lado.','A camada estrutural deverá ser conciliada com animações na Etapa 5.']}
  Path(report).write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8');bpy.ops.wm.save_as_mainfile(filepath=blend);export(preview)
 def reset_pose(a):
  for p in a.pose.bones:p.matrix_basis.identity()
@@ -139,20 +153,41 @@ def chain(a,mm,names,f):
  for n in names:
   if n in mm:a.pose.bones[mm[n]].scale.y*=f
 def apply(inp,request,blend,preview,report):
- bpy.ops.wm.open_mainfile(filepath=inp,load_ui=False);q=json.loads(Path(request).read_text());v=q['values'];resolved=q.get('resolved',{});a=armature();body_reference(a);mm=matches(a);root=ensure_root();h=float(v.get('height',1));root.scale=(h,h,h)
- if 'head' in mm:
-  f=float(v.get('head_size',1));a.pose.bones[mm['head']].scale=(f,f,f)
- width(a,mm,'left_upper_arm','right_upper_arm',float(v.get('shoulder_width',1)));width(a,mm,'left_thigh','right_thigh',float(v.get('hip_width',1)));chain(a,mm,['left_upper_arm','right_upper_arm','left_forearm','right_forearm'],float(v.get('arm_length',1)));chain(a,mm,['left_thigh','right_thigh','left_shin','right_shin'],float(v.get('leg_length',1)))
- applied={}
+ bpy.ops.wm.open_mainfile(filepath=inp,load_ui=False);q=json.loads(Path(request).read_text());v=q['values'];resolved=q.get('resolved',{});a=armature();body_reference(a);mm=matches(a)
+ marker_result=None
+ curve_targets=resolved.get('feminine_curves',[])
+ if any(t['key']==CURVE_KEY and (m:=bpy.data.objects.get(t['mesh'])) is not None and m.get('bodiez_version_'+CURVE_KEY)!=CURVE_VERSION for t in curve_targets):
+  curve_morphs(a,meshes(a),mm)
+ if q.get('bindings',{}).get('breast_size')==MARKER_SOURCE:
+  ms=meshes(a);targets,affected=marker_morphs(ms,q['breast_markers'],marker_info(a,ms,mm));resolved['breast_size']=targets;marker_result={'markers':q['breast_markers'],'affected_vertices_per_side':affected}
+ # Regenerate any legacy morphs before measuring the untouched baseline.
  for control,targets in resolved.items():
-  value=float(v.get(control,0));applied[control]=[]
   for t in targets:
    m=bpy.data.objects.get(t['mesh'])
    if m and control in REGIONS and t['key']=='Bodiez_Auto_'+control and m.get('bodiez_version_'+t['key'])!=MORPH_VERSION:
     auto_morph(m,a,[mm[n] for n in REGIONS[control] if n in mm],t['key'])
-   k=m.data.shape_keys.key_blocks.get(t['key']) if m and m.data.shape_keys else None
-   if k:k.value=value;applied[control].append(t)
- bpy.context.view_layer.update();Path(report).write_text(json.dumps({'structural':{'method':'non_destructive_pose_offset_layer','values':{k:v[k] for k in ('height','head_size','shoulder_width','hip_width','arm_length','leg_length')}},'morphs':{'method':'shape_keys','applied':applied},'double_deformation_avoided':True},ensure_ascii=False,indent=2),encoding='utf-8');bpy.ops.wm.save_as_mainfile(filepath=blend);export(preview)
+ root=ensure_root();bpy.context.view_layer.update();guard=ShapeGuard(meshes(a),a,mm);applied={}
+ def apply_values(values):
+  reset_pose(a)
+  h=float(values.get('height',1));root.scale=(h,h,h)
+  if 'head' in mm:
+   f=float(values.get('head_size',1));a.pose.bones[mm['head']].scale=(f,f,f)
+  width(a,mm,'left_upper_arm','right_upper_arm',float(values.get('shoulder_width',1)))
+  width(a,mm,'left_thigh','right_thigh',float(values.get('hip_width',1)))
+  chain(a,mm,['left_upper_arm','right_upper_arm','left_forearm','right_forearm'],float(values.get('arm_length',1)))
+  chain(a,mm,['left_thigh','right_thigh','left_shin','right_shin'],float(values.get('leg_length',1)))
+  for control,targets in resolved.items():
+   applied[control]=[]
+   for t in targets:
+    m=bpy.data.objects.get(t['mesh'])
+    k=m.data.shape_keys.key_blocks.get(t['key']) if m and m.data.shape_keys else None
+    if k:k.value=float(values.get(control,0));applied[control].append(t)
+ requested=q.get('requested_values',v)
+ v,natural_report=apply_guarded(natural_values(v),apply_values,guard)
+ natural_report['adjustments']={k:{'requested':requested.get(k,value),'applied':value} for k,value in v.items() if abs(requested.get(k,value)-value)>1e-8}
+ result={'values':v,'natural_shape':natural_report,'structural':{'method':'non_destructive_pose_offset_layer','values':{k:v.get(k,1) for k in ('height','head_size','shoulder_width','hip_width','arm_length','leg_length')}},'morphs':{'method':'shape_keys','applied':applied},'breast_markers':marker_result,'double_deformation_avoided':True}
+ Path(report).write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8');bpy.ops.wm.save_as_mainfile(filepath=blend);export(preview)
+
 def main():
  a=sys.argv[sys.argv.index('--')+1:]
  if a[0]=='prepare':prep(*a[1:5])

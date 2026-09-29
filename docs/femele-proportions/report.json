@@ -1,0 +1,2126 @@
+{
+  "model": {
+    "asset_id": "b35a2a7b968443f8bc34812188380929",
+    "preparation_id": "e8d3f023ab6745d9b4da3ae69828ec1e",
+    "mode": "existing_bound",
+    "name": "femele.glb",
+    "updated_at": 1790644400
+  },
+  "variants": {
+    "maximos": {
+      "requested": {
+        "feminine_curves": 1.0,
+        "height": 1.1,
+        "head_size": 1.06,
+        "shoulder_width": 1.06,
+        "hip_width": 1.06,
+        "arm_length": 1.04,
+        "leg_length": 1.04,
+        "arm_volume": 0.28,
+        "leg_volume": 0.28,
+        "torso_volume": 0.25,
+        "breast_size": 1.0
+      },
+      "applied": {
+        "feminine_curves": 1.0,
+        "height": 1.1,
+        "head_size": 1.03,
+        "shoulder_width": 1.03,
+        "hip_width": 1.03,
+        "arm_length": 1.02,
+        "leg_length": 1.02,
+        "arm_volume": 0.14,
+        "leg_volume": 0.14,
+        "torso_volume": 0.125,
+        "breast_size": 1.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 0.5,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5925200730241392,
+                "edge_ratio_max": 1.569142262202534,
+                "max_normal_rotation": 33.76962943811494,
+                "relative_displacement": 0.03409332995962708
+              }
+            }
+          },
+          {
+            "strength": 0.75,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6856945747428972,
+                "edge_ratio_max": 1.424061468224816,
+                "max_normal_rotation": 25.389246079036262,
+                "relative_displacement": 0.025471569847258686,
+                "baseline_contacts": 14,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6856945747428972,
+                "edge_ratio_max": 1.424061468224816,
+                "max_normal_rotation": 25.389246079036262,
+                "relative_displacement": 0.025274909810832975
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7232446527389077,
+                "edge_ratio_max": 1.424061468224816,
+                "max_normal_rotation": 153.6263418859302,
+                "relative_displacement": 0.025471569847258686
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7862660423919637,
+                "edge_ratio_max": 1.2804315967932494,
+                "max_normal_rotation": 16.715349647332527,
+                "relative_displacement": 0.016915620455096172,
+                "baseline_contacts": 15,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7862660423919637,
+                "edge_ratio_max": 1.2804315967932494,
+                "max_normal_rotation": 16.715349647332527,
+                "relative_displacement": 0.016787154426355463
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8151950535064525,
+                "edge_ratio_max": 1.2804315967932494,
+                "max_normal_rotation": 29.409913474383224,
+                "relative_displacement": 0.016915620455096172
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "curve_breast_strength": 1.0,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6016223095369203,
+                "edge_ratio_max": 1.4845623912877715,
+                "max_normal_rotation": 33.44512013121373,
+                "relative_displacement": 0.02410604139261848,
+                "baseline_contacts": 15,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6016223095369203,
+                "edge_ratio_max": 1.4845623912877715,
+                "max_normal_rotation": 33.44512013121373,
+                "relative_displacement": 0.02410604378689897
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6016223095369203,
+                "edge_ratio_max": 1.4845623912877715,
+                "max_normal_rotation": 33.44512013121373,
+                "relative_displacement": 0.02410604139261848
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 1.0,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {
+          "head_size": {
+            "requested": 1.06,
+            "applied": 1.03
+          },
+          "shoulder_width": {
+            "requested": 1.06,
+            "applied": 1.03
+          },
+          "hip_width": {
+            "requested": 1.06,
+            "applied": 1.03
+          },
+          "arm_length": {
+            "requested": 1.04,
+            "applied": 1.02
+          },
+          "leg_length": {
+            "requested": 1.04,
+            "applied": 1.02
+          },
+          "arm_volume": {
+            "requested": 0.28,
+            "applied": 0.14
+          },
+          "leg_volume": {
+            "requested": 0.28,
+            "applied": 0.14
+          },
+          "torso_volume": {
+            "requested": 0.25,
+            "applied": 0.125
+          }
+        }
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 19026,
+        "mean_displacement": 0.07549804865634602,
+        "max_displacement": 0.10388316541418892,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.10388316541418892
+          }
+        ]
+      }
+    },
+    "minimos": {
+      "requested": {
+        "feminine_curves": 0.0,
+        "height": 0.9,
+        "head_size": 0.94,
+        "shoulder_width": 0.94,
+        "hip_width": 0.94,
+        "arm_length": 0.96,
+        "leg_length": 0.96,
+        "arm_volume": -0.22,
+        "leg_volume": -0.22,
+        "torso_volume": -0.2,
+        "breast_size": -0.5
+      },
+      "applied": {
+        "feminine_curves": 0.0,
+        "height": 0.9,
+        "head_size": 0.985,
+        "shoulder_width": 0.985,
+        "hip_width": 0.985,
+        "arm_length": 0.99,
+        "leg_length": 0.99,
+        "arm_volume": -0.055,
+        "leg_volume": -0.055,
+        "torso_volume": -0.05,
+        "breast_size": -0.5
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 0.25,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6807104313678862,
+                "edge_ratio_max": 1.3257030620604042,
+                "max_normal_rotation": 17.92781804227444,
+                "relative_displacement": 0.03286761327204635,
+                "baseline_contacts": 11,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6807104313678862,
+                "edge_ratio_max": 1.3257030620604042,
+                "max_normal_rotation": 27.397581816392908,
+                "relative_displacement": 0.03269142486857056
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6807104313678862,
+                "edge_ratio_max": 1.2694689014673481,
+                "max_normal_rotation": 121.69577640251279,
+                "relative_displacement": 0.03286761327204635
+              }
+            }
+          },
+          {
+            "strength": 0.75,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7587764834943954,
+                "edge_ratio_max": 1.2437175476220663,
+                "max_normal_rotation": 12.790169903563912,
+                "relative_displacement": 0.024745103742366027,
+                "baseline_contacts": 14,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7587764834943954,
+                "edge_ratio_max": 1.2437175476220663,
+                "max_normal_rotation": 19.715422573870004,
+                "relative_displacement": 0.024610024786947127
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7587764834943954,
+                "edge_ratio_max": 1.2021725929439289,
+                "max_normal_rotation": 111.83754238968591,
+                "relative_displacement": 0.024745103742366027
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8382361009429993,
+                "edge_ratio_max": 1.1620245173811878,
+                "max_normal_rotation": 8.273735157560187,
+                "relative_displacement": 0.016559794658022497,
+                "baseline_contacts": 13,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8382361009429993,
+                "edge_ratio_max": 1.1620245173811878,
+                "max_normal_rotation": 12.503414729509826,
+                "relative_displacement": 0.01646770754931147
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8382361009429993,
+                "edge_ratio_max": 1.134824173585656,
+                "max_normal_rotation": 87.36522473261654,
+                "relative_displacement": 0.016559794658022497
+              }
+            }
+          },
+          {
+            "strength": 0.25,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9185985114786551,
+                "edge_ratio_max": 1.0807984147490497,
+                "max_normal_rotation": 4.0012934190936384,
+                "relative_displacement": 0.008311435198900308,
+                "baseline_contacts": 11,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9185985114786551,
+                "edge_ratio_max": 1.0807984147490497,
+                "max_normal_rotation": 5.910314518789043,
+                "relative_displacement": 0.008264357671400659
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9185985114786551,
+                "edge_ratio_max": 1.0674224260294425,
+                "max_normal_rotation": 35.28944652970514,
+                "relative_displacement": 0.008311435198900308
+              }
+            }
+          },
+          {
+            "strength": 0.25,
+            "curve_breast_strength": 1.0,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7772843597155865,
+                "edge_ratio_max": 1.1949346987450578,
+                "max_normal_rotation": 12.715682574112956,
+                "relative_displacement": 0.011430339761071422,
+                "baseline_contacts": 11,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7772843597155865,
+                "edge_ratio_max": 1.1949346987450578,
+                "max_normal_rotation": 12.715682574112956,
+                "relative_displacement": 0.011430340896365227
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7772843597155865,
+                "edge_ratio_max": 1.1949346987450578,
+                "max_normal_rotation": 35.28944652970514,
+                "relative_displacement": 0.011430339761071422
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 1.0,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {
+          "head_size": {
+            "requested": 0.94,
+            "applied": 0.985
+          },
+          "shoulder_width": {
+            "requested": 0.94,
+            "applied": 0.985
+          },
+          "hip_width": {
+            "requested": 0.94,
+            "applied": 0.985
+          },
+          "arm_length": {
+            "requested": 0.96,
+            "applied": 0.99
+          },
+          "leg_length": {
+            "requested": 0.96,
+            "applied": 0.99
+          },
+          "arm_volume": {
+            "requested": -0.22,
+            "applied": -0.055
+          },
+          "leg_volume": {
+            "requested": -0.22,
+            "applied": -0.055
+          },
+          "torso_volume": {
+            "requested": -0.2,
+            "applied": -0.05
+          }
+        }
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 19026,
+        "mean_displacement": 0.07354668314021365,
+        "max_displacement": 0.10149066368945094,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.10149066368945094
+          }
+        ]
+      }
+    },
+    "curvas-com-seios": {
+      "requested": {
+        "feminine_curves": 1,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0,
+        "hip_width": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.0,
+        "leg_volume": 0.0,
+        "torso_volume": 0.0,
+        "breast_size": 1
+      },
+      "applied": {
+        "feminine_curves": 1.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0,
+        "hip_width": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.0,
+        "leg_volume": 0.0,
+        "torso_volume": 0.0,
+        "breast_size": 1.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 1.0,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5204450369905474,
+                "edge_ratio_max": 1.4067933572832871,
+                "max_normal_rotation": 33.432262580269544,
+                "relative_displacement": 0.016748130926894353,
+                "baseline_contacts": 0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5204450369905474,
+                "edge_ratio_max": 1.4067933572832871,
+                "max_normal_rotation": 33.432262580269544,
+                "relative_displacement": 0.01674813259036628
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5204450369905474,
+                "edge_ratio_max": 1.4067933572832871,
+                "max_normal_rotation": 33.432262580269544,
+                "relative_displacement": 0.016748130926894353
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 1.0,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {}
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 3331,
+        "mean_displacement": 0.0008874977580620957,
+        "max_displacement": 0.016715410865632045,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.016715410865632045
+          }
+        ]
+      }
+    },
+    "cintura-marcada": {
+      "requested": {
+        "feminine_curves": 1,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0,
+        "hip_width": 1.06,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.0,
+        "leg_volume": 0.28,
+        "torso_volume": -0.2,
+        "breast_size": 1
+      },
+      "applied": {
+        "feminine_curves": 1.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0,
+        "hip_width": 1.0075,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.0,
+        "leg_volume": 0.035,
+        "torso_volume": -0.025,
+        "breast_size": 1.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 0.125,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.39063944522615623,
+                "edge_ratio_max": 1.3590689173224877,
+                "max_normal_rotation": 34.29527735488253,
+                "relative_displacement": 0.021920045696210543
+              }
+            }
+          },
+          {
+            "strength": 0.75,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5426726907975842,
+                "edge_ratio_max": 1.2674789867793779,
+                "max_normal_rotation": 24.674948315330234,
+                "relative_displacement": 0.016440040402131692,
+                "baseline_contacts": 1,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5426726907975842,
+                "edge_ratio_max": 1.2798218673799868,
+                "max_normal_rotation": 33.16270978624099,
+                "relative_displacement": 0.016145650241526085
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5426726907975842,
+                "edge_ratio_max": 1.2429204770971347,
+                "max_normal_rotation": 161.51940101577875,
+                "relative_displacement": 0.016440040402131692
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6950000965880407,
+                "edge_ratio_max": 1.1769174578289576,
+                "max_normal_rotation": 15.590488714654498,
+                "relative_displacement": 0.010960028306528391,
+                "baseline_contacts": 1,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6950000965880407,
+                "edge_ratio_max": 1.1769174578289576,
+                "max_normal_rotation": 21.95839017091883,
+                "relative_displacement": 0.010763764656269853
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6950000965880407,
+                "edge_ratio_max": 1.1617888541595816,
+                "max_normal_rotation": 157.68692308524768,
+                "relative_displacement": 0.010960028306528391
+              }
+            }
+          },
+          {
+            "strength": 0.25,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8474632868107761,
+                "edge_ratio_max": 1.0876442960714536,
+                "max_normal_rotation": 7.3259300559175085,
+                "relative_displacement": 0.005480016586947479,
+                "baseline_contacts": 1,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8474632868107761,
+                "edge_ratio_max": 1.0876442960714536,
+                "max_normal_rotation": 10.62777490534246,
+                "relative_displacement": 0.005381868115274509
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8474632868107761,
+                "edge_ratio_max": 1.0808031137335936,
+                "max_normal_rotation": 127.23754540877793,
+                "relative_displacement": 0.005480016586947479
+              }
+            }
+          },
+          {
+            "strength": 0.125,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9237247970238986,
+                "edge_ratio_max": 1.0435917830434185,
+                "max_normal_rotation": 3.543673130573443,
+                "relative_displacement": 0.002740002647170401,
+                "baseline_contacts": 1,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9237247970238986,
+                "edge_ratio_max": 1.0437994987614727,
+                "max_normal_rotation": 5.181630345892393,
+                "relative_displacement": 0.002690940322634792
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9237247970238986,
+                "edge_ratio_max": 1.0403759246331976,
+                "max_normal_rotation": 21.05398499269139,
+                "relative_displacement": 0.002740002647170401
+              }
+            }
+          },
+          {
+            "strength": 0.125,
+            "curve_breast_strength": 1.0,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5042130887028881,
+                "edge_ratio_max": 1.391268636907833,
+                "max_normal_rotation": 33.474641052987955,
+                "relative_displacement": 0.016473917132498572,
+                "baseline_contacts": 0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5042130887028881,
+                "edge_ratio_max": 1.391268636907833,
+                "max_normal_rotation": 33.474641052987955,
+                "relative_displacement": 0.016473918768734806
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5042130887028881,
+                "edge_ratio_max": 1.391268636907833,
+                "max_normal_rotation": 33.474641052987955,
+                "relative_displacement": 0.016473917132498572
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 1.0,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {
+          "hip_width": {
+            "requested": 1.06,
+            "applied": 1.0075
+          },
+          "leg_volume": {
+            "requested": 0.28,
+            "applied": 0.035
+          },
+          "torso_volume": {
+            "requested": -0.2,
+            "applied": -0.025
+          }
+        }
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 8327,
+        "mean_displacement": 0.0010753100249568225,
+        "max_displacement": 0.01644174450080857,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.01644174450080857
+          }
+        ]
+      }
+    },
+    "contrastes": {
+      "requested": {
+        "feminine_curves": 1,
+        "height": 1.0,
+        "head_size": 1.06,
+        "shoulder_width": 0.94,
+        "hip_width": 1.06,
+        "arm_length": 0.96,
+        "leg_length": 1.04,
+        "arm_volume": -0.22,
+        "leg_volume": 0.28,
+        "torso_volume": 0.25,
+        "breast_size": -0.5
+      },
+      "applied": {
+        "feminine_curves": 1.0,
+        "height": 1.0,
+        "head_size": 1.0075,
+        "shoulder_width": 0.9924999999999999,
+        "hip_width": 1.0075,
+        "arm_length": 0.995,
+        "leg_length": 1.005,
+        "arm_volume": -0.0275,
+        "leg_volume": 0.035,
+        "torso_volume": 0.03125,
+        "breast_size": -0.5
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 0.125,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.576531600904928,
+                "edge_ratio_max": 1.3690254474443262,
+                "max_normal_rotation": 49.75460453322721,
+                "relative_displacement": 0.03409333007453142,
+                "baseline_contacts": 17,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.576531600904928,
+                "edge_ratio_max": 1.430889933367656,
+                "max_normal_rotation": 49.75460453322721,
+                "relative_displacement": 0.033825542578569213
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6448161941661247,
+                "edge_ratio_max": 1.816372381734139,
+                "max_normal_rotation": 152.4933420613197,
+                "relative_displacement": 0.03409333007453142
+              }
+            }
+          },
+          {
+            "strength": 0.75,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6624852557715781,
+                "edge_ratio_max": 1.2767495805229092,
+                "max_normal_rotation": 37.51401542890551,
+                "relative_displacement": 0.025471568584762152,
+                "baseline_contacts": 15,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6624852557715781,
+                "edge_ratio_max": 1.3117242797083566,
+                "max_normal_rotation": 37.51401542890551,
+                "relative_displacement": 0.02527490891513383
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7084118358130727,
+                "edge_ratio_max": 1.55619008182502,
+                "max_normal_rotation": 148.37439373777866,
+                "relative_displacement": 0.025471568584762152
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7501275839211714,
+                "edge_ratio_max": 1.184484729116804,
+                "max_normal_rotation": 24.863192218116176,
+                "relative_displacement": 0.016915621063516607,
+                "baseline_contacts": 13,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7501275839211714,
+                "edge_ratio_max": 1.1988107869215736,
+                "max_normal_rotation": 24.863192218116176,
+                "relative_displacement": 0.01678715437715611
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7924778015658108,
+                "edge_ratio_max": 1.321023394759439,
+                "max_normal_rotation": 135.97638478150037,
+                "relative_displacement": 0.016915621063516607
+              }
+            }
+          },
+          {
+            "strength": 0.25,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8634007161872156,
+                "edge_ratio_max": 1.09223394872672,
+                "max_normal_rotation": 12.140327322534135,
+                "relative_displacement": 0.008425073231628498,
+                "baseline_contacts": 14,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8634007161872156,
+                "edge_ratio_max": 1.0940342537886458,
+                "max_normal_rotation": 12.140327322534135,
+                "relative_displacement": 0.0083622199760002
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8852225970818116,
+                "edge_ratio_max": 1.127281339399067,
+                "max_normal_rotation": 78.25002106082968,
+                "relative_displacement": 0.008425073231628498
+              }
+            }
+          },
+          {
+            "strength": 0.125,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9293602150221205,
+                "edge_ratio_max": 1.04611445337071,
+                "max_normal_rotation": 5.928149384051134,
+                "relative_displacement": 0.004204372602418356,
+                "baseline_contacts": 12,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9293602150221205,
+                "edge_ratio_max": 1.04611445337071,
+                "max_normal_rotation": 5.928149384051134,
+                "relative_displacement": 0.004173342954571596
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9395525442359121,
+                "edge_ratio_max": 1.0572611869109148,
+                "max_normal_rotation": 21.805054614270023,
+                "relative_displacement": 0.004204372602418356
+              }
+            }
+          },
+          {
+            "strength": 0.125,
+            "curve_breast_strength": 1.0,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8203624097142594,
+                "edge_ratio_max": 1.22220769163634,
+                "max_normal_rotation": 13.601264386010284,
+                "relative_displacement": 0.01794017686894041,
+                "baseline_contacts": 12,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8203624097142594,
+                "edge_ratio_max": 1.22220769163634,
+                "max_normal_rotation": 13.601264386010284,
+                "relative_displacement": 0.01787951551528965
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8203624097142594,
+                "edge_ratio_max": 1.22220769163634,
+                "max_normal_rotation": 21.805054614270023,
+                "relative_displacement": 0.01794017686894041
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 1.0,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {
+          "head_size": {
+            "requested": 1.06,
+            "applied": 1.0075
+          },
+          "shoulder_width": {
+            "requested": 0.94,
+            "applied": 0.9924999999999999
+          },
+          "hip_width": {
+            "requested": 1.06,
+            "applied": 1.0075
+          },
+          "arm_length": {
+            "requested": 0.96,
+            "applied": 0.995
+          },
+          "leg_length": {
+            "requested": 1.04,
+            "applied": 1.005
+          },
+          "arm_volume": {
+            "requested": -0.22,
+            "applied": -0.0275
+          },
+          "leg_volume": {
+            "requested": 0.28,
+            "applied": 0.035
+          },
+          "torso_volume": {
+            "requested": 0.25,
+            "applied": 0.03125
+          }
+        }
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 19026,
+        "mean_displacement": 0.0023059052288203733,
+        "max_displacement": 0.017905143666501477,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.017905143666501477
+          }
+        ]
+      }
+    },
+    "regular": {
+      "requested": {
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0,
+        "hip_width": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.0,
+        "leg_volume": 0.0,
+        "torso_volume": 0.0,
+        "breast_size": 0.0
+      },
+      "applied": {
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0,
+        "hip_width": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.0,
+        "leg_volume": 0.0,
+        "torso_volume": 0.0,
+        "breast_size": 0.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 1.0,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 1.0,
+                "edge_ratio_max": 1.0,
+                "max_normal_rotation": 1.2074182697257333e-06,
+                "relative_displacement": 0.0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 1.0,
+                "edge_ratio_max": 1.0,
+                "max_normal_rotation": 1.2074182697257333e-06,
+                "relative_displacement": 0.0
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 1.0,
+                "edge_ratio_max": 1.0,
+                "max_normal_rotation": 1.2074182697257333e-06,
+                "relative_displacement": 0.0
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 1.0,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {}
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 0,
+        "mean_displacement": 8.159172086954952e-08,
+        "max_displacement": 3.6283497113714083e-07,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 3.6283497113714083e-07
+          }
+        ]
+      }
+    },
+    "magro": {
+      "requested": {
+        "shoulder_width": 0.97,
+        "hip_width": 0.97,
+        "arm_volume": -0.22,
+        "leg_volume": -0.22,
+        "torso_volume": -0.2,
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "breast_size": 0.0
+      },
+      "applied": {
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 0.99625,
+        "hip_width": 0.99625,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": -0.0275,
+        "leg_volume": -0.0275,
+        "torso_volume": -0.025,
+        "breast_size": 0.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 0.125,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8394798889428902,
+                "edge_ratio_max": 1.40468576687628,
+                "max_normal_rotation": 12.870797017472237,
+                "relative_displacement": 0.013953766631302168,
+                "baseline_contacts": 2,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8117553731638467,
+                "edge_ratio_max": 1.40468576687628,
+                "max_normal_rotation": 37.12546702447973,
+                "relative_displacement": 0.013953768017229896
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8394798889428902,
+                "edge_ratio_max": 1.3343654638599916,
+                "max_normal_rotation": 133.39984474308346,
+                "relative_displacement": 0.013953766631302168
+              }
+            }
+          },
+          {
+            "strength": 0.75,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8788979761054602,
+                "edge_ratio_max": 1.3011062917036025,
+                "max_normal_rotation": 9.369499962193691,
+                "relative_displacement": 0.010465324973476627,
+                "baseline_contacts": 2,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8308190221159322,
+                "edge_ratio_max": 1.3011062917036025,
+                "max_normal_rotation": 27.096361717651764,
+                "relative_displacement": 0.010465326012922424
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8765277122383994,
+                "edge_ratio_max": 1.250321246027657,
+                "max_normal_rotation": 129.9390116592031,
+                "relative_displacement": 0.010465324973476627
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9188253978843374,
+                "edge_ratio_max": 1.1988628401423438,
+                "max_normal_rotation": 6.055410260274138,
+                "relative_displacement": 0.006976886316439869,
+                "baseline_contacts": 1,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8703429048964573,
+                "edge_ratio_max": 1.1988628401423438,
+                "max_normal_rotation": 17.260231115259966,
+                "relative_displacement": 0.0069768870094040316
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9156265052231615,
+                "edge_ratio_max": 1.1665343131468298,
+                "max_normal_rotation": 121.83304859575053,
+                "relative_displacement": 0.006976886316439869
+              }
+            }
+          },
+          {
+            "strength": 0.25,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9592179336185784,
+                "edge_ratio_max": 1.0983236795759397,
+                "max_normal_rotation": 3.090533055812914,
+                "relative_displacement": 0.003488438657037817,
+                "baseline_contacts": 1,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9277851498863308,
+                "edge_ratio_max": 1.0983236795759397,
+                "max_normal_rotation": 8.124606901770656,
+                "relative_displacement": 0.003488439003519451
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9568767053299271,
+                "edge_ratio_max": 1.0830631755157172,
+                "max_normal_rotation": 88.37528774752522,
+                "relative_displacement": 0.003488438657037817
+              }
+            }
+          },
+          {
+            "strength": 0.125,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9795569985361087,
+                "edge_ratio_max": 1.0488482921633093,
+                "max_normal_rotation": 1.604642240727425,
+                "relative_displacement": 0.0017442219483097248,
+                "baseline_contacts": 2,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9622426119132531,
+                "edge_ratio_max": 1.0488482921633093,
+                "max_normal_rotation": 3.9255527931135727,
+                "relative_displacement": 0.001744222121550802
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9782443080719894,
+                "edge_ratio_max": 1.0414780316895536,
+                "max_normal_rotation": 37.01914182121951,
+                "relative_displacement": 0.0017442219483097248
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 0.125,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {
+          "shoulder_width": {
+            "requested": 0.97,
+            "applied": 0.99625
+          },
+          "hip_width": {
+            "requested": 0.97,
+            "applied": 0.99625
+          },
+          "arm_volume": {
+            "requested": -0.22,
+            "applied": -0.0275
+          },
+          "leg_volume": {
+            "requested": -0.22,
+            "applied": -0.0275
+          },
+          "torso_volume": {
+            "requested": -0.2,
+            "applied": -0.025
+          }
+        }
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 13930,
+        "mean_displacement": 0.0004313234615774743,
+        "max_displacement": 0.001740824487465508,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.001740824487465508
+          }
+        ]
+      }
+    },
+    "musculoso": {
+      "requested": {
+        "shoulder_width": 1.04,
+        "arm_volume": 0.28,
+        "leg_volume": 0.26,
+        "torso_volume": 0.2,
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "hip_width": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "breast_size": 0.0
+      },
+      "applied": {
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.01,
+        "hip_width": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.07,
+        "leg_volume": 0.065,
+        "torso_volume": 0.05,
+        "breast_size": 0.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 0.25,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.604891080478167,
+                "edge_ratio_max": 1.1985233767249788,
+                "max_normal_rotation": 17.14160257040212,
+                "relative_displacement": 0.013953766631302168,
+                "baseline_contacts": 2,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.604891080478167,
+                "edge_ratio_max": 1.5098937803172132,
+                "max_normal_rotation": 30.383888695838323,
+                "relative_displacement": 0.013953768017229896
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6529827634572666,
+                "edge_ratio_max": 1.2486259026884123,
+                "max_normal_rotation": 159.4409067341689,
+                "relative_displacement": 0.013953766631302168
+              }
+            }
+          },
+          {
+            "strength": 0.75,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6979358220704001,
+                "edge_ratio_max": 1.1428275079676116,
+                "max_normal_rotation": 12.908962216129867,
+                "relative_displacement": 0.010465324184390156,
+                "baseline_contacts": 0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6979358220704001,
+                "edge_ratio_max": 1.362480982785335,
+                "max_normal_rotation": 25.132395700602228,
+                "relative_displacement": 0.010465325223835874
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7394756201664857,
+                "edge_ratio_max": 1.1732795311849709,
+                "max_normal_rotation": 151.8487567289766,
+                "relative_displacement": 0.010465324184390156
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7957342289084618,
+                "edge_ratio_max": 1.0911142271773078,
+                "max_normal_rotation": 8.602660456323424,
+                "relative_displacement": 0.006976883315651084,
+                "baseline_contacts": 0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7957342289084618,
+                "edge_ratio_max": 1.2255535390803414,
+                "max_normal_rotation": 18.545174074233792,
+                "relative_displacement": 0.006976884008614948
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8261782824554491,
+                "edge_ratio_max": 1.1109767866343077,
+                "max_normal_rotation": 105.32569047671778,
+                "relative_displacement": 0.006976883315651084
+              }
+            }
+          },
+          {
+            "strength": 0.25,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8967474797826275,
+                "edge_ratio_max": 1.0455577876257807,
+                "max_normal_rotation": 4.280256491404608,
+                "relative_displacement": 0.0034884408687416756,
+                "baseline_contacts": 1,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8967474797826275,
+                "edge_ratio_max": 1.1029417151986374,
+                "max_normal_rotation": 10.262741306907326,
+                "relative_displacement": 0.003488441215223529
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9130381147670145,
+                "edge_ratio_max": 1.0529971248821988,
+                "max_normal_rotation": 24.8011553942541,
+                "relative_displacement": 0.0034884408687416756
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 0.25,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {
+          "shoulder_width": {
+            "requested": 1.04,
+            "applied": 1.01
+          },
+          "arm_volume": {
+            "requested": 0.28,
+            "applied": 0.07
+          },
+          "leg_volume": {
+            "requested": 0.26,
+            "applied": 0.065
+          },
+          "torso_volume": {
+            "requested": 0.2,
+            "applied": 0.05
+          }
+        }
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 13230,
+        "mean_displacement": 0.0009439784532463735,
+        "max_displacement": 0.003481618362579374,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.003481618362579374
+          }
+        ]
+      }
+    },
+    "encorpado": {
+      "requested": {
+        "shoulder_width": 1.03,
+        "hip_width": 1.04,
+        "arm_volume": 0.18,
+        "leg_volume": 0.22,
+        "torso_volume": 0.25,
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "breast_size": 0.0
+      },
+      "applied": {
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0075,
+        "hip_width": 1.01,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.045,
+        "leg_volume": 0.055,
+        "torso_volume": 0.0625,
+        "breast_size": 0.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 0.25,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6099990625691663,
+                "edge_ratio_max": 1.208496625670828,
+                "max_normal_rotation": 30.415888962855792,
+                "relative_displacement": 0.01744220750004072,
+                "baseline_contacts": 0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6099990625691663,
+                "edge_ratio_max": 1.3839473206619395,
+                "max_normal_rotation": 30.415888962855792,
+                "relative_displacement": 0.017442209232450302
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6539930440978303,
+                "edge_ratio_max": 1.3946083990204574,
+                "max_normal_rotation": 169.4637156502275,
+                "relative_displacement": 0.01744220750004072
+              }
+            }
+          },
+          {
+            "strength": 0.75,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7026955996497688,
+                "edge_ratio_max": 1.1557804730386667,
+                "max_normal_rotation": 20.498583582153227,
+                "relative_displacement": 0.013081657170968077,
+                "baseline_contacts": 0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7026955996497688,
+                "edge_ratio_max": 1.2795182371153622,
+                "max_normal_rotation": 20.498583582153227,
+                "relative_displacement": 0.013081658470275417
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7340276442165635,
+                "edge_ratio_max": 1.2666628933174489,
+                "max_normal_rotation": 166.32840523015898,
+                "relative_displacement": 0.013081657170968077
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7966010315080387,
+                "edge_ratio_max": 1.1034262716358054,
+                "max_normal_rotation": 12.231443292519051,
+                "relative_displacement": 0.008721105263755016,
+                "baseline_contacts": 0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7966010315080387,
+                "edge_ratio_max": 1.1797994639155438,
+                "max_normal_rotation": 12.231443292519051,
+                "relative_displacement": 0.008721106129959959
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8192839418741293,
+                "edge_ratio_max": 1.1547561024329522,
+                "max_normal_rotation": 147.53377091117048,
+                "relative_displacement": 0.008721105263755016
+              }
+            }
+          },
+          {
+            "strength": 0.25,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8962737268317509,
+                "edge_ratio_max": 1.051473734025863,
+                "max_normal_rotation": 5.512034976553968,
+                "relative_displacement": 0.004360545905703689,
+                "baseline_contacts": 2,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8962737268317509,
+                "edge_ratio_max": 1.0860623115326042,
+                "max_normal_rotation": 6.3846690045694405,
+                "relative_displacement": 0.004360546338805491
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.9082630138195779,
+                "edge_ratio_max": 1.063942035759848,
+                "max_normal_rotation": 21.00519637148783,
+                "relative_displacement": 0.004360545905703689
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 0.25,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {
+          "shoulder_width": {
+            "requested": 1.03,
+            "applied": 1.0075
+          },
+          "hip_width": {
+            "requested": 1.04,
+            "applied": 1.01
+          },
+          "arm_volume": {
+            "requested": 0.18,
+            "applied": 0.045
+          },
+          "leg_volume": {
+            "requested": 0.22,
+            "applied": 0.055
+          },
+          "torso_volume": {
+            "requested": 0.25,
+            "applied": 0.0625
+          }
+        }
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 13930,
+        "mean_displacement": 0.0009688047011045268,
+        "max_displacement": 0.004352025439268173,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.004352025439268173
+          }
+        ]
+      }
+    },
+    "preset-antigo": {
+      "requested": {
+        "feminine_curves": 1,
+        "height": 1.0,
+        "head_size": 1.15,
+        "shoulder_width": 1.12,
+        "hip_width": 1.12,
+        "arm_length": 1.08,
+        "leg_length": 1.08,
+        "arm_volume": 0.5,
+        "leg_volume": 0.5,
+        "torso_volume": 0.45,
+        "breast_size": 1
+      },
+      "applied": {
+        "feminine_curves": 1.0,
+        "height": 1.0,
+        "head_size": 1.03,
+        "shoulder_width": 1.03,
+        "hip_width": 1.03,
+        "arm_length": 1.02,
+        "leg_length": 1.02,
+        "arm_volume": 0.14,
+        "leg_volume": 0.14,
+        "torso_volume": 0.125,
+        "breast_size": 1.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 0.5,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.5925178961181571,
+                "edge_ratio_max": 1.569142490044582,
+                "max_normal_rotation": 33.769690993366886,
+                "relative_displacement": 0.03409333007453142
+              }
+            }
+          },
+          {
+            "strength": 0.75,
+            "accepted": false,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6856945135066098,
+                "edge_ratio_max": 1.4240615465786077,
+                "max_normal_rotation": 25.38919749171065,
+                "relative_displacement": 0.025471568584762152,
+                "baseline_contacts": 14,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.6856945135066098,
+                "edge_ratio_max": 1.4240615465786077,
+                "max_normal_rotation": 25.38919749171065,
+                "relative_displacement": 0.02527490891513383
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7232478448854657,
+                "edge_ratio_max": 1.4240615465786077,
+                "max_normal_rotation": 153.6259325243672,
+                "relative_displacement": 0.025471568584762152
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7862709504522646,
+                "edge_ratio_max": 1.2804296668164572,
+                "max_normal_rotation": 16.715285142360848,
+                "relative_displacement": 0.016915621063516607,
+                "baseline_contacts": 13,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.7862709504522646,
+                "edge_ratio_max": 1.2804296668164572,
+                "max_normal_rotation": 16.715285142360848,
+                "relative_displacement": 0.01678715437715611
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.8151983798759987,
+                "edge_ratio_max": 1.2804296668164572,
+                "max_normal_rotation": 29.409112199160187,
+                "relative_displacement": 0.016915621063516607
+              }
+            }
+          },
+          {
+            "strength": 0.5,
+            "curve_breast_strength": 1.0,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.601622206308836,
+                "edge_ratio_max": 1.4845626766201891,
+                "max_normal_rotation": 33.445143085374696,
+                "relative_displacement": 0.02410603634628287,
+                "baseline_contacts": 13,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.601622206308836,
+                "edge_ratio_max": 1.4845626766201891,
+                "max_normal_rotation": 33.445143085374696,
+                "relative_displacement": 0.02410603874056286
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 0.601622206308836,
+                "edge_ratio_max": 1.4845626766201891,
+                "max_normal_rotation": 33.445143085374696,
+                "relative_displacement": 0.02410603634628287
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 1.0,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {
+          "head_size": {
+            "requested": 1.15,
+            "applied": 1.03
+          },
+          "shoulder_width": {
+            "requested": 1.12,
+            "applied": 1.03
+          },
+          "hip_width": {
+            "requested": 1.12,
+            "applied": 1.03
+          },
+          "arm_length": {
+            "requested": 1.08,
+            "applied": 1.02
+          },
+          "leg_length": {
+            "requested": 1.08,
+            "applied": 1.02
+          },
+          "arm_volume": {
+            "requested": 0.5,
+            "applied": 0.14
+          },
+          "leg_volume": {
+            "requested": 0.5,
+            "applied": 0.14
+          },
+          "torso_volume": {
+            "requested": 0.45,
+            "applied": 0.125
+          }
+        }
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 19026,
+        "mean_displacement": 0.007507751043581585,
+        "max_displacement": 0.024058944355180124,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 0.024058944355180124
+          }
+        ]
+      }
+    },
+    "restaurado": {
+      "requested": {
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0,
+        "hip_width": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.0,
+        "leg_volume": 0.0,
+        "torso_volume": 0.0,
+        "breast_size": 0.0
+      },
+      "applied": {
+        "feminine_curves": 0.0,
+        "height": 1.0,
+        "head_size": 1.0,
+        "shoulder_width": 1.0,
+        "hip_width": 1.0,
+        "arm_length": 1.0,
+        "leg_length": 1.0,
+        "arm_volume": 0.0,
+        "leg_volume": 0.0,
+        "torso_volume": 0.0,
+        "breast_size": 0.0
+      },
+      "guard": {
+        "enabled": true,
+        "strength": 1.0,
+        "attempts": [
+          {
+            "strength": 1.0,
+            "accepted": true,
+            "meshes": {
+              "tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 1.0,
+                "edge_ratio_max": 1.0,
+                "max_normal_rotation": 1.2074182697257333e-06,
+                "relative_displacement": 0.0,
+                "new_crossings": 0
+              },
+              "hip_flexion/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 1.0,
+                "edge_ratio_max": 1.0,
+                "max_normal_rotation": 1.2074182697257333e-06,
+                "relative_displacement": 0.0
+              },
+              "arms_down/tripo_node_c1bea7d6": {
+                "finite": true,
+                "new_degenerate_triangles": 0,
+                "edge_ratio_min": 1.0,
+                "edge_ratio_max": 1.0,
+                "max_normal_rotation": 1.2074182697257333e-06,
+                "relative_displacement": 0.0
+              }
+            }
+          }
+        ],
+        "curve_breast_strength": 1.0,
+        "limits": {
+          "edge_ratio": [
+            0.5,
+            1.5
+          ],
+          "max_normal_rotation": 60,
+          "relative_displacement": 0.06,
+          "crossing_tolerance": 0.0002
+        },
+        "scope": "Geometry in reference pose, hip flexion and lowered arms. Crossings within each mesh in reference pose only; excludes existing crossings and contacts.",
+        "adjustments": {}
+      },
+      "geometry": {
+        "vertices": 19026,
+        "changed_vertices": 0,
+        "mean_displacement": 8.159172086954952e-08,
+        "max_displacement": 3.6283497113714083e-07,
+        "meshes": [
+          {
+            "name": "tripo_node_c1bea7d6",
+            "vertices": 19026,
+            "max_displacement": 3.6283497113714083e-07
+          }
+        ]
+      }
+    }
+  },
+  "effective_values_roundtrip": true
+}
