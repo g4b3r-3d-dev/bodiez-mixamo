@@ -11,8 +11,12 @@ from .task_store import store
 from .body_service import BodyError,create_workspace,prepare_controls,create_revision,apply_controls,caps_for,root_for,revision_root,list_presets,save_preset
 
 SCRIPT=Path(__file__).resolve().parents[1]/'blender_scripts'/'body_customize.py'
+class BreastPaint(BaseModel):
+ left:list[tuple[float,float,float]]=Field(min_length=3,max_length=512)
+ right:list[tuple[float,float,float]]=Field(min_length=3,max_length=512)
+ brush_radius:float
 class BreastMarkers(BaseModel):
- left:tuple[float,float,float];right:tuple[float,float,float];radius:float
+ left:tuple[float,float,float];right:tuple[float,float,float];radius:float;paint:BreastPaint|None=None
 class ApplyBody(BaseModel):
  values:dict[str,float]=Field(default_factory=dict);bindings:dict[str,str]=Field(default_factory=dict);breast_markers:BreastMarkers|None=None
 class SavePreset(ApplyBody):name:str=Field(min_length=1,max_length=64)
