@@ -84,17 +84,20 @@ def marker_info(arm, meshes, matches):
             'origin': gltf(origin), 'chest_min': low, 'chest_max': high}
 
 
-def make_key(mesh, displacements):
+def make_key(mesh, displacements, baked_strength=None):
     if not any(d.length > 1e-8 for d in displacements):
         return None
     if not mesh.data.shape_keys:
         mesh.shape_key_add(name='Basis', from_mix=False)
     key = mesh.data.shape_keys.key_blocks.get(KEY) or mesh.shape_key_add(name=KEY, from_mix=False)
-    key.value = 0; key.slider_min = -.5; key.slider_max = 1
+    key.value = 0; key.slider_min = 0 if baked_strength is not None else -.5; key.slider_max = 1
     inverse = mesh.matrix_world.inverted().to_3x3()
     for base, target, delta in zip(mesh.data.shape_keys.reference_key.data, key.data, displacements):
         target.co = base.co + inverse @ delta
-    return {'mesh': mesh.name, 'key': key.name}
+    result = {'mesh': mesh.name, 'key': key.name}
+    if baked_strength is not None:
+        result['baked_strength'] = float(baked_strength)
+    return result
 
 
 def bone_morphs(arm, meshes, bones):
@@ -172,8 +175,119 @@ def _paint_weight(point, paint, side):
     return 1. - _smoothstep01(distance / paint['radius'])
 
 
-def marker_morphs(meshes, markers, info):
-    """World-space balloon field, optionally clipped by painted surface masks."""
+def _topology(mesh):
+    adjacency = [set() for _ in mesh.data.vertices]
+    edges = []
+    for edge in mesh.data.edges:
+        a, b = edge.vertices
+        adjacency[a].add(b); adjacency[b].add(a)
+        edges.append((a, b))
+    return [tuple(x) for x in adjacency], edges
+
+
+def _max_edge_jump(points, deltas, edges):
+    value = 0.
+    for a, b in edges:
+        edge = max((points[a] - points[b]).length, 1e-9)
+        value = max(value, (deltas[a] - deltas[b]).length / edge)
+    return value
+
+
+def _anti_spike_smooth(mesh, points, deltas, influence, radius, strength):
+    """Smooth the final requested displacement over mesh topology and cap local peaks.
+
+    The important detail is that this operates *after* applying the requested breast
+    strength. A 20x request therefore cannot multiply tiny unit-shape irregularities
+    into 20x spikes afterwards.
+    """
+    adjacency, edges = _topology(mesh)
+    if not edges or not any(w > 1e-6 for w in influence):
+        return deltas, {'enabled': True, 'iterations': 0, 'clamped_edges': 0,
+                        'max_neighbor_jump_before': 0., 'max_neighbor_jump_after': 0.}
+
+    current = [d.copy() for d in deltas]
+    active = [w > 1e-6 for w in influence]
+    before = _max_edge_jump(points, current, edges)
+    magnitude = abs(float(strength))
+    iterations = 5 + min(15, int(math.log2(1. + magnitude) * 3.5))
+    alpha = .48 + min(.22, math.log1p(magnitude) * .045)
+
+    # Laplacian smoothing only inside the selected breast support. Outside vertices
+    # remain exact anchors, so the chest attachment does not drift.
+    for _ in range(iterations):
+        nxt = [Vector() for _ in current]
+        for i, value in enumerate(current):
+            if not active[i]:
+                continue
+            neighbours = [j for j in adjacency[i] if active[j]]
+            if not neighbours:
+                nxt[i] = value
+                continue
+            average = sum((current[j] for j in neighbours), Vector()) / len(neighbours)
+            # Use less relaxation at the feathered boundary and more in the core.
+            core = _smoothstep01(min(1., influence[i] * 1.6))
+            local_alpha = alpha * (.35 + .65 * core)
+            nxt[i] = value.lerp(average, local_alpha)
+        current = nxt
+
+    # A topological gradient limiter removes isolated needles while still allowing
+    # a broad region to become very large. The permitted local stretch grows only
+    # logarithmically with the requested volume instead of linearly.
+    growth = 1. + min(3.5, math.log1p(magnitude) * .7)
+    clamped = 0
+    for _ in range(5):
+        changed = False
+        for a, b in edges:
+            if not active[a] and not active[b]:
+                continue
+            base_edge = max((points[a] - points[b]).length, 1e-9)
+            limit = max(base_edge * (1.65 + growth), radius * .008 * growth)
+            diff = current[a] - current[b]
+            length = diff.length
+            if length <= limit:
+                continue
+            direction = diff / length
+            excess = length - limit
+            if active[a] and active[b]:
+                current[a] -= direction * (excess * .5)
+                current[b] += direction * (excess * .5)
+            elif active[a]:
+                current[a] -= direction * excess
+            else:
+                current[b] += direction * excess
+            clamped += 1; changed = True
+        if not changed:
+            break
+
+    # Final one-ring peak suppression catches a single vertex whose displacement
+    # still differs strongly from all of its neighbours.
+    for _ in range(3):
+        nxt = [d.copy() for d in current]
+        for i, value in enumerate(current):
+            if not active[i]:
+                continue
+            neighbours = [j for j in adjacency[i] if active[j]]
+            if len(neighbours) < 2:
+                continue
+            average = sum((current[j] for j in neighbours), Vector()) / len(neighbours)
+            local_edges = [(points[i] - points[j]).length for j in neighbours]
+            local_scale = sum(local_edges) / max(1, len(local_edges))
+            limit = max(local_scale * (1.8 + growth), radius * .01 * growth)
+            residual = value - average
+            if residual.length > limit:
+                nxt[i] = average + residual.normalized() * limit
+                clamped += 1
+        current = nxt
+
+    after = _max_edge_jump(points, current, edges)
+    return current, {'enabled': True, 'iterations': iterations, 'clamped_edges': clamped,
+                     'max_neighbor_jump_before': before,
+                     'max_neighbor_jump_after': after,
+                     'requested_strength': float(strength)}
+
+
+def marker_morphs(meshes, markers, info, strength=1.0, anti_spikes=True):
+    """Build the final-size balloon field, optionally clipped by painted masks."""
     sides = ('left', 'right')
     centers = [from_gltf(markers[s]) for s in sides]
     radius = markers['radius']
@@ -194,9 +308,10 @@ def marker_morphs(meshes, markers, info):
         distances = [hit[3] for tree in surface_trees if (hit := tree.find_nearest(point))[0] is not None]
         if not distances or min(distances) > info['height'] * .01:
             raise RuntimeError('A pintura contém pontos fora da superfície. Pinte novamente na base original.')
-    targets = []; affected = [0, 0]
+
+    targets = []; affected = [0, 0]; smoothing = {}
     for mesh in meshes:
-        deltas = []
+        raw = []; weights = []
         for point in surfaces[mesh.name]:
             candidates = []
             for index, center in enumerate(centers):
@@ -208,21 +323,36 @@ def marker_morphs(meshes, markers, info):
                 mask = _paint_weight(point, paint, sides[index])
                 if mask <= 0:
                     continue
-                delta *= mask; influence *= mask
+                influence *= mask
+                delta *= mask * float(strength)
                 candidates.append((influence, delta))
                 if delta.length > 1e-8:
                     affected[index] += 1
             if not candidates:
-                deltas.append(Vector())
+                raw.append(Vector()); weights.append(0.)
                 continue
             total = sum(weight for weight, _ in candidates)
-            deltas.append(sum((delta * weight for weight, delta in candidates), Vector()) /
-                          max(total, 1e-8))
-        target = make_key(mesh, deltas)
+            raw.append(sum((delta * weight for weight, delta in candidates), Vector()) /
+                       max(total, 1e-8))
+            weights.append(min(1., max(weight for weight, _ in candidates)))
+
+        deltas = raw
+        if anti_spikes and abs(float(strength)) > 1e-8:
+            deltas, report = _anti_spike_smooth(
+                mesh, surfaces[mesh.name], raw, weights, radius, strength)
+            smoothing[mesh.name] = report
+        else:
+            smoothing[mesh.name] = {'enabled': False, 'requested_strength': float(strength)}
+        target = make_key(mesh, deltas, baked_strength=strength)
         if target:
+            target['anti_spikes'] = bool(anti_spikes)
             targets.append(target)
+
+    # At zero volume there is intentionally no non-zero shape key target.
+    if abs(float(strength)) <= 1e-8:
+        return targets, affected, smoothing
     if not all(affected) or not targets:
         message = ('A área pintada não alcançou vértices suficientes. Pinte uma região maior em cada seio.'
                    if paint else 'Os dois marcadores precisam alcançar vértices. Aumente a área de influência.')
         raise RuntimeError(message)
-    return targets, affected
+    return targets, affected, smoothing
