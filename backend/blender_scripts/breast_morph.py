@@ -120,7 +120,7 @@ def _smoothstep01(value):
 def _balloon_delta(x, y, z, radius, lateral, up, front):
     """Inflate around a center inside the torso instead of extruding forward.
 
-    ``x/y/z`` are measured from the surface marker.  The virtual inflation
+    ``x/y/z`` are measured from the surface marker. The virtual inflation
     center sits behind the marker, so enlargement behaves like scaling a soft
     volume around that center: flanks widen, the upper/lower poles round out,
     and the apex advances only as one component of the same radial motion.
@@ -130,23 +130,23 @@ def _balloon_delta(x, y, z, radius, lateral, up, front):
         return Vector(), 0.
 
     # Keep most of the central breast moving as one rounded volume, then use a
-    # C1 edge taper.  A strong radial taper from the apex created a pinched ring.
+    # C1 edge taper. A strong radial taper from the apex created a pinched ring.
     normalized = math.sqrt(max(0., distance2))
     if normalized <= .58:
         envelope = 1.
     else:
         envelope = 1. - _smoothstep01((normalized - .58) / .42)
 
-    # Vertices near/behind the chest attachment must stay anchored.  The old
+    # Vertices near/behind the chest attachment must stay anchored. The old
     # forward-projection field started at this same plane, but its displacement
-    # direction was front-heavy.  Here the plane only controls influence.
+    # direction was front-heavy. Here the plane only controls influence.
     attachment = _smoothstep01((z / radius + .55) / .45)
     influence = envelope * attachment
     if influence <= 1e-8:
         return Vector(), 0.
 
     # The virtual center is 0.38 radii inside the chest and just 0.03 radii
-    # above the marker.  That tiny vertical offset gives the lower pole a little
+    # above the marker. That tiny vertical offset gives the lower pole a little
     # more fullness without turning the operation back into a directional push.
     radial = (lateral * x + up * (y - radius * .03)
               + front * max(0., z + radius * .38))
@@ -190,11 +190,12 @@ def marker_morphs(meshes, markers, info):
             if not candidates:
                 deltas.append(Vector())
                 continue
-            # Markers may overlap near the sternum. Blend their vector fields
-            # instead of adding both displacements and creating a central ridge.
+            # Markers may overlap near the sternum. Each delta already contains
+            # its own falloff, so average only for overlap; do not multiply that
+            # falloff a second time or the breast edge collapses toward the apex.
             total = sum(weight for weight, _ in candidates)
             deltas.append(sum((delta * weight for weight, delta in candidates), Vector()) /
-                          max(total, 1.))
+                          max(total, 1e-8))
         target = make_key(mesh, deltas)
         if target:
             targets.append(target)
