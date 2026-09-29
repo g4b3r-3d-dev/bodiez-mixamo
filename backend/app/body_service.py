@@ -68,23 +68,37 @@ def normalize_markers(c,markers,required=False):
  def number(v):
   if isinstance(v,bool) or not isinstance(v,(int,float)) or not math.isfinite(v):raise BodyError('Coordenadas dos marcadores inválidas.')
   return float(v)
- points={}
- for side in ('left','right'):
-  p=markers.get(side)
-  if not isinstance(p,(list,tuple)) or len(p)!=3:raise BodyError('Posicione os dois marcadores dos seios.')
-  points[side]=[number(v) for v in p]
-  if any(v<info['bounds_min'][i]-info['height']*.005 or v>info['bounds_max'][i]+info['height']*.005 for i,v in enumerate(points[side])):raise BodyError('Marcador fora dos limites do modelo.')
-  elevation=sum(v*u for v,u in zip(points[side],info['up']))
-  if not info['chest_min']<=elevation<=info['chest_max']:raise BodyError('Posicione os marcadores na região do peito.')
-  offset=[v-o for v,o in zip(points[side],info['origin'])]
-  if sum(v*f for v,f in zip(offset,info['front']))<=0:raise BodyError('Posicione os marcadores na frente do peito.')
+ def point(raw,side,label='Marcador'):
+  if not isinstance(raw,(list,tuple)) or len(raw)!=3:raise BodyError(f'{label} inválido.')
+  p=[number(v) for v in raw]
+  if any(v<info['bounds_min'][i]-info['height']*.005 or v>info['bounds_max'][i]+info['height']*.005 for i,v in enumerate(p)):raise BodyError(f'{label} fora dos limites do modelo.')
+  elevation=sum(v*u for v,u in zip(p,info['up']))
+  if not info['chest_min']<=elevation<=info['chest_max']:raise BodyError(f'{label} fora da região do peito.')
+  offset=[v-o for v,o in zip(p,info['origin'])]
+  if sum(v*f for v,f in zip(offset,info['front']))<=0:raise BodyError(f'{label} precisa ficar na frente do peito.')
   lateral=sum(v*l for v,l in zip(offset,info['left']))
-  if lateral*(1 if side=='left' else -1)<=0:raise BodyError('Confira os lados dos marcadores: esquerdo e direito são os do personagem.')
+  if lateral*(1 if side=='left' else -1)<=0:raise BodyError(f'{label} está no lado incorreto do personagem.')
+  return p
+ points={side:point(markers.get(side),side,'Marcador') for side in ('left','right')}
  radius=number(markers.get('radius'))
  if not info['radius_min']<=radius<=info['radius_max']:raise BodyError('Área de influência dos seios fora do limite.')
  distance=math.dist(points['left'],points['right'])
  if not info['height']*.02<=distance<=info['height']*.35:raise BodyError('Os marcadores precisam identificar dois seios separados na região do peito.')
- return {**points,'radius':radius}
+ out={**points,'radius':radius}
+ paint=markers.get('paint')
+ if paint is not None:
+  if not isinstance(paint,dict):raise BodyError('Pintura dos seios inválida.')
+  brush=number(paint.get('brush_radius'))
+  if not info['height']*.006<=brush<=info['height']*.055:raise BodyError('Tamanho do pincel fora do limite seguro.')
+  clean={'brush_radius':brush}
+  for side in ('left','right'):
+   raw=paint.get(side)
+   if not isinstance(raw,list) or not 3<=len(raw)<=512:raise BodyError('Pinte pelo menos três pontos em cada seio; máximo de 512 pontos por lado.')
+   pts=[point(p,side,'Traço pintado') for p in raw]
+   if max(math.dist(pts[0],p) for p in pts)<info['height']*.008:raise BodyError('A pintura precisa cobrir uma área, não apenas um ponto.')
+   clean[side]=pts
+  out['paint']=clean
+ return out
 def normalize(c,values,bindings,breast_markers=None):
  idx=sources(c);defaults=c.get('default_bindings',{});bindings={k:(bindings or {}).get(k,defaults.get(k)) for k,spec in SPECS.items() if spec[1]!='structural'};bindings={k:v for k,v in bindings.items() if v}
  if len(set(bindings.values()))!=len(bindings):raise BodyError('A mesma fonte de morph não pode controlar duas regiões.')
