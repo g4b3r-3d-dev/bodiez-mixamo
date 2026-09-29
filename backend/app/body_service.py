@@ -57,6 +57,9 @@ def caps_for(a,p,b):
 def current_capabilities(c):
  c['control_specs']={k:{'label':v[0],'kind':v[1],'min':NATURAL_LIMITS[k][0],'max':NATURAL_LIMITS[k][1],'default':v[4]} for k,v in SPECS.items()}
  for k in SPECS:c.setdefault('controls',{}).setdefault(k,{'enabled':False,'reason':'Prepare os controles novamente para inspecionar este ajuste.'})
+ for source in c.get('morph_sources',[]):
+  if isinstance(source,dict) and source.get('control_hint')=='breast_size' and source.get('type') in {'generated','markers'}:
+   source['slider_max']=BREAST_SIZE_MAX
  c['builtin_presets']=PRESETS
  c['natural_shape']={'enabled':True,'version':2,'breast_volume_unrestricted':True,'breast_technical_max':BREAST_SIZE_MAX}
  return c
