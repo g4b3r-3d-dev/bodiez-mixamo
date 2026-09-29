@@ -9,6 +9,7 @@ from .config import load_settings,assets_root
 from .blender_service import validate_blender_path
 from .task_store import store
 from .body_service import BodyError,create_workspace,prepare_controls,create_revision,apply_controls,caps_for,root_for,revision_root,list_presets,save_preset
+from .body_state import save_current_state,load_current_state
 
 SCRIPT=Path(__file__).resolve().parents[1]/'blender_scripts'/'body_customize.py'
 class BreastPaint(BaseModel):
@@ -20,6 +21,7 @@ class BreastMarkers(BaseModel):
 class ApplyBody(BaseModel):
  values:dict[str,float]=Field(default_factory=dict);bindings:dict[str,str]=Field(default_factory=dict);breast_markers:BreastMarkers|None=None
 class SavePreset(ApplyBody):name:str=Field(min_length=1,max_length=64)
+class SaveState(ApplyBody):revision_id:str|None=None
 def reg(method,path,fn,**kw):
  if not any(getattr(r,'path',None)==path and method in (getattr(r,'methods',None) or set()) for r in app.routes):app.add_api_route(path,fn,methods=[method],**kw)
 def body_error(e):
@@ -82,4 +84,12 @@ async def put_preset(request:Request,asset_id:str,preparation_id:str,customizati
  _assert_http_origin(request)
  try:return save_preset(asset_id,preparation_id,customization_id,body.name,body.values,body.bindings,body.breast_markers.model_dump() if body.breast_markers else None)
  except Exception as e:raise body_error(e) from e
-reg('GET','/api/stage4/ready-preparations',ready);reg('POST','/api/assets/{asset_id}/preparations/{preparation_id}/customizations',create,status_code=202);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}',info);reg('POST','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/apply',apply,status_code=202);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/preview.glb',baseline_preview);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/revisions/{revision_id}/preview.glb',rev_preview);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/revisions/{revision_id}/customized.blend',rev_blend);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/presets',presets);reg('PUT','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/presets',put_preset)
+async def get_state(request:Request,asset_id:str,preparation_id:str):
+ _assert_http_origin(request)
+ try:return load_current_state(asset_id,preparation_id)
+ except Exception as e:raise body_error(e) from e
+async def put_state(request:Request,asset_id:str,preparation_id:str,customization_id:str,body:SaveState):
+ _assert_http_origin(request)
+ try:return save_current_state(asset_id,preparation_id,customization_id,body.values,body.bindings,body.breast_markers.model_dump() if body.breast_markers else None,body.revision_id)
+ except Exception as e:raise body_error(e) from e
+reg('GET','/api/stage4/ready-preparations',ready);reg('POST','/api/assets/{asset_id}/preparations/{preparation_id}/customizations',create,status_code=202);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}',info);reg('POST','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/apply',apply,status_code=202);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/preview.glb',baseline_preview);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/revisions/{revision_id}/preview.glb',rev_preview);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/revisions/{revision_id}/customized.blend',rev_blend);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/presets',presets);reg('PUT','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/presets',put_preset);reg('GET','/api/assets/{asset_id}/preparations/{preparation_id}/body-state',get_state);reg('PUT','/api/assets/{asset_id}/preparations/{preparation_id}/customizations/{customization_id}/body-state',put_state)
