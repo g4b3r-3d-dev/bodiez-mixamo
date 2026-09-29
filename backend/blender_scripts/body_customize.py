@@ -125,7 +125,7 @@ def prep(inp,blend,preview,report):
   generated.append({'source_id':'auto:breast_size','type':'generated','display_name':'Seios pelos ossos','control_hint':'breast_size','driven':False,'slider_min':-.5,'slider_max':BREAST_SIZE_MAX,'targets':targets});defaults['breast_size']='auto:breast_size'
  generated.append({'source_id':MARKER_SOURCE,'type':'markers','display_name':'Seios pelos marcadores/pintura','control_hint':'breast_size','driven':False,'slider_min':-.5,'slider_max':BREAST_SIZE_MAX,'targets':[]})
  controls['breast_size']={'enabled':bool(targets),'engine':'shape_key','generated_assisted':bool(targets),'requires_markers':not bool(targets),'bones':bones,'reason':None if targets else 'Ossos dos seios não identificados. Posicione dois marcadores ou pinte a área dos seios.'}
- data={'armature':a.name,'semantic_matches':mm,'controls':controls,'morph_sources':generated+existing,'default_bindings':defaults,'breast_marker_info':marker_info(a,ms,mm),'structural_method':{'name':'non_destructive_pose_offset_layer','description':'Mudanças estruturais usam escala raiz e transforms de pose; rest pose não é reescrita.'},'preservation':{'topology_changed':False,'destructive_modifiers_applied':False,'existing_shape_keys_removed':False},'limitations':['Morphs assistidos derivam dos pesos, marcadores ou pintura e não substituem morphs artísticos/anatômicos.','Volumes extremos de seios podem atravessar roupas ou outras partes da malha; o tamanho solicitado não é reduzido automaticamente.','A camada estrutural deverá ser conciliada com animações na Etapa 5.']}
+ data={'armature':a.name,'semantic_matches':mm,'controls':controls,'morph_sources':generated+existing,'default_bindings':defaults,'breast_marker_info':marker_info(a,ms,mm),'structural_method':{'name':'non_destructive_pose_offset_layer','description':'Mudanças estruturais usam escala raiz e transforms de pose; rest pose não é reescrita.'},'preservation':{'topology_changed':False,'destructive_modifiers_applied':False,'existing_shape_keys_removed':False},'limitations':['Morphs assistidos derivam dos pesos, marcadores ou pintura e não substituem morphs artísticos/anatômicos.','O modo anti-espinhos suaviza o deslocamento pela topologia antes de criar o Shape Key, inclusive em volumes altos.','Volumes extremos ainda podem atravessar roupas ou outras partes do corpo; a topologia original é preservada.','A camada estrutural deverá ser conciliada com animações na Etapa 5.']}
  Path(report).write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8');bpy.ops.wm.save_as_mainfile(filepath=blend);export(preview)
 def reset_pose(a):
  for p in a.pose.bones:p.matrix_basis.identity()
@@ -162,7 +162,10 @@ def apply(inp,request,blend,preview,report):
  if any(t['key']==CURVE_KEY and (m:=bpy.data.objects.get(t['mesh'])) is not None and m.get('bodiez_version_'+CURVE_KEY)!=CURVE_VERSION for t in curve_targets):
   curve_morphs(a,meshes(a),mm)
  if q.get('bindings',{}).get('breast_size')==MARKER_SOURCE:
-  ms=meshes(a);targets,affected=marker_morphs(ms,q['breast_markers'],marker_info(a,ms,mm));resolved['breast_size']=targets;marker_result={'markers':q['breast_markers'],'affected_vertices_per_side':affected}
+  breast_strength=float(v.get('breast_size',0));ms=meshes(a)
+  targets,affected,smoothing=marker_morphs(ms,q['breast_markers'],marker_info(a,ms,mm),breast_strength,anti_spikes=True)
+  resolved['breast_size']=targets
+  marker_result={'markers':q['breast_markers'],'affected_vertices_per_side':affected,'anti_spikes':smoothing,'baked_strength':breast_strength}
  for control,targets in resolved.items():
   for t in targets:
    m=bpy.data.objects.get(t['mesh'])
@@ -170,6 +173,7 @@ def apply(inp,request,blend,preview,report):
     auto_morph(m,a,[mm[n] for n in REGIONS[control] if n in mm],t['key'])
  breast_units={}
  for t in resolved.get('breast_size',[]):
+  if 'baked_strength' in t:continue
   m=bpy.data.objects.get(t['mesh']);keys=m.data.shape_keys if m else None;k=keys.key_blocks.get(t['key']) if keys else None
   if k and k.name==BREAST_KEY:
    basis=keys.reference_key
@@ -191,13 +195,16 @@ def apply(inp,request,blend,preview,report):
     k=m.data.shape_keys.key_blocks.get(t['key']) if m and m.data.shape_keys else None
     if k:
      value=float(values.get(control,0))
-     unit=breast_units.get((m.name,k.name)) if control=='breast_size' else None
-     if unit is not None:
-      scale=max(1.,value)
-      basis=m.data.shape_keys.reference_key
-      for i,delta in enumerate(unit):k.data[i].co=basis.data[i].co+delta*scale
-      k.value=value/scale
-     else:k.value=value
+     if control=='breast_size' and 'baked_strength' in t:
+      baked=float(t['baked_strength']);k.value=0. if abs(baked)<1e-8 else max(0.,min(1.,value/baked))
+     else:
+      unit=breast_units.get((m.name,k.name)) if control=='breast_size' else None
+      if unit is not None:
+       scale=max(1.,value)
+       basis=m.data.shape_keys.reference_key
+       for i,delta in enumerate(unit):k.data[i].co=basis.data[i].co+delta*scale
+       k.value=value/scale
+      else:k.value=value
      applied[control].append(t)
  requested=q.get('requested_values',v);normalized=natural_values(v);breast_requested=float(normalized.get('breast_size',0))
  guarded_request={**normalized,'breast_size':0.}
@@ -205,7 +212,7 @@ def apply(inp,request,blend,preview,report):
  v={**guarded,'breast_size':breast_requested};apply_values(v);bpy.context.view_layer.update()
  finite,finite_report=finite_geometry(body_meshes)
  if not finite:raise RuntimeError('O volume solicitado gerou coordenadas inválidas. Reduza o tamanho dos seios.')
- natural_report['breast_volume']={'unrestricted_by_shape_guard':True,'requested':breast_requested,'applied':breast_requested,'technical_max':BREAST_SIZE_MAX,'finite_geometry':finite_report}
+ natural_report['breast_volume']={'unrestricted_by_shape_guard':True,'anti_spikes':bool(marker_result),'requested':breast_requested,'applied':breast_requested,'technical_max':BREAST_SIZE_MAX,'finite_geometry':finite_report}
  natural_report['adjustments']={k:{'requested':requested.get(k,value),'applied':value} for k,value in v.items() if abs(requested.get(k,value)-value)>1e-8}
  result={'values':v,'natural_shape':natural_report,'structural':{'method':'non_destructive_pose_offset_layer','values':{k:v.get(k,1) for k in ('height','head_size','shoulder_width','hip_width','arm_length','leg_length')}},'morphs':{'method':'shape_keys','applied':applied},'breast_markers':marker_result,'double_deformation_avoided':True}
  Path(report).write_text(json.dumps(result,ensure_ascii=False,indent=2),encoding='utf-8');bpy.ops.wm.save_as_mainfile(filepath=blend);export(preview)
