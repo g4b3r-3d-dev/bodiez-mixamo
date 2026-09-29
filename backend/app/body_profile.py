@@ -1,4 +1,11 @@
-"""Conservative editing bounds relative to the supplied body, not population norms."""
+"""Editing bounds relative to the supplied body, not population norms.
+
+Most controls stay conservative. Breast volume is intentionally different: users may
+request very large stylized proportions. BREAST_SIZE_MAX is only a technical guard
+against pathological floating-point values, not an anatomical recommendation.
+"""
+
+BREAST_SIZE_MAX = 100.0
 
 NATURAL_LIMITS = {
     'height': (.90, 1.10),
@@ -11,7 +18,7 @@ NATURAL_LIMITS = {
     'leg_volume': (-.22, .28),
     'torso_volume': (-.20, .25),
     'feminine_curves': (0., 1.),
-    'breast_size': (-.5, 1.),
+    'breast_size': (-.5, BREAST_SIZE_MAX),
 }
 
 
