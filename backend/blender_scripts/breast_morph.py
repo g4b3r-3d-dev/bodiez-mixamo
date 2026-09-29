@@ -1,6 +1,6 @@
 """Localized, reversible breast shape keys in the unchanged mesh topology."""
+import math
 import re
-from math import tanh
 
 import bpy
 
@@ -112,8 +112,50 @@ def bone_morphs(arm, meshes, bones):
     return targets
 
 
+def _smoothstep01(value):
+    value = max(0., min(1., value))
+    return value * value * (3. - 2. * value)
+
+
+def _balloon_delta(x, y, z, radius, lateral, up, front):
+    """Inflate around a center inside the torso instead of extruding forward.
+
+    ``x/y/z`` are measured from the surface marker.  The virtual inflation
+    center sits behind the marker, so enlargement behaves like scaling a soft
+    volume around that center: flanks widen, the upper/lower poles round out,
+    and the apex advances only as one component of the same radial motion.
+    """
+    distance2 = (x / radius) ** 2 + (y / radius) ** 2 + (z / (radius * .95)) ** 2
+    if distance2 >= 1.:
+        return Vector(), 0.
+
+    # Keep most of the central breast moving as one rounded volume, then use a
+    # C1 edge taper.  A strong radial taper from the apex created a pinched ring.
+    normalized = math.sqrt(max(0., distance2))
+    if normalized <= .58:
+        envelope = 1.
+    else:
+        envelope = 1. - _smoothstep01((normalized - .58) / .42)
+
+    # Vertices near/behind the chest attachment must stay anchored.  The old
+    # forward-projection field started at this same plane, but its displacement
+    # direction was front-heavy.  Here the plane only controls influence.
+    attachment = _smoothstep01((z / radius + .55) / .45)
+    influence = envelope * attachment
+    if influence <= 1e-8:
+        return Vector(), 0.
+
+    # The virtual center is 0.38 radii inside the chest and just 0.03 radii
+    # above the marker.  That tiny vertical offset gives the lower pole a little
+    # more fullness without turning the operation back into a directional push.
+    radial = (lateral * x + up * (y - radius * .03)
+              + front * max(0., z + radius * .38))
+    delta = radial * (.40 * influence)
+    return delta, influence
+
+
 def marker_morphs(meshes, markers, info):
-    """Same world-space field for body and clothing, with a compact C1 falloff."""
+    """Same world-space inflation field for body and clothing."""
     centers = [from_gltf(markers[s]) for s in ('left', 'right')]
     radius = markers['radius']
     front, up, lateral = (from_gltf(info[k]) for k in ('front', 'up', 'left'))
@@ -139,36 +181,20 @@ def marker_morphs(meshes, markers, info):
             for index, center in enumerate(centers):
                 offset = point - center
                 x, y, z = offset.dot(lateral), offset.dot(up), offset.dot(front)
-                distance2 = (x / radius)**2 + (y / radius)**2 + (z / (radius * .9))**2
-                if distance2 >= 1:
+                delta, influence = _balloon_delta(x, y, z, radius, lateral, up, front)
+                if influence <= 0:
                     continue
-                # Estimate the attachment plane behind the surface marker.
-                # A constant forward push also inflated the lower chest into
-                # a second ledge. Taper to zero at the attachment instead.
-                depth = max(0., z / radius + .55)
-                if depth == 0:
-                    continue
-                attachment = min(1., depth / .55)
-                attachment = attachment * attachment * (3 - 2 * attachment)
-                # A flatter central falloff preserves the original curvature
-                # during reduction instead of pulling a dent into the apex.
-                weight = (1 - distance2 * distance2)**2
-                # Grow the breast in three dimensions instead of extruding its
-                # apex. Spread volume laterally and vertically, with slightly
-                # more room in the lower pole and a gentler upper transition.
-                vertical = .37 - .09 * tanh(y / (radius * .3))
-                projection = radius * .30 * depth * depth / (depth + .25)
-                # Broader growth needs a gentler radial taper: reusing the flat
-                # apex falloff here compresses a ring at the influence boundary.
-                radial_weight = (1 - distance2)**2
-                delta = ((lateral * x * .44 + up * y * vertical) * attachment * radial_weight
-                         + front * projection * weight)
-                candidates.append((weight, delta))
+                candidates.append((influence, delta))
                 if delta.length > 1e-8:
                     affected[index] += 1
-            # Blend overlaps continuously, capping the combined displacement.
-            deltas.append(sum((delta for _, delta in candidates), Vector()) /
-                          max(1, sum(weight for weight, _ in candidates)))
+            if not candidates:
+                deltas.append(Vector())
+                continue
+            # Markers may overlap near the sternum. Blend their vector fields
+            # instead of adding both displacements and creating a central ridge.
+            total = sum(weight for weight, _ in candidates)
+            deltas.append(sum((delta * weight for weight, delta in candidates), Vector()) /
+                          max(total, 1.))
         target = make_key(mesh, deltas)
         if target:
             targets.append(target)
