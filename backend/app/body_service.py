@@ -4,7 +4,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Awaitable,Callable
 from .asset_service import ASSET_ID_RE
-from .body_profile import NATURAL_LIMITS,natural_values
+from .body_profile import NATURAL_LIMITS,BREAST_SIZE_MAX,natural_values
 from .blender_service import _read_stream,probe_blender_version,validate_blender_path
 from .preparation_service import PREPARATION_ID_RE,load_preparation_report,resolve_preparation_root
 
@@ -15,7 +15,7 @@ SPECS={
 'shoulder_width':('Largura dos ombros','structural',.88,1.12,1.),'hip_width':('Largura dos quadris','structural',.88,1.12,1.),
 'arm_length':('Comprimento dos braços','structural',.92,1.08,1.),'leg_length':('Comprimento das pernas','structural',.92,1.08,1.),
 'arm_volume':('Volume dos braços','morph',-.4,.5,0.),'leg_volume':('Volume das pernas','morph',-.4,.5,0.),
-'torso_volume':('Volume do tronco','morph',-.35,.45,0.),'breast_size':('Volume dos seios','morph_optional',-.5,1.,0.)}
+'torso_volume':('Volume do tronco','morph',-.35,.45,0.),'breast_size':('Volume dos seios','morph_optional',-.5,BREAST_SIZE_MAX,0.)}
 PRESETS={'regular':{k:v[4] for k,v in SPECS.items()},'magro':{'shoulder_width':.97,'hip_width':.97,'arm_volume':-.3,'leg_volume':-.28,'torso_volume':-.28},'musculoso':{'shoulder_width':1.04,'arm_volume':.34,'leg_volume':.26,'torso_volume':.2},'encorpado':{'shoulder_width':1.03,'hip_width':1.04,'arm_volume':.18,'leg_volume':.22,'torso_volume':.38}}
 for p in PRESETS.values():
  p.update(natural_values(p))
@@ -58,7 +58,7 @@ def current_capabilities(c):
  c['control_specs']={k:{'label':v[0],'kind':v[1],'min':NATURAL_LIMITS[k][0],'max':NATURAL_LIMITS[k][1],'default':v[4]} for k,v in SPECS.items()}
  for k in SPECS:c.setdefault('controls',{}).setdefault(k,{'enabled':False,'reason':'Prepare os controles novamente para inspecionar este ajuste.'})
  c['builtin_presets']=PRESETS
- c['natural_shape']={'enabled':True,'version':1}
+ c['natural_shape']={'enabled':True,'version':2,'breast_volume_unrestricted':True,'breast_technical_max':BREAST_SIZE_MAX}
  return c
 def sources(c):return {x['source_id']:x for x in c.get('morph_sources',[]) if isinstance(x,dict) and x.get('source_id')}
 def normalize_markers(c,markers,required=False):
@@ -112,7 +112,8 @@ def normalize(c,values,bindings,breast_markers=None):
  for k,(label,kind,lo,hi,dft) in SPECS.items():
   try:v=float((values or {}).get(k,dft))
   except Exception as e:raise BodyError(f'Valor inválido para {label}.') from e
-  if not lo<=v<=hi:raise BodyError(f'{label} fora do limite seguro [{lo}, {hi}].')
+  if not math.isfinite(v):raise BodyError(f'Valor inválido para {label}.')
+  if not lo<=v<=hi:raise BodyError(f'{label} fora do limite técnico [{lo}, {hi}].')
   if not (controls.get(k) or {}).get('enabled') and k not in bindings and abs(v-dft)>1e-8:raise BodyError(f'{label} indisponível nesta base.')
   if kind!='structural' and k not in bindings and abs(v-dft)>1e-8:raise BodyError(f'{label} sem fonte de morph selecionada.')
   if k in bindings and v<0 and float(idx[bindings[k]].get('slider_min',0))>=0:raise BodyError(f'{label} não aceita valor negativo.')
